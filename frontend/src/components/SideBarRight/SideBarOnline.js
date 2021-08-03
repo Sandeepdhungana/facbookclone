@@ -13,6 +13,7 @@ const SideBarOnline = ({ name }) => {
           alt="profile pic"
         />
         <h2>{name}</h2>
+        <div className="greendot"></div>
       </div>
     </Link>
   );

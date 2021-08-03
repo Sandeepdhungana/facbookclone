@@ -1,18 +1,30 @@
 .sidebaronline {
-    display:flex;
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px 0 0 10px;
-    margin-bottom: 0.666vw;
-    width: 100%;
-    align-items:center;
+    position: relative;
+  display: flex;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px 0 0 10px;
+  margin-bottom: 0.666vw;
+  width: 100%;
+  align-items: center;
 }
 .sidebaronline:hover {
-    background-color: #E4E6E8;
+  background-color: #e4e6e8;
 }
 .sidebaronline img {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 .sidebaronline h2 {
-    font-size: calc(1rem + 0.4vw);
-    font-weight: 500;
+  font-size: calc(1rem + 0.4vw);
+  font-weight: 500;
 }
+.greendot {
+    position: absolute;
+    bottom: 5px;
+    left: 30px;
+    height:11px;
+    width: 11px;
+    background-color: #31A24C;
+    border-radius:50%;
+    border: 2px solid #ffff;
+}
+

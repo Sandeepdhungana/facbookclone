@@ -7,6 +7,7 @@ import StoryCard from "../components/StoryCard/StoryCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import "./HomeScreen.css";
 import { Link } from "react-router-dom";
+import WritePost from "../components/WritePost/WritePost";
 
 const HomeScreen = () => {
   const name = [
@@ -31,6 +32,9 @@ const HomeScreen = () => {
                 <ArrowForwardIcon />
               </div>
             </Link> */}
+          </div>
+          <div className="card__container--writepost">
+            <WritePost />
           </div>
           <div className="card__container--postcard">
             <Cards />

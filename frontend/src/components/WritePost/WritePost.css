@@ -1,0 +1,114 @@
+#writepost {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  align-self: flex-start;
+}
+.writepost--write {
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.writepost--write::after {
+  position: absolute;
+  content: " ";
+  background: #f0f2f5;
+  padding: 0.8px;
+  width: calc(100% - 2rem);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.writepost--write--input {
+  flex: 1;
+  padding: 2%;
+  border-radius: 555px;
+  background-color: #f0f2f5;
+  cursor: pointer;
+}
+.writepost--write--input:hover {
+  background-color: #e4e6e8;
+}
+.writepost--write--input h3 {
+  font-size: calc(1rem + 0.4vw);
+  font-weight: 400;
+  color: #606266;
+}
+.writepost__icons {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}
+[class^="writepost__icons--"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 4rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+[class^="writepost__icons--"] h3 {
+  font-size: calc(1rem + 0.4vw);
+  font-weight: 500;
+}
+[class^="writepost__icons--"] img {
+  margin-right: 1rem;
+  height: calc(1rem + 0.5vw);
+}
+[class^="writepost__icons--"]:hover {
+  background-color: #f2f2f2;
+}
+/* .writepost__icons i {
+  background-size: 25px 652px;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.writepost__icons--livevideo i {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y6/r/7MbcgNDPrn5.png");
+  background-position: 0 0;
+}
+.writepost__icons--photo i {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y6/r/7MbcgNDPrn5.png");
+  background-position: 0 -200px;
+}
+.writepost__icons--smile i {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y6/r/7MbcgNDPrn5.png");
+  background-position: 0 -50px;
+} */
+.writepost--write img {
+  height: 3.5rem;
+  width: 3.5rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+
+
+/* while modal is open donot scroll */
+.modalopen {
+  overflow-y: hidden;
+}
+
+/* Media query */
+@media screen and (max-width: 610px) {
+  .writepost__icons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 4rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  [class^="writepost__icons--"] {
+    padding: 0.3rem 2rem;
+  }
+  [class^="writepost__icons--"] {
+    padding: 1rem 4rem;
+  }
+}

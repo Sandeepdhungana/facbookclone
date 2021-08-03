@@ -34,14 +34,13 @@ span strong {
   font-weight: 500;
 }
 .sidebar__links--link img {
-  height:3.5rem;
+  height: 3.5rem;
   width: 3.5rem;
   margin-right: 1rem;
 }
 
-
-@media screen and (max-width:1099px) {
+@media screen and (max-width: 1099px) {
   #sidebarleft {
-    display:none;
+    display: none;
   }
 }
