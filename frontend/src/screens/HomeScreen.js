@@ -37,9 +37,9 @@ const HomeScreen = () => {
             <WritePost />
           </div>
           <div className="card__container--postcard">
-            <Cards />
-            <Cards />
-            <Cards />
+            {Array(100).fill().map((_,index) =>{
+              return <Cards/>
+            })}
           </div>
         </div>
         <SideBarRight />

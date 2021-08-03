@@ -1,0 +1,133 @@
+#postcards {
+  margin-bottom: 2rem;
+  background: white;
+  cursor:pointer;
+}
+
+/* Post Card Top */
+.postcards__top {
+  /* display: flex; */
+  padding: 1rem 2rem;
+}
+.postcards__top--name {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.postcards__top--name--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.postcards__top--name--wrapper img {
+  margin-right: 1rem;
+}
+.postcards__top--name--wrapper h3 {
+  font-weight: 500;
+  color: #000;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+.postcards__top--name .MuiSvgIcon-root {
+  font-size: clamp(3rem, 2vw, 1.25rem);
+  cursor: pointer;
+  color: #60676f;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+.postcards__top--name .MuiSvgIcon-root:hover {
+  background: #f2f3f3;
+}
+.postcards__top--name--time p {
+  color: #6e747c;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+.postcards__top img {
+  height: 3.5rem;
+  width: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+h3.postcards__top--caption {
+  font-size: clamp(1.5rem, 1vw, 2rem);
+  font-weight: 400;
+}
+
+
+/* Post Card Image */
+.postcards__image {
+    width: 100%;
+}
+.postcards__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+/* Post Card Down */
+.postcards__down {
+  padding: 1rem 2rem;
+}
+.postcards__down--showlike {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 0;
+  /* border-bottom: 1px solid #CED0D4; */
+}
+.postcards__down--showlike::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  padding: 0.2px;
+  height: 0.2px;
+  width: 100%;
+  background-color: #ced0d4;
+}
+.postcards__down--showlike span {
+  display: flex;
+  align-items: center;
+}
+.postcards__down--info {
+  display: flex;
+}
+.postcards__down--info span,
+.postcards__down--showlike span {
+  margin-right: 0.5rem;
+  color: #6e747c;
+  font-size: clamp(1.45rem, 1vw, 1.25rem);
+}
+.postcards__down--showlike img {
+  margin-right: 0.5rem;
+}
+.postcards__down--showlike img {
+  height: 2rem;
+  width: 2rem;
+}
+
+.postcards__down--icons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+[class^="postcards__down--icons--"] {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  padding: 0.5rem 2rem;
+  color: #6e747c;
+  margin-left: 1rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+[class^="postcards__down--icons--"]:hover {
+  background: #f2f3f3;
+}
+
+[class^="postcards__down--icons--"] i {
+  margin-right: 0.5rem;
+}

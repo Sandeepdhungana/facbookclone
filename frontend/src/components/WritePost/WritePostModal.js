@@ -5,7 +5,11 @@ import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 import photoIcon from "./icons/photoIcon.png";
-import smileIcon from "./icons/photoIcon.png";
+import smileIcon from "./icons/smileIcon.png";
+import friendRequestIcon from "./icons/friendRequestIcon.png";
+import mikeIcon from "./icons/mikeIcon.png";
+import locationIcon from "./icons/locationIcon.png";
+
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 const WritePostModal = ({ clicked, showWriteModal }) => {
@@ -91,16 +95,16 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
               <img src={photoIcon} alt="" />
             </li>
             <li>
-              <img src={smileIcon} alt="" />
-            </li>
-            <li>
-              <img src={photoIcon} alt="" />
+              <img src={friendRequestIcon} alt="" />
             </li>
             <li>
               <img src={smileIcon} alt="" />
             </li>
             <li>
-              <img src={photoIcon} alt="" />
+              <img src={locationIcon} alt="" />
+            </li>
+            <li>
+              <img src={mikeIcon} alt="" />
             </li>
             <li>
               <MoreHorizRoundedIcon />

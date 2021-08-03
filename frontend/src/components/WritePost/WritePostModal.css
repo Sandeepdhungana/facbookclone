@@ -155,6 +155,11 @@ textarea {
   /* background: green; */
 }
 
+.writepostmodal__text h2 {
+  font-family: calc(1rem + 1vw);
+  font-weight: 500;
+}
+
 .wirtepostmodal__button {
   width: 100%;
 }

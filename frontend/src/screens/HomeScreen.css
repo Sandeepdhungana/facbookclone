@@ -7,7 +7,7 @@
 
 .grids {
   display: grid;
-  grid-template-columns: calc(20vw + 1rem) 2fr minmax(min-content, 1fr);
+  grid-template-columns: calc(25vw + 1rem) 1fr minmax(min-content, 1.2fr);
 }
 
 .card__container {
@@ -31,6 +31,9 @@
   width: 90%;
   /* background: #fff; */
 }
+.card__container--postcard {
+  width: 90%;
+}
 /* Scrollbar of left SideBar */
 #sidebarleft::-webkit-scrollbar {
   width: 8px;
@@ -51,7 +54,6 @@
 }
 
 /* Media query */
-
 
 /* 1099 breakpoint */
 @media screen and (max-width: 1099px) {
@@ -75,7 +77,6 @@
     justify-content: center;
   }
 }
-
 
 @media screen and (max-width: 450px) {
   .card__container--story {

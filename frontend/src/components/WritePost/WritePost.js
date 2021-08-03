@@ -11,6 +11,8 @@ const WritePost = () => {
   const [clicked, setClicked] = useState(false);
   if (clicked) {
     document.body.classList.add("modalopen");
+  } else {
+    document.body.classList.remove("modalopen");
   }
   return (
     <section id="writepost" className="shadow radius">

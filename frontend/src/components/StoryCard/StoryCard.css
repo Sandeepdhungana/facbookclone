@@ -6,6 +6,9 @@
     margin-right: 0.9rem;
 
   }
+  .storycard:last-child {
+    margin: 0rem;
+  }
   .storycard--name {
     position: absolute;
     bottom: 1.5rem;
@@ -46,6 +49,9 @@
   @media screen and (max-width: 599px) {
     .storycard:nth-child(5) {
       display: none;
+    }
+    .storycard:nth-child(4) {
+      margin: 0rem;
     }
   }
   
