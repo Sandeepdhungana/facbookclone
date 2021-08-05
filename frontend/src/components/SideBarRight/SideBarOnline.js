@@ -5,7 +5,7 @@ import "./SideBarOnline.css";
 
 const SideBarOnline = ({ name }) => {
   return (
-    <Link to="/users/:id">
+    <Link to="/users">
       <div className="sidebaronline">
         <img
           src={profilePic}

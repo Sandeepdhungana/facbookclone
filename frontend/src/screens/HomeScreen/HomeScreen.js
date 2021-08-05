@@ -1,13 +1,13 @@
 import React from "react";
-import NavBar from "../components/NavBar/NavBar";
-import SideBarRight from "../components/SideBarRight/SideBarRight";
-import SideBarLeft from "../components/SideBarLeft/SideBarLeft";
-import Cards from "../components/Cards/Cards";
-import StoryCard from "../components/StoryCard/StoryCard";
+import NavBar from "../../components/NavBar/NavBar";
+import SideBarRight from "../../components/SideBarRight/SideBarRight";
+import SideBarLeft from "../../components/SideBarLeft/SideBarLeft";
+import Cards from '../../components/Cards/Cards'
+import StoryCard from "../../components/StoryCard/StoryCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import "./HomeScreen.css";
 import { Link } from "react-router-dom";
-import WritePost from "../components/WritePost/WritePost";
+import WritePost from "../../components/WritePost/WritePost";
 
 const HomeScreen = () => {
   const name = [
@@ -19,13 +19,12 @@ const HomeScreen = () => {
   ];
   return (
     <>
-      <NavBar />
       <main className="grids">
         <SideBarLeft />
         <div className="card__container">
           <div className="card__container--story">
             {name.map((name, i) => {
-              return <StoryCard name={name} />;
+              return <StoryCard name={name} key={i} />;
             })}
             {/* <Link to="/story">
               <div className="card__container--arrow">
@@ -37,8 +36,8 @@ const HomeScreen = () => {
             <WritePost />
           </div>
           <div className="card__container--postcard">
-            {Array(100).fill().map((_,index) =>{
-              return <Cards/>
+            {Array(5).fill().map((_,index) =>{
+              return <Cards key={index}/>
             })}
           </div>
         </div>

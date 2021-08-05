@@ -5,7 +5,7 @@ import "./Cards.css";
 
 const Cards = () => {
   return (
-    <section id="postcards" className='shadow radius'>
+    <section id="postcards" className="shadow radius">
       <div className="postcards__top">
         <div className="postcards__top--name">
           <div className="postcards__top--name--wrapper">
@@ -13,15 +13,14 @@ const Cards = () => {
             <div className="postcards__top--name--time">
               <h3>Sandeep Dhungana</h3>
               <p>
-                2 h. <i class="fas fa-cog"></i>
+                2 h. <i className="fas fa-cog"></i>
               </p>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <h3 className="postcards__top--caption">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius quidem
-          doloribus aut neque lorem
+          5:00 AM: The hour when legends are either waking up or going to bed.
         </h3>
       </div>
       <div className="postcards__image">
@@ -44,15 +43,15 @@ const Cards = () => {
         </div>
         <div className="postcards__down--icons">
           <div className="postcards__down--icons--like radius">
-            <i class="far fa-thumbs-up"></i>
+            <i className="far fa-thumbs-up"></i>
             <span>Like</span>
           </div>
           <div className="postcards__down--icons--comment radius">
-            <i class="fas fa-comment"></i>
+            <i className="fas fa-comment"></i>
             <span>Comment</span>
           </div>
           <div className="postcards__down--icons--share radius">
-            <i class="fas fa-share"></i>
+            <i className="fas fa-share"></i>
             <span>Share</span>
           </div>
         </div>

@@ -8,6 +8,7 @@ import SideBarOnline from "./SideBarOnline";
 
 const SideBarRight = () => {
   const name = [
+    "Ahmad Alkhuder",
     "Sandeep Dhungana",
     "Sushila Subedi",
     "Niroj Aryal",
@@ -30,7 +31,7 @@ const SideBarRight = () => {
         </div>
       </div>
       {name.map((name, i) => {
-        return <SideBarOnline name={name} />;
+        return <SideBarOnline name={name} key={i} />;
       })}
     </section>
   );

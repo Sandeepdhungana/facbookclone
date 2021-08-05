@@ -1,0 +1,164 @@
+.signupscreen {
+  background: white;
+  width: 43.2rem;
+  transition: all 5s ease-in-out;
+}
+
+.signupscreen__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.signupscreen__top--signup {
+  padding: 1rem 1.5rem;
+}
+.signupscreen__top h1 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 5rem;
+}
+.signupscreen__top h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #606770;
+}
+.signupscreen__top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+.signupscreen__top--cancel {
+  padding: 2rem;
+  cursor: pointer;
+}
+.signupscreen__top--cancel .MuiSvgIcon-root {
+  font-size: 4rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-weight: 900;
+  color: #636970;
+  cursor: pointer;
+}
+.signupscreen__top--cancel .MuiSvgIcon-root:hover {
+  background: #dddfe2;
+}
+
+.signupscreen__form {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+.signupscreen__form--name {
+  display: flex;
+  justify-content: space-between;
+}
+.signupscreen__form--name > input {
+  width: 50%;
+}
+.signupscreen__form--name > input:first-child {
+  margin-right: 1rem;
+}
+
+.signupscreen__form--name > input,
+.signupscreen__form--email > input,
+.signupscreen__form--password > input {
+  height: 4rem;
+  outline: none;
+  border-radius: 5px;
+  border: 0.5px solid #dddfe2;
+  font-size: 1.5rem;
+  padding: 0rem 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.signupscreen__form--password > input {
+  margin-bottom: 3rem;
+}
+.signupscreen__form--datedropdown {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signupscreen__form--down {
+  flex: 1;
+}
+.signupscreen__form--down select {
+  width: 95%;
+  height: 4rem;
+  outline: none;
+  border: 0.5px solid #dddfe2;
+  border-radius: 5px;
+  color: #1c1e21;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.signupscreen__form--radiobtn {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+[class^="signupscreen__form--radiobtn--"] {
+  position: relative;
+  display: flex;
+  flex: 1;
+  border-radius: 5px;
+  border: 0.5px solid #dddfe2;
+  padding: 1rem;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  outline: none;
+  align-items: center;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  background: transparent;
+}
+
+[class^="signupscreen__form--radiobtn--"] input {
+  position: absolute;
+  width: 100%;
+}
+
+[class^="signupscreen__form--radiobtn--"] p {
+  font-size: 1.5rem;
+  color: #606770;
+  margin-right: 1rem;
+}
+
+.labels {
+  position: absolute;
+  top: -1.5rem;
+  font-size: 1.2rem;
+  color: #606770;
+}
+
+.signupscreen__form--text {
+  padding: 1rem 2rem;
+  color: #777777;
+  font-size: 1.2rem;
+}
+.signupscreen__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+.signupscreen__btn button {
+  padding: 1rem 8rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 2rem;
+  background-color: #00a400;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}

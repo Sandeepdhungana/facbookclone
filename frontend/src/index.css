@@ -32,6 +32,48 @@ a:visited {
 .radius {
   border-radius: 10px;
 }
+
+.overlay {
+  position: fixed;
+  background: rgb(255, 255, 255, 0.5);
+  opacity: 1;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.hideModal {
+  animation: hide 1s;
+}
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.showModal {
+  opacity: 1;
+  animation: show 1s;
+
+  /* transform: scale(1); */
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* .hoverclass {
   margin-bottom: 1rem;
   padding: 0.5rem 2rem;

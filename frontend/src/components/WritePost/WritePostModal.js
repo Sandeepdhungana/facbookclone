@@ -55,7 +55,13 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
 
   return (
     <div className="overlay">
-      <div className="writepostmodal radius shadow">
+      <div
+        className={
+          clicked
+            ? "writepostmodal radius shadow showModal"
+            : "writepostmodal radius shadow hideModal"
+        }
+      >
         <div className="writepostmodal__heading">
           <h1>Create post</h1>
           <ClearRoundedIcon onClick={showWriteModal} />

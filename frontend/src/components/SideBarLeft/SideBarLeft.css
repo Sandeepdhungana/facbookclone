@@ -1,5 +1,5 @@
 #sidebarleft {
-  padding-top: 2.5rem;
+  padding-top: 1rem;
   padding-left: 1rem;
   padding-bottom: 1rem;
   overflow: hidden;
@@ -12,10 +12,10 @@
 }
 
 .sidebar__links--link {
-  margin-bottom: 1rem;
   padding: 1rem 1.2rem;
   border-radius: 10px 0 0 10px;
   width: 100%;
+  cursor: pointer;
 }
 .sidebar__links--link:hover {
   background-color: #e4e6e8;
@@ -38,8 +38,17 @@ span strong {
   width: 3.5rem;
   margin-right: 1rem;
 }
+.sidebar__links--link .MuiSvgIcon-root {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 2rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background: #E5E6EA;
+}
 
-@media screen and (max-width: 1099px) {
+
+@media screen and (max-width: 1175px) {
   #sidebarleft {
     display: none;
   }

@@ -11,6 +11,7 @@ import watch from "../../assets/img/watch.png";
 import events from "../../assets/img/events.png";
 import memories from "../../assets/img/memories.png";
 import saved from "../../assets/img/saved.png";
+import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 
 const SideBarLeft = () => {
   return (
@@ -92,72 +93,9 @@ const SideBarLeft = () => {
             </span>
           </Link>
         </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
         <li className="sidebar__links--link line">
           <Link to="/profile">
+            <ArrowDropDownRoundedIcon />
             <span>
               <strong>See More</strong>
             </span>

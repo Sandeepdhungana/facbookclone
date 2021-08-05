@@ -1,9 +1,10 @@
 .sidebaronline {
-    position: relative;
+  position: relative;
   display: flex;
   padding: 0.6rem 0.8rem;
+  padding: 1rem;
   border-radius: 10px 0 0 10px;
-  margin-bottom: 0.666vw;
+  /* margin-bottom: 0.666vw; */
   width: 100%;
   align-items: center;
 }
@@ -18,13 +19,12 @@
   font-weight: 500;
 }
 .greendot {
-    position: absolute;
-    bottom: 5px;
-    left: 30px;
-    height:11px;
-    width: 11px;
-    background-color: #31A24C;
-    border-radius:50%;
-    border: 2px solid #ffff;
+  position: absolute;
+  bottom: 9px;
+  left: 34px;
+  height: 10px;
+  width: 10px;
+  background-color: #31a24c;
+  border-radius: 50%;
+  border: 2px solid #ffff;
 }
-
