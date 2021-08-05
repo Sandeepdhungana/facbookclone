@@ -1,4 +1,4 @@
-import React from "react";
+import React, { isValidElement } from "react";
 import "./SideBarLeft.css";
 import { Link } from "react-router-dom";
 
@@ -12,96 +12,85 @@ import events from "../../assets/img/events.png";
 import memories from "../../assets/img/memories.png";
 import saved from "../../assets/img/saved.png";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
+import SideBar from "../SideBar/SideBar";
+import ArrowDropDownRounded from "@material-ui/icons/ArrowDropDownRounded";
 
 const SideBarLeft = () => {
+  // function isClassComponent(component) {
+  //   return (
+  //     typeof component === "function" && !!component.prototype.isReactComponent
+  //   );
+  // }
+
+  // function isFunctionComponent(component) {
+  //   return (
+  //     typeof component === "function" &&
+  //     String(component).includes("return React.createElement")
+  //   );
+  // }
+
+  // function isReactComponent(component) {
+  //   return isClassComponent(component) || isFunctionComponent(component);
+  // }
+  const icons = [
+    profilePic,
+    cov19,
+    friends,
+    group,
+    marketplace,
+    watch,
+    events,
+    memories,
+    saved,
+  ];
+  const name = [
+    "Sandeep Dhungana",
+    "COVID-19 Information Centre",
+    "Friends",
+    "Group",
+    "Marketplace",
+    "Watch",
+    "Events",
+    "Memories",
+    "Saved",
+  ];
+  const linkto = [
+    "profile",
+    "cov19",
+    "friends",
+    "groups",
+    "marketplace",
+    "watch",
+    "events",
+    "memories",
+    "saved",
+  ];
+  const iconsName = icons.map((icons, i) => {
+    return [icons, name[i], linkto[i]];
+  });
   return (
     <section id="sidebarleft">
       <div className="sidebar__links">
-        <li className="sidebar__links--link">
-          <Link to="/profile">
-            <img
-              className="sidebarleft__profilepic imgs"
-              src={profilePic}
-              alt=""
+        {iconsName.map((icon, i) => {
+          return (
+            <SideBar
+              key={i}
+              icons={icon[0]}
+              name={icon[1]}
+              linkto={icon[2]}
+              children={ArrowDropDownRounded}
             />
-            <span>
-              <strong>Sandeep Dhungana</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/covidinfo">
-            <img src={cov19} alt="" />
-            <span>
-              <strong>COVID-19 Information Centre</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/friends">
-            <img src={friends} alt="" />
-            <span>
-              <strong>Friends</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/groups">
-            <img src={group} alt="" />
-            <span>
-              <strong>Groups</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/marketplace">
-            <img src={marketplace} alt="" />
-            <span>
-              <strong>Marketplace</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/watch">
-            <img src={watch} alt="" />
-            <span>
-              <strong>Watch</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/events">
-            <img src={events} alt="" />
-            <span>
-              <strong>Events</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/memories">
-            <img src={memories} alt="" />
-            <span>
-              <strong>Memories</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link">
-          <Link to="/saved">
-            <img src={saved} alt="" />
-            <span>
-              <strong>Saved</strong>
-            </span>
-          </Link>
-        </li>
-        <li className="sidebar__links--link line">
-          <Link to="/profile">
-            <ArrowDropDownRoundedIcon />
-            <span>
-              <strong>See More</strong>
-            </span>
-          </Link>
-        </li>
+          );
+        })}
       </div>
+      <li className="sidebar__links--link line">
+        <Link to="/seemore">
+          <ArrowDropDownRoundedIcon />
+          <span>
+            <strong>See More</strong>
+          </span>
+        </Link>
+      </li>
     </section>
   );
 };

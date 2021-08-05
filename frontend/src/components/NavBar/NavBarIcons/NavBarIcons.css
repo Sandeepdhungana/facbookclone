@@ -1,0 +1,25 @@
+.navbar__icons li {
+  border-radius: 1rem;
+  padding: 1rem calc(1rem + 1vw);
+  margin-right: calc(0.001rem + 0.5vw);
+  cursor: pointer;
+}
+.navbar__icons li:hover {
+  background: #f0f2f5;
+}
+.activenow {
+  display: block;
+  position: relative;
+  fill: #166ada;
+  transition: all 0.3s;
+}
+.activenow::after {
+  content: "";
+  position: absolute;
+  left: -2.8rem;
+  width: 306%;
+  padding: 0.2rem;
+  z-index: 888;
+  background: #166ada;
+  bottom: -1.7rem;
+}

@@ -1,0 +1,16 @@
+.onlineicon img {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+}
+
+.greendot {
+  position: absolute;
+  bottom: 9px;
+  left: 34px;
+  height: 10px;
+  width: 10px;
+  background-color: #31a24c;
+  border-radius: 50%;
+  border: 2px solid #ffff;
+}

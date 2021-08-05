@@ -10,25 +10,7 @@
   position: sticky;
   top: 0;
 }
-.activenow {
-  display:block;
-  position: relative;
-  fill: #166ada;
-  transition: all 0.3s;
-}
-.activenow::after {
-  content: '';
-  position: absolute;
-  left: -2.8rem;
-  width: 306%;
-  padding: 0.2rem;
-  z-index: 888;
-  background: #166ada;
-  bottom: -1.7rem;
-}
-.iconactive {
-  background: #DBE7F2;
-}
+
 .navbar__logo {
   display: flex;
   width: 25%;
@@ -58,11 +40,7 @@
   background: transparent;
   outline: none;
   border: none;
-  /* height:100%; */
   padding: 1rem;
-}
-.navbar__logo--search input[type="checkbox"] {
-  /* visibility: hidden; */
 }
 
 .navbar__logo--search input::placeholder {
@@ -74,16 +52,6 @@
   display: flex;
   width: 50%;
   justify-content: space-evenly;
-}
-
-.navbar__icons li {
-  border-radius: 1rem;
-  padding: 1rem calc(1rem + 1vw);
-  margin-right: calc(0.001rem + 0.5vw);
-  cursor: pointer;
-}
-.navbar__icons li:hover {
-  background: #f0f2f5;
 }
 
 .navbar__namesicons {
@@ -110,12 +78,7 @@
   width: 100%;
   justify-content: space-evenly;
 }
-.navbar__navicons--icons--list {
-  padding: 0.5vw;
-  background-color: #f0f2f5;
-  border-radius: 50%;
-  cursor: pointer;
-}
+
 
 /********************* Media query **********************/
 @media screen and (max-width: 1060px) {
@@ -143,7 +106,7 @@
 }
 
 /* max-width:600 */
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   .navbar__icons--game {
     display: none;
   }
@@ -170,9 +133,8 @@
   .navbar__logo--search .MuiSvgIcon-root {
     margin-left: 0.5rem;
   }
-
   .activenow::after {
-    content: '';
+    content: "";
     position: absolute;
     left: -1.2rem;
     width: 200%;
@@ -181,6 +143,4 @@
     background: #166ada;
     bottom: -1.1rem;
   }
-  
- 
 }
