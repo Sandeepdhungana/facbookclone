@@ -4,11 +4,11 @@ import profilePic from "../../assets/img/profilepic.jpg";
 import OnlineIcon from "../OnlineIcon/OnlineIcon";
 import "./SideBarOnline.css";
 
-const SideBarOnline = ({ name }) => {
+const SideBarOnline = ({ name, linkto }) => {
   return (
-    <Link to="/users">
+    <Link to={`/users/${linkto}`}>
       <div className="sidebaronline">
-        <OnlineIcon profilePic={profilePic}/>
+        <OnlineIcon profilePic={profilePic} />
         <h2>{name}</h2>
       </div>
     </Link>

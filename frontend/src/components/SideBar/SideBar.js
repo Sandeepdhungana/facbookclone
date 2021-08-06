@@ -8,6 +8,7 @@ const SideBar = ({ icons, name, linkto, children }) => {
         {icons && (
           <img className="sidebarleft__profilepic imgs" src={icons} alt="" />
         )}
+        {children}
         <span>
           <strong>{name}</strong>
         </span>

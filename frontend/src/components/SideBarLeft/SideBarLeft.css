@@ -3,9 +3,9 @@
   padding-left: 1rem;
   padding-bottom: 1rem;
   overflow: hidden;
-  height: 100vh;
+  height: 92vh;
   position: sticky;
-  top: 6rem;
+  top: 8vh;
 }
 #sidebarleft:hover {
   overflow: auto;
@@ -44,9 +44,8 @@ span strong {
   font-size: 2rem;
   margin-right: 1rem;
   border-radius: 50%;
-  background: #E5E6EA;
+  background: #e5e6ea;
 }
-
 
 @media screen and (max-width: 1175px) {
   #sidebarleft {

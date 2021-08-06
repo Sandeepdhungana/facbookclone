@@ -13,7 +13,6 @@ import memories from "../../assets/img/memories.png";
 import saved from "../../assets/img/saved.png";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import SideBar from "../SideBar/SideBar";
-import ArrowDropDownRounded from "@material-ui/icons/ArrowDropDownRounded";
 
 const SideBarLeft = () => {
   // function isClassComponent(component) {
@@ -34,6 +33,14 @@ const SideBarLeft = () => {
   // }
   const icons = [
     profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
+    profilePic,
     cov19,
     friends,
     group,
@@ -45,6 +52,14 @@ const SideBarLeft = () => {
   ];
   const name = [
     "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
+    "Sandeep Dhungana",
     "COVID-19 Information Centre",
     "Friends",
     "Group",
@@ -55,6 +70,14 @@ const SideBarLeft = () => {
     "Saved",
   ];
   const linkto = [
+    "profile",
+    "profile",
+    "profile",
+    "profile",
+    "profile",
+    "profile",
+    "profile",
+    "profile",
     "profile",
     "cov19",
     "friends",
@@ -78,7 +101,6 @@ const SideBarLeft = () => {
               icons={icon[0]}
               name={icon[1]}
               linkto={icon[2]}
-              children={ArrowDropDownRounded}
             />
           );
         })}

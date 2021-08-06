@@ -1,11 +1,13 @@
 #sidebarright {
-  padding-top: 2rem;
-  padding-left: 2rem;
-  height: 100vh;
-  overflow: hidden;
+  padding-top: 1rem;
+  padding-left: 1rem;
   padding-bottom: 1rem;
+  overflow: hidden;
+  height: 92vh;
   position: sticky;
-  top: 6rem;
+  top: 8vh;
+  bottom: 0;
+  right: 0;
 }
 
 #sidebarright:hover {
@@ -13,12 +15,11 @@
 }
 
 .sidebarright__contacts--heading {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   padding-right: 1rem;
-  color: #5D646C;
-  margin-bottom: 0.66vw;
+  color: #5d646c;
   font-size: 1.2rem;
 }
 
@@ -47,10 +48,8 @@
   background-color: #e4e6e8;
 }
 
-
-
 /* media query */
-@media screen and (max-width:899px) {
+@media screen and (max-width: 899px) {
   #sidebarright {
     display: none;
   }

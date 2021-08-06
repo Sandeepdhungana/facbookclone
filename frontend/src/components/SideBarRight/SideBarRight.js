@@ -5,6 +5,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import SideBarOnline from "./SideBarOnline";
+import SideBar from "../SideBar/SideBar";
+import profilePic from "../../assets/img/profilepic.jpg";
 
 const SideBarRight = () => {
   const name = [
@@ -13,6 +15,12 @@ const SideBarRight = () => {
     "Sushila Subedi",
     "Niroj Aryal",
     "Prem Katwal",
+    "Ranjeev Bohara",
+    "Ranjeev Bohara",
+    "Ranjeev Bohara",
+    "Ranjeev Bohara",
+    "Ranjeev Bohara",
+    "Ranjeev Bohara",
     "Ranjeev Bohara",
     "Yash Kumar Shah",
     "Shova Nyaupane",
@@ -31,7 +39,9 @@ const SideBarRight = () => {
         </div>
       </div>
       {name.map((name, i) => {
-        return <SideBarOnline name={name} key={i} />;
+        return (
+          <SideBarOnline key={i} name={name} icons={profilePic} linkto={i} />
+        );
       })}
     </section>
   );

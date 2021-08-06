@@ -9,6 +9,7 @@
   z-index: 222;
   position: sticky;
   top: 0;
+  height: 8vh;
 }
 
 .navbar__logo {
