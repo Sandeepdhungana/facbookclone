@@ -31,11 +31,11 @@ const LoginScreen = ({ history, location }) => {
     history.push("/home");
   };
 
-  const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
+  // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
-  useEffect(() => {
-    history.push(redirect);
-  }, [dispatch, loginuserinfo, history, redirect]);
+  // useEffect(() => {
+  //   history.push(redirect);
+  // }, [dispatch, loginuserinfo, history, redirect]);
   return (
     <section id="loginscreen">
       {loading ? (

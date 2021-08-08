@@ -36,4 +36,30 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
   }
 });
 
+
+// const postAddLike = asynchandler(async (req, res) => {
+//   const postId = req.params.postid;
+//   const post = await Post.findByIdAndUpdate(postId, {
+//     $addToSet: { like: req.user },
+//   });
+// });
+
+// const postDislike = asynchandler(async (req, res) => {
+//   const postId = req.params.postid;
+//   const post = await Post.findByIdAndUpdate(postId, {
+//     $pull: { like: req.user },
+//   });
+// });
+
+// const postAddComment = asynchandler(async (req, res) => {
+//   const postId = req.params.postid;
+//   const comment = req.body.comment
+//   const post = await Post.findByIdAndUpdate(postId,{$push:{comments: comment}})
+// })
+// const postRemoveComment = asynchandler(async (req, res) => {
+//   const postId = req.params.postid;
+//   const comment = req.body.comment
+//   const post = await Post.findByIdAndUpdate(postId,{$push:{comments: comment}})
+// })
+
 export { sendPostToFrontend, getPostFromFrontend };

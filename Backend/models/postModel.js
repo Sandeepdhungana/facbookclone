@@ -11,6 +11,18 @@ const likeSchema = new mongoose.Schema({
     default: "Like",
   },
 });
+// const Like = mongoose.model("lost", likeSchema);
+
+
+const commentSchema = new mongoose.Schema({
+  type: String,
+  commentedBy: {
+    type: ObjectId,
+    ref: "User",
+  },
+});
+// const Comment = mongoose.model("post", postSchema);
+
 
 const postSchema = new mongoose.Schema({
   postCaption: {
@@ -19,22 +31,14 @@ const postSchema = new mongoose.Schema({
   postImage: {
     type: String,
   },
-  comments: [
-    {
-      type: String,
-      commentedBy: {
-        type: ObjectId,
-        ref: "User",
-      },
-    },
-  ],
+  comments: [commentSchema],
   postedBy: {
     type: ObjectId,
     ref: "User",
   },
   postedIn: {
-    type: Date,
-    default: Date.now,
+    type: Number,
+    default: Date.now(),
   },
   likes: [likeSchema],
 });

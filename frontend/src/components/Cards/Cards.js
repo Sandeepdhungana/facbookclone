@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import profilePic from "../../assets/img/profilepic.jpg";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import "./Cards.css";
@@ -13,6 +13,63 @@ const Cards = ({
     postedIn,
   },
 }) => {
+  const [lengthOfCaption, setLengthOfCaption] = useState(75);
+  const [seemore, setSeemore] = useState(true);
+  const differenceInTime = () => {
+    const diff = Date.now() - postedIn;
+    var day, hour, minute, seconds, week, month, year;
+    seconds = Math.floor(diff / 1000);
+    minute = Math.floor(seconds / 60);
+    hour = Math.floor(minute / 60);
+    day = Math.floor(hour / 24);
+    week = Math.floor(day / 7);
+    month = Math.floor((week * 4) / 28);
+    year = Math.floor(month / 12);
+    return {
+      day: day,
+      hour: hour,
+      minute: minute,
+      seconds: seconds,
+      week,
+      month,
+      year,
+    };
+  };
+  const { day, hour, minute, seconds, week, month, year } = differenceInTime();
+  var timeElapsed = `${seconds} ago`;
+
+  if (month > 12) {
+    timeElapsed = `${year > 1 ? `${year} years` : `${year} year`} ago`;
+    console.log(timeElapsed);
+  } else if (week > 4) {
+    timeElapsed = `${month > 1 ? `${month} months` : `${month} month`} ago`;
+    console.log(timeElapsed);
+  } else if (day >= 7) {
+    timeElapsed = `${week > 1 ? `${week} weeks` : `${week} week`} ago`;
+    console.log(timeElapsed);
+  } else if (hour >= 24) {
+    timeElapsed = `${day > 1 ? `${day} days` : `${day} day`} ago`;
+    console.log(timeElapsed);
+  } else if (minute > 60) {
+    timeElapsed = `${hour > 1 ? `${hour} hours` : `${hour} hour`} ago`;
+    console.log(timeElapsed);
+  } else if (seconds > 60) {
+    timeElapsed = `${
+      minute > 1 ? `${minute} minutes` : `${minute} minute`
+    } ago`;
+  }
+
+  const handleSeemore = (e) => {
+    if (seemore) {
+      setSeemore(false);
+      setLengthOfCaption(postCaption.length);
+      console.log("there is full text now");
+    } else {
+      setSeemore(true);
+      setLengthOfCaption(75);
+      console.log("there is half text now");
+    }
+  };
   return (
     <section id="postcards" className="shadow radius">
       <div className="postcards__top">
@@ -24,17 +81,28 @@ const Cards = ({
                 {firstname} {surname}
               </h3>
               <p>
-                2 h. <i className="fas fa-cog"></i>
+                {timeElapsed}. <i className="fas fa-cog"></i>
               </p>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
-        <h3 className="postcards__top--caption">{postCaption}</h3>
+        <h3 className="postcards__top--caption">
+          {postCaption.substring(0, lengthOfCaption)}
+        </h3>
+        {postCaption && postCaption.length > 100 ? (
+          <h2 onClick={handleSeemore} style={{ color: "#6E747C",fontWeight:'400',display: 'inline'}}>
+            {seemore ? "See more..." : "See less..."}
+          </h2>
+        ) : (
+          ""
+        )}
       </div>
-      <div className="postcards__image">
-        <img src={postImage} alt="" />
-      </div>
+      {postImage && (
+        <div className="postcards__image">
+          <img src={postImage} alt="" />
+        </div>
+      )}
       {/* Post Card Down */}
       <div className="postcards__down">
         <div className="postcards__down--showlike">

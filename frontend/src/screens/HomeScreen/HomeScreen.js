@@ -12,7 +12,6 @@ import PageLoader from "../../components/Loader/PageLoader";
 const HomeScreen = ({ history, location }) => {
   const dispatch = useDispatch();
   const postGet = useSelector((state) => state.postGet);
-  
 
   const { loading, posts, error } = postGet;
 
