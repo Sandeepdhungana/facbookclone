@@ -9,16 +9,17 @@ const StoryCard = ({ name }) => {
   lastName = name.split(" ")[1];
   return (
     <div className="storycard">
-      <div className="storycard--profilepic">
+      <div className="storycard--story">
         <img src={profilePic} alt="" />
       </div>
-      <div className="storycard--story">
+      <div className="storycard--profilepic">
         <img src={profilePic} alt="" />
       </div>
       <div className="storycard--name">
         <h2>{firstName}</h2>
         <h2>{lastName}</h2>
       </div>
+      <div className="filter__background"></div>
     </div>
   );
 };

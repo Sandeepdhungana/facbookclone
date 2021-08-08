@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./WritePostModal.css";
 import profilePic from "../../assets/img/profilepic.jpg";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
@@ -12,9 +12,21 @@ import locationIcon from "./icons/locationIcon.png";
 
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
+import { useDispatch, useSelector } from "react-redux";
+import { postSubmissionAction } from "../../actions/postAction";
+import ButtonLoader from "../Loader/ButtonLoader";
+
 const WritePostModal = ({ clicked, showWriteModal }) => {
   const [postCaption, setPostCaption] = useState("");
   const [postImage, setPostImage] = useState("");
+  const [postFrontImage, setFrontPostImage] = useState("");
+  const [postLoading, setPostLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+
+  const dispatch = useDispatch();
+  // const postSubmission = useSelector((state) => state.PostSubmission);
+  // const { loading, error } = postSubmission;
+
   const increaseTextArea = () => {
     const tx = document.getElementsByTagName("textarea");
     for (let i = 0; i < tx.length; i++) {
@@ -34,24 +46,47 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
   const handleChange = (text) => (e) => {
     if (text === "writepost" && text === "uploadimage") {
       if (e.target.files.length !== 0) {
-        setPostImage(URL.createObjectURL(e.target.files[0]));
+        setFrontPostImage(URL.createObjectURL(e.target.files[0]));
+        setPostImage(e.target.files[0]);
+      } else {
+        setFrontPostImage("");
+        setPostImage("");
       }
       setPostCaption(e.target.value);
     } else if (text === "writepost") {
       setPostCaption(e.target.value);
     } else if (text === "uploadimage") {
       if (e.target.files.length !== 0) {
-        setPostImage(URL.createObjectURL(e.target.files[0]));
+        setFrontPostImage(URL.createObjectURL(e.target.files[0]));
+        setPostImage(e.target.files[0]);
+      } else {
+        setFrontPostImage("");
+        setPostImage("");
       }
     }
   };
 
-  console.log(postImage);
+  const data = postImage ? new FormData() : "";
+  if (postImage) {
+    console.log("The postImage inside the if statement is", postImage);
+    data.append("file", postImage);
+    data.append("upload_preset", "facebookclone");
+    data.append("cloud_name", "facebookclone");
+
+    console.log("the data inside the if statement is", data);
+  }
+
   const postButtonStyle = {
     background: "#1771E6",
     color: "#FFFFFF",
   };
   increaseTextArea();
+
+  const handlePostClick = (e) => {
+    dispatch(postSubmissionAction(postCaption, data, showWriteModal));
+    setPostLoading(true);
+    setDisableButton(true);
+  };
 
   return (
     <div className="overlay">
@@ -83,7 +118,7 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
             value={postCaption}
             placeholder="What's on your mind, Sandeep?"
           ></textarea>
-          <img src={postImage} alt="" />
+          <img src={postFrontImage} alt="" />
         </div>
         <div className="writepostmodal__uploadimage padding-lr-2 shadow">
           <input
@@ -119,10 +154,18 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
         </div>
         <div className="wirtepostmodal__button padding-lr-2">
           <button
+            disabled={disableButton}
             style={postCaption || postImage ? postButtonStyle : null}
             className="writepostmodal__btn radius"
+            onClick={handlePostClick}
           >
-            Post
+            {postLoading ? (
+              <>
+                <p>Uploading</p> <ButtonLoader />
+              </>
+            ) : (
+              "Post"
+            )}
           </button>
         </div>
       </div>

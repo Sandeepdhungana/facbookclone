@@ -47,24 +47,7 @@
   padding: 1.5rem;
 }
 
-.loginscreen__left--login input {
-  height: 5.5rem;
-  margin-bottom: 1.3rem;
-  outline: none;
-  border-radius: 5px;
-  border: 0.5px solid #dddfe2;
-  font-size: 1.8rem;
-  padding: 0rem 1rem;
-}
-.loginscreen__left--login input:focus {
-  border: 1px solid #166fe5;
-}
-.loginscreen__left--login input::placeholder {
-  display: block;
-  font-size: 1.5rem;
-  color: #8a8d91;
-  font-weight: 200;
-}
+
 .loginscreen__left--login-btn {
   background: #1877f2;
   padding: 1rem 0;

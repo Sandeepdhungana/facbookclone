@@ -33,14 +33,6 @@ const SideBarLeft = () => {
   // }
   const icons = [
     profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
-    profilePic,
     cov19,
     friends,
     group,
@@ -52,14 +44,6 @@ const SideBarLeft = () => {
   ];
   const name = [
     "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
-    "Sandeep Dhungana",
     "COVID-19 Information Centre",
     "Friends",
     "Group",
@@ -70,14 +54,6 @@ const SideBarLeft = () => {
     "Saved",
   ];
   const linkto = [
-    "profile",
-    "profile",
-    "profile",
-    "profile",
-    "profile",
-    "profile",
-    "profile",
-    "profile",
     "profile",
     "cov19",
     "friends",

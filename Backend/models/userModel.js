@@ -1,38 +1,83 @@
 import mongoose from "mongoose";
-const {
-    objectId
-} = mongoose.Schema.Types;
+const { ObjectId } = mongoose.Schema.Types;
+import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
+// const dateofbirthSchema = mongoose.Schema({
+//   day: {
+//     type: String,
+//   },
+//   month: {
+//     type: String,
+//   },
+//   year: {
+//     type: String,
+//   },
+// });
+
+const userSchema = mongoose.Schema({
+  firstname: {
+    type: String,
+    required: true,
+  },
+  surname: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  dateofbirth: {
+    day: String,
+    month: String,
+    year: String,
+  },
+  gender: {
+    type: String,
+  },
+  profilePic: {
+    type: String,
+  },
+  coverPic: {
+    type: String,
+  },
+  password: {
+    type: String,
+    required: true,
+    // select: false,
+  },
+  friends: [
+    {
+      type: ObjectId,
+      ref: "User",
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
+  ],
+  friendRequests: [
+    {
+      type: ObjectId,
+      ref: "User",
     },
-    password: {
-        type: String,
-        required: true,
+  ],
+  posts: [
+    {
+      type: ObjectId,
+      ref: "Post",
     },
-    friends: [{
-        type: objectId,
-        ref: "User",
-    }, ],
-    friendRequest: [{
-        type: objectId,
-        ref: "User",
-    }, ],
-    post: [{
-        type: objectId,
-        ref: "Post",
-    }, ],
-    profilePic: {
-        type: String,
-    }
+  ],
 });
 
-const User = mongoose.model("User", userSchema)
+userSchema.methods.matchPassword = async function (password) {
+  console.log(this.password);
+  return await bcrypt.compare(password, this.password);
+};
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+const User = mongoose.model("User", userSchema);
 export default User;

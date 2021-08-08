@@ -124,7 +124,27 @@
 [class^="signupscreen__form--radiobtn--"] input {
   position: absolute;
   width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0;
 }
+[class^="signupscreen__form--radiobtn--"] .MuiSvgIcon-root {
+  color: #0074fe;
+}
+
+/* .checkbox__inside {
+  position: absolute;
+  height: 7px;
+  top: 50%;
+  left: 48%;
+  width: 7px;
+  background: #0074fe;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+} */
 
 [class^="signupscreen__form--radiobtn--"] p {
   font-size: 1.5rem;
@@ -137,6 +157,8 @@
   top: -1.5rem;
   font-size: 1.2rem;
   color: #606770;
+  display: flex;
+  align-items: center;
 }
 
 .signupscreen__form--text {

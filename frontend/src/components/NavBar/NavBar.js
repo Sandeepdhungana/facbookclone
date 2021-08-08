@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./NavBar.css";
 
@@ -16,6 +17,10 @@ import NavBarLeftIcons from "./NavBarLeftIcons/NavBarLeftIcons";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
+  const loginUser = useSelector((state) => state.loginUser);
+  const {
+    userDetails: { firstname },
+  } = loginUser;
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
   const homeIcon = (
@@ -138,7 +143,7 @@ const NavBar = () => {
             alt=""
           />
           <span>
-            <h2>Sandeep</h2>
+            <h2>{firstname}</h2>
           </span>
         </div>
         <div className="navbar__navicons--icons">

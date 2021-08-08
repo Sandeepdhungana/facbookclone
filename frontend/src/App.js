@@ -7,6 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import SignupScreen from "./screens/SignupScreen/SignupScreen";
@@ -21,10 +22,10 @@ const App = () => {
         <>
           {/* Pages Containing Navbar */}
           <NavBar />
-          <Route exact path="/" component={HomeScreen}>
+          <PrivateRoute exact path="/">
             <Redirect to="/home" />
-          </Route>
-          <Route exact path="/home" component={HomeScreen} />
+          </PrivateRoute>
+          <PrivateRoute exact path="/home" component={HomeScreen} />
         </>
       </Switch>
     </Router>

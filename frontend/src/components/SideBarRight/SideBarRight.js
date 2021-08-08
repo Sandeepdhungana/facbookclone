@@ -30,19 +30,21 @@ const SideBarRight = () => {
   ];
   return (
     <section id="sidebarright">
-      <div className="sidebarright__contacts--heading">
-        <h1>Contacts</h1>
-        <div className="sidebarright__contacts--icons">
-          <VideoCallIcon />
-          <SearchIcon />
-          <MoreHorizIcon />
+      <div className="sidebarright__container">
+        <div className="sidebarright__contacts--heading">
+          <h1>Contacts</h1>
+          <div className="sidebarright__contacts--icons">
+            <VideoCallIcon />
+            <SearchIcon />
+            <MoreHorizIcon />
+          </div>
         </div>
+        {name.map((name, i) => {
+          return (
+            <SideBarOnline key={i} name={name} icons={profilePic} linkto={i} />
+          );
+        })}
       </div>
-      {name.map((name, i) => {
-        return (
-          <SideBarOnline key={i} name={name} icons={profilePic} linkto={i} />
-        );
-      })}
     </section>
   );
 };

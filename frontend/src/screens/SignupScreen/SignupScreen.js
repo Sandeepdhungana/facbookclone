@@ -1,14 +1,34 @@
 import React, { useState } from "react";
 import "./SignupScreen.css";
 import CloseIcon from "@material-ui/icons/Close";
+import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
+import HelpIcon from "@material-ui/icons/Help";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../actions/userAction";
+import ButtonLoader from "../../components/Loader/ButtonLoader";
 
 const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
+  const [nameandpassword, setNameAndPassowrd] = useState({
+    firstname: "",
+    surname: "",
+    email: "",
+    password: "",
+  });
+  const [dateofbirth, setDateOfBirth] = useState({
+    day: "",
+    month: "",
+    year: "",
+  });
   const [gender, setGender] = useState("");
+  const [buttonLoading, setButtonLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
   // Year Generator
   const getYearDropList = () => {
     const year = new Date().getFullYear();
     return Array.from(new Array(117), (v, i) => (
-      <option key={i} value={year + i}>
+      <option key={i} value={year - i}>
         {year - i}
       </option>
     ));
@@ -45,6 +65,28 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   const handleRadioButton = (e) => {
     setGender(e.target.value);
   };
+  const handleNameAndPassword = (e) => {
+    const value = e.target.value;
+    setNameAndPassowrd({
+      ...nameandpassword,
+      [e.target.name]: value,
+    });
+  };
+  const handleDateDateOfBirth = (e) => {
+    const value = e.target.value;
+    setDateOfBirth({
+      ...dateofbirth,
+      [e.target.name]: value,
+    });
+  };
+  // console.log([nameandpassword, dateofbirth, gender]);
+
+  const handleSubmit = (e) => {
+    dispatch(
+      registerUser(nameandpassword, dateofbirth, gender, showCreateModal)
+    );
+    setButtonLoading(true);
+  };
 
   return (
     <div className="overlay">
@@ -66,36 +108,75 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
         </div>
         <div className="signupscreen__form">
           <div className="signupscreen__form--name">
-            <input required type="text" placeholder="First name" />
-            <input required type="text" placeholder="Surname" />
+            <input
+              value={nameandpassword.firstname}
+              onChange={handleNameAndPassword}
+              name="firstname"
+              required
+              type="text"
+              placeholder="First name"
+            />
+            <input
+              value={nameandpassword.surname}
+              onChange={handleNameAndPassword}
+              name="surname"
+              required
+              type="text"
+              placeholder="Surname"
+            />
           </div>
           <div className="signupscreen__form--email">
             <input
+              value={nameandpassword.email}
+              onChange={handleNameAndPassword}
+              name="email"
               required
               type="text"
               placeholder="Mobile number or email address"
             />
           </div>
           <div className="signupscreen__form--password">
-            <input required type="password" placeholder="New password" />
+            <input
+              value={nameandpassword.password}
+              onChange={handleNameAndPassword}
+              name="password"
+              required
+              type="password"
+              placeholder="New password"
+            />
           </div>
           <div className="signupscreen__form--datedropdown">
             <div className="labels">
               Date of birth
-              <i class="fa-solid fa-circle-question"></i>
+              <HelpIcon />
             </div>
             <div className="signupscreen__form--down">
-              <select name="day" id="day">
+              <select
+                onChange={handleDateDateOfBirth}
+                value={dateofbirth.day}
+                name="day"
+                id="day"
+              >
                 {getDayDropList()}
               </select>
             </div>
             <div className="signupscreen__form--down">
-              <select name="day" id="day">
+              <select
+                onChange={handleDateDateOfBirth}
+                value={dateofbirth.month}
+                name="month"
+                id="month"
+              >
                 {getMonthDropList()}
               </select>
             </div>
             <div className="signupscreen__form--down">
-              <select name="day" id="day">
+              <select
+                onChange={handleDateDateOfBirth}
+                value={dateofbirth.year}
+                name="year"
+                id="year"
+              >
                 {getYearDropList()}
               </select>
             </div>
@@ -103,9 +184,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
           <div className="signupscreen__form--radiobtn">
             <div className="labels">
               Gender
-              <span>
-                <i class="fa-solid fa-circle-question"></i>
-              </span>
+              <HelpIcon />
             </div>
             <div className="signupscreen__form--radiobtn--female">
               <p htmlFor="female">Female</p>
@@ -116,6 +195,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
                 value="female"
                 name="gender"
               />
+              {gender === "female" && <RadioButtonCheckedIcon />}
             </div>
             <div className="signupscreen__form--radiobtn--male">
               <p htmlFor="male">Male</p>
@@ -126,6 +206,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
                 value="male"
                 name="gender"
               />
+              {gender === "male" && <RadioButtonCheckedIcon />}
             </div>
             <div className="signupscreen__form--radiobtn--custom">
               <p htmlFor="custom">Custom</p>
@@ -136,6 +217,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
                 value="custom"
                 name="gender"
               />
+              {gender === "custom" && <RadioButtonCheckedIcon />}
             </div>
           </div>
         </div>
@@ -147,7 +229,9 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
           </p>
         </div>
         <div className="signupscreen__btn">
-          <button>Sign Up</button>
+          <button onClick={handleSubmit}>
+            {buttonLoading ? <ButtonLoader /> : "Sign Up"}
+          </button>
         </div>
       </div>
     </div>

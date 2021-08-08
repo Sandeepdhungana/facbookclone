@@ -1,37 +1,43 @@
-import mongoose from 'mongoose';
-const {
-    objectId
-} = mongoose.Schema.Types
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema.Types;
 
 const likeSchema = new mongoose.Schema({
-    likedBy: {
-        type: objectId,
-        ref: "User"
-    },
-    reaction: String,
-})
+  likedBy: {
+    type: ObjectId,
+    ref: "User",
+  },
+  reaction: {
+    type: String,
+    default: "Like",
+  },
+});
 
 const postSchema = new mongoose.Schema({
-    caption: {
-        type: String
+  postCaption: {
+    type: String,
+  },
+  postImage: {
+    type: String,
+  },
+  comments: [
+    {
+      type: String,
+      commentedBy: {
+        type: ObjectId,
+        ref: "User",
+      },
     },
-    picUrl: {
-        type: String
-    },
-    comments: [{
-        type: String,
-        commentedBy: {
-            type: objectId,
-            ref: "User"
-        }
-    }],
-    postedBy: {
-        type: objectId,
-        ref: "User"
-    },
-    postedIn: {
-        type: Date,
-        default: Date.now
-    },
-    likes: [likeSchema]
-})
+  ],
+  postedBy: {
+    type: ObjectId,
+    ref: "User",
+  },
+  postedIn: {
+    type: Date,
+    default: Date.now,
+  },
+  likes: [likeSchema],
+});
+
+const Post = mongoose.model("post", postSchema);
+export default Post;
