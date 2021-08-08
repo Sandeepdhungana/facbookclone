@@ -17,10 +17,12 @@ import NavBarLeftIcons from "./NavBarLeftIcons/NavBarLeftIcons";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
-  const loginUser = useSelector((state) => state.loginUser);
-  const {
-    userDetails: { firstname },
-  } = loginUser;
+  const userFromStorage = localStorage.getItem("userDetails")
+    ? JSON.parse(localStorage.getItem("userDetails"))
+    : null;
+  
+    console.log(userFromStorage);
+
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
   const homeIcon = (
@@ -143,7 +145,7 @@ const NavBar = () => {
             alt=""
           />
           <span>
-            <h2>{firstname}</h2>
+            <h2>{userFromStorage?.firstname}</h2>
           </span>
         </div>
         <div className="navbar__navicons--icons">
