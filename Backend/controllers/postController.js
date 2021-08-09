@@ -16,10 +16,7 @@ const getPostFromFrontend = asynchandler(async (req, res) => {
   });
 
   if (post) {
-    res.status(201).json({
-      message: "Photo successfully posted",
-    });
-    console.log("post added");
+    res.status(201).json(post);
   } else {
     throw createError(400, "Invalid User Data");
   }

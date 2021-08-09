@@ -1,4 +1,5 @@
 import axios from "axios";
+import Pusher from "pusher";
 
 import {
   POST_SUBMISSION_FAIL,
@@ -17,6 +18,8 @@ const postSubmissionAction =
       dispatch({
         type: POST_SUBMISSION_REQUEST,
       });
+      console.log("PostImage.has() returns", postImage);
+
       if (postImage) {
         const {
           data: { url },
@@ -27,11 +30,10 @@ const postSubmissionAction =
         postImage = url;
       }
 
-      const {
-        loginUser: {
-          userDetails: { token },
-        },
-      } = getState();
+      const localstorageitem = localStorage.getItem("userDetails")
+        ? JSON.parse(localStorage.getItem("userDetails"))
+        : null;
+      const { token } = localstorageitem;
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +52,6 @@ const postSubmissionAction =
           payload: data,
         });
         showWriteModal();
-        dispatch(postGetAction());
       }
     } catch (err) {
       console.log("post my photo");
@@ -64,19 +65,17 @@ const postSubmissionAction =
     }
   };
 
-const postGetAction = () => async (dispatch) => {
+const postGetAction = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: POST_GET_REQUEST,
     });
 
-    const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
-      ? JSON.parse(localStorage.getItem("userDetails"))
-      : null;
-
-    // console.log(loginuserDetailsFromStorage.token);
-    const { token } = loginuserDetailsFromStorage;
-
+    const {
+      loginUser: {
+        userDetails: { token },
+      },
+    } = getState();
     const config = {
       headers: {
         "Content-Type": "application/json",
