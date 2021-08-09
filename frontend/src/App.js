@@ -21,9 +21,9 @@ const App = () => {
         <>
           {/* Pages Containing Navbar */}
           <NavBar />
-          <PrivateRoute exact path="/">
+          <Route exact path="/">
             <Redirect to="/home" />
-          </PrivateRoute>
+          </Route>
           <PrivateRoute exact path="/home" component={HomeScreen} />
         </>
       </Switch>

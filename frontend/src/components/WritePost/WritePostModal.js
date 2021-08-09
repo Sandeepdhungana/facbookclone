@@ -13,7 +13,7 @@ import locationIcon from "./icons/locationIcon.png";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 import { useDispatch, useSelector } from "react-redux";
-import { postSubmissionAction } from "../../actions/postAction";
+import { postSubmissionAction, postGetAction } from "../../actions/postAction";
 import ButtonLoader from "../Loader/ButtonLoader";
 
 const WritePostModal = ({ clicked, showWriteModal }) => {
@@ -159,13 +159,7 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
             className="writepostmodal__btn radius"
             onClick={handlePostClick}
           >
-            {postLoading ? (
-              <>
-                <p>Uploading</p> <ButtonLoader />
-              </>
-            ) : (
-              "Post"
-            )}
+            {postLoading ? <ButtonLoader /> : "Post"}
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignupScreen.css";
 import CloseIcon from "@material-ui/icons/Close";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
@@ -6,6 +6,7 @@ import HelpIcon from "@material-ui/icons/Help";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../actions/userAction";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
+import { useHistory } from "react-router-dom";
 
 const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   const [nameandpassword, setNameAndPassowrd] = useState({
@@ -21,9 +22,14 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   });
   const [gender, setGender] = useState("");
   const [buttonLoading, setButtonLoading] = useState(false);
+  const history = useHistory();
+  const registeruser = useSelector((state) => state.registerUser);
+  console.log("register user state", registeruser);
+  const { loading, userDetails, error } = registeruser;
 
   const dispatch = useDispatch();
 
+  console.log(history);
   // Year Generator
   const getYearDropList = () => {
     const year = new Date().getFullYear();
@@ -87,6 +93,12 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
     );
     setButtonLoading(true);
   };
+  useEffect(() => {
+    if (userDetails) {
+      console.log("from the signupscreen inside useeffect hook",userDetails);
+      history.push("/home");
+    }
+  });
 
   return (
     <div className="overlay">

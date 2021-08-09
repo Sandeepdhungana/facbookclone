@@ -24,7 +24,7 @@ const registerUserReducer = (state = {}, action) => {
         error: action.payload,
       };
     default:
-      return state
+      return state;
   }
 };
 
@@ -45,7 +45,7 @@ const loginUserReducer = (state = {}, action) => {
         error: action.payload,
       };
     default:
-      return state
+      return state;
   }
 };
 

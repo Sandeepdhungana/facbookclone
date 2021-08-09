@@ -1,4 +1,5 @@
 import axios from "axios";
+import Pusher from "pusher";
 
 import {
   POST_SUBMISSION_FAIL,
@@ -8,6 +9,7 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
 } from "../constants/postConstant";
+let realtimeData;
 
 // we can invoke sync and async function with dispatch if we have installed redux-thunk. In this case async
 const postSubmissionAction =
@@ -17,6 +19,8 @@ const postSubmissionAction =
       dispatch({
         type: POST_SUBMISSION_REQUEST,
       });
+      console.log("PostImage.has() returns", postImage);
+
       if (postImage) {
         const {
           data: { url },
@@ -44,13 +48,17 @@ const postSubmissionAction =
         { postCaption, postImage },
         config
       );
+      const pusher = new Pusher("b2745f13cadca5dfc316", {
+        cluster: "ap2",
+      });
+      const postChannel = await pusher.subscribe("post-channel");
+      realtimeData = await postChannel.bind("post-action");
       if (data) {
         dispatch({
           type: POST_SUBMISSION_SUCCESS,
           payload: data,
         });
         showWriteModal();
-        dispatch(postGetAction());
       }
     } catch (err) {
       console.log("post my photo");
@@ -64,19 +72,17 @@ const postSubmissionAction =
     }
   };
 
-const postGetAction = () => async (dispatch) => {
+const postGetAction = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: POST_GET_REQUEST,
     });
 
-    const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
-      ? JSON.parse(localStorage.getItem("userDetails"))
-      : null;
-
-    // console.log(loginuserDetailsFromStorage.token);
-    const { token } = loginuserDetailsFromStorage;
-
+    const {
+      loginUser: {
+        userDetails: { token },
+      },
+    } = getState();
     const config = {
       headers: {
         "Content-Type": "application/json",

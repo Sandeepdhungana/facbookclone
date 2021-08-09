@@ -2,7 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={(props) =>
+    component={(props) =>
       localStorage.getItem("userDetails") ? (
         <Component {...props} />
       ) : (

@@ -46,7 +46,15 @@ a:visited {
   align-items: center;
   justify-content: center;
   transition: all 0.6s ease-in-out;
+  overflow: scroll;
 }
+.overlay::-webkit-scrollbar {
+  width: 0px;
+}
+/* .overlay::-webkit-scrollbar-thumb {
+  background: #bcc0c4;
+  border-radius: 100px;
+} */
 
 .hideModal {
   animation: hide 1s;

@@ -91,7 +91,10 @@ const Cards = ({
           {postCaption.substring(0, lengthOfCaption)}
         </h3>
         {postCaption && postCaption.length > 100 ? (
-          <h2 onClick={handleSeemore} style={{ color: "#6E747C",fontWeight:'400',display: 'inline'}}>
+          <h2
+            onClick={handleSeemore}
+            style={{ color: "#6E747C", fontWeight: "400", display: "inline" }}
+          >
             {seemore ? "See more..." : "See less..."}
           </h2>
         ) : (

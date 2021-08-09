@@ -6,6 +6,7 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
 } from "../constants/postConstant";
+import pusher from "pusher-js";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -33,6 +34,7 @@ const postGetReducer = (state = { posts: [] }, action) => {
   switch (action.type) {
     case POST_GET_REQUEST:
       return {
+        // loading: action.payload,
         loading: true,
         posts: [],
       };
@@ -51,7 +53,5 @@ const postGetReducer = (state = { posts: [] }, action) => {
       return state;
   }
 };
-
-
 
 export { postSubmissionReducer, postGetReducer };

@@ -21,8 +21,6 @@ const NavBar = () => {
     ? JSON.parse(localStorage.getItem("userDetails"))
     : null;
   
-    console.log(userFromStorage);
-
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
   const homeIcon = (

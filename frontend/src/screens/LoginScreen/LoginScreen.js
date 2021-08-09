@@ -34,12 +34,14 @@ const LoginScreen = ({ history, location }) => {
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
   // useEffect(() => {
-  //   history.push(redirect);
-  // }, [dispatch, loginuserinfo, history, redirect]);
+  //   if(loginuserinfo) {
+  //     history.push("/home");
+  //   }
+  // }, [dispatch, loginuserinfo, history]);
   return (
     <section id="loginscreen">
       {loading ? (
-        <h1>Loading</h1>
+        ""
       ) : (
         <>
           <div className="loginscreen--content">
