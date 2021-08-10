@@ -17,14 +17,14 @@ const App = () => {
     <Router>
       <Switch>
         {/* Pages not containing navbar */}
-        <LoginRoute exact path="/login" component={LoginScreen} />
+        <Route exact path="/login" component={LoginScreen} />
         <>
           {/* Pages Containing Navbar */}
           <NavBar />
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
-          <PrivateRoute exact path="/home" component={HomeScreen} />
+          <Route exact path="/home" component={HomeScreen} />
         </>
       </Switch>
     </Router>

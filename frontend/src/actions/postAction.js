@@ -1,5 +1,4 @@
 import axios from "axios";
-import Pusher from "pusher";
 
 import {
   POST_SUBMISSION_FAIL,
@@ -18,7 +17,6 @@ const postSubmissionAction =
       dispatch({
         type: POST_SUBMISSION_REQUEST,
       });
-      console.log("PostImage.has() returns", postImage);
 
       if (postImage) {
         const {
@@ -33,7 +31,9 @@ const postSubmissionAction =
       const localstorageitem = localStorage.getItem("userDetails")
         ? JSON.parse(localStorage.getItem("userDetails"))
         : null;
+
       const { token } = localstorageitem;
+      console.log(token);
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -71,11 +71,11 @@ const postGetAction = () => async (dispatch, getState) => {
       type: POST_GET_REQUEST,
     });
 
-    const {
-      loginUser: {
-        userDetails: { token },
-      },
-    } = getState();
+    const localstorageitem = localStorage.getItem("userDetails")
+      ? JSON.parse(localStorage.getItem("userDetails"))
+      : null;
+
+    const { token } = localstorageitem;
     const config = {
       headers: {
         "Content-Type": "application/json",

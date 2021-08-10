@@ -24,12 +24,10 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const history = useHistory();
   const registeruser = useSelector((state) => state.registerUser);
-  console.log("register user state", registeruser);
   const { loading, userDetails, error } = registeruser;
 
   const dispatch = useDispatch();
 
-  console.log(history);
   // Year Generator
   const getYearDropList = () => {
     const year = new Date().getFullYear();
@@ -95,7 +93,6 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   };
   useEffect(() => {
     if (userDetails) {
-      console.log("from the signupscreen inside useeffect hook",userDetails);
       history.push("/home");
     }
   });

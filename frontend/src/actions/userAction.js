@@ -59,7 +59,6 @@ const loginUser = (emailandpassword) => async (dispatch, getstate) => {
       { emailandpassword },
       config
     );
-    console.log(data);
     dispatch({
       type: LOGIN_USER_SUCCESS,
       payload: data,

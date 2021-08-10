@@ -14,13 +14,18 @@ const HomeScreen = ({ history, location }) => {
   const postGet = useSelector((state) => state.postGet);
 
   const { loading, posts, error } = postGet;
-  console.log(posts);
 
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
+  const userfromstorage = localStorage.getItem("userDetails");
+
   useEffect(() => {
-    dispatch(postGetAction());
-  }, [dispatch]);
+    if (!userfromstorage) {
+      history.push("/login");
+    } else {
+      dispatch(postGetAction());
+    }
+  }, [dispatch, userfromstorage, history]);
   const name = [
     "Sandeep Dhungana",
     "Sushila Subedi",

@@ -6,6 +6,7 @@ import SignupScreen from "../SignupScreen/SignupScreen";
 import Input from "../../components/Input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userAction";
+import PageLoader from "../../components/Loader/PageLoader";
 
 const LoginScreen = ({ history, location }) => {
   const [clickedCreateButton, setClikcedCreateButton] = useState(false);
@@ -16,7 +17,7 @@ const LoginScreen = ({ history, location }) => {
 
   const dispatch = useDispatch();
   const loginuserinfo = useSelector((state) => state.loginUser);
-  const { loading } = loginuserinfo;
+  const { loading, userDetails } = loginuserinfo;
 
   const handleNameAndPassword = (e) => {
     const value = e.target.value;
@@ -25,23 +26,24 @@ const LoginScreen = ({ history, location }) => {
       [e.target.name]: value,
     });
   };
+  console.log("I am from loading screen", loading);
+  console.log("I am from loading screen", userDetails);
 
   const handleLogin = (e) => {
     dispatch(loginUser(emailandpassword));
     history.push("/home");
   };
 
-  // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
-
-  // useEffect(() => {
-  //   if(loginuserinfo) {
-  //     history.push("/home");
-  //   }
-  // }, [dispatch, loginuserinfo, history]);
+  useEffect(() => {
+    if (userDetails) {
+      console.log("it is not running");
+      history.push("/home");
+    }
+  }, [history,userDetails]);
   return (
     <section id="loginscreen">
       {loading ? (
-        ""
+        <PageLoader />
       ) : (
         <>
           <div className="loginscreen--content">
