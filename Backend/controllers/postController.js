@@ -2,19 +2,27 @@ import express from "express";
 import asynchandler from "express-async-handler";
 import createError from "http-errors";
 import Post from "../models/postModel.js";
+import User from "../models/userModel.js";
 
 const getPostFromFrontend = asynchandler(async (req, res) => {
   const { postImage, postCaption } = req.body;
   if (!postImage && !postCaption) {
     throw createError(401, "Post atleast Image or caption");
   }
-  console.log(postImage);
+  // console.log("I am a user that is posting a post", req.user);
   const post = await Post.create({
     postImage,
     postCaption,
     postedBy: req.user,
   });
 
+  const user = await User.findById(req.user);
+  if (user) {
+    user.posts.push(post._id);
+    user.save();
+  } else {
+    throw createError(400, "User Not found");
+  }
   if (post) {
     res.status(201).json(post);
   } else {
@@ -26,6 +34,13 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
     .sort("-postedIn")
     .populate("postedBy")
     .select("-password");
+
+  req.io.on("connection", (socket) => {
+    console.log("The socket connection is established");
+    socket.on("testevent", (data) => {
+      console.log(data);
+    });
+  });
   if (post) {
     res.status(201).json(post);
   } else {

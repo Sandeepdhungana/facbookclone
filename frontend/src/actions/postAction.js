@@ -1,4 +1,5 @@
 import axios from "axios";
+import { io } from "socket.io-client";
 
 import {
   POST_SUBMISSION_FAIL,
@@ -8,6 +9,8 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
 } from "../constants/postConstant";
+
+const socket = io("http://localhost:5000");
 
 // we can invoke sync and async function with dispatch if we have installed redux-thunk. In this case async
 const postSubmissionAction =
@@ -46,6 +49,7 @@ const postSubmissionAction =
         { postCaption, postImage },
         config
       );
+
       if (data) {
         dispatch({
           type: POST_SUBMISSION_SUCCESS,
@@ -88,6 +92,7 @@ const postGetAction = () => async (dispatch, getState) => {
       type: POST_GET_SUCCESS,
       payload: data,
     });
+    socket.emit("testevent", data);
   } catch (err) {
     dispatch({
       type: POST_GET_FAIL,

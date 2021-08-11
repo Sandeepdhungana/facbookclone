@@ -13,6 +13,7 @@ const authorizationMiddleware = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       req.user = await User.findById(decoded.id).select("-password");
+      // console.log("I am loggin from auuthmiddleware",req.user);
       next();
     } catch (err) {
       throw createError(401, "Not Authorized, token failed");

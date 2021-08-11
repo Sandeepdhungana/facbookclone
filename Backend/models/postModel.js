@@ -13,7 +13,6 @@ const likeSchema = new mongoose.Schema({
 });
 // const Like = mongoose.model("lost", likeSchema);
 
-
 const commentSchema = new mongoose.Schema({
   type: String,
   commentedBy: {
@@ -22,7 +21,6 @@ const commentSchema = new mongoose.Schema({
   },
 });
 // const Comment = mongoose.model("post", postSchema);
-
 
 const postSchema = new mongoose.Schema({
   postCaption: {
