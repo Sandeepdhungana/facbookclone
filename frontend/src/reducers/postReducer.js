@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import {
   POST_SUBMISSION_FAIL,
   POST_SUBMISSION_REQUEST,
@@ -6,6 +7,7 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
 } from "../constants/postConstant";
+import socket from "../socket";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -41,6 +43,11 @@ const postGetReducer = (state = { posts: [] }, action) => {
       return {
         loading: false,
         posts: action.payload,
+      };
+    case "SOCKET_DATA_RECEIVED":
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
       };
     case POST_GET_FAIL:
       return {

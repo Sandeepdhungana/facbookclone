@@ -15,7 +15,6 @@ const getPostFromFrontend = asynchandler(async (req, res) => {
     postCaption,
     postedBy: req.user,
   });
-
   const user = await User.findById(req.user);
   if (user) {
     user.posts.push(post._id);
@@ -35,12 +34,6 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
     .populate("postedBy")
     .select("-password");
 
-  req.io.on("connection", (socket) => {
-    console.log("The socket connection is established");
-    socket.on("testevent", (data) => {
-      console.log(data);
-    });
-  });
   if (post) {
     res.status(201).json(post);
   } else {

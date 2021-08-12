@@ -1,5 +1,4 @@
 import axios from "axios";
-import { io } from "socket.io-client";
 
 import {
   POST_SUBMISSION_FAIL,
@@ -10,12 +9,11 @@ import {
   POST_GET_FAIL,
 } from "../constants/postConstant";
 
-const socket = io("http://localhost:5000");
-
 // we can invoke sync and async function with dispatch if we have installed redux-thunk. In this case async
 const postSubmissionAction =
   (postCaption, postImage, showWriteModal) => async (dispatch, getState) => {
     // first upload to cloudinary server
+    showWriteModal();
     try {
       dispatch({
         type: POST_SUBMISSION_REQUEST,
@@ -36,7 +34,6 @@ const postSubmissionAction =
         : null;
 
       const { token } = localstorageitem;
-      console.log(token);
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -55,10 +52,8 @@ const postSubmissionAction =
           type: POST_SUBMISSION_SUCCESS,
           payload: data,
         });
-        showWriteModal();
       }
     } catch (err) {
-      console.log("post my photo");
       dispatch({
         type: POST_SUBMISSION_FAIL,
         payload:
@@ -69,7 +64,7 @@ const postSubmissionAction =
     }
   };
 
-const postGetAction = () => async (dispatch, getState) => {
+const postGetAction = (newPost) => async (dispatch, getState) => {
   try {
     dispatch({
       type: POST_GET_REQUEST,
@@ -88,11 +83,11 @@ const postGetAction = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get("http://localhost:5000/api/post", config);
+
     dispatch({
       type: POST_GET_SUCCESS,
       payload: data,
     });
-    socket.emit("testevent", data);
   } catch (err) {
     dispatch({
       type: POST_GET_FAIL,

@@ -15,6 +15,8 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { postSubmissionAction, postGetAction } from "../../actions/postAction";
 import ButtonLoader from "../Loader/ButtonLoader";
+import socket from "../../socket";
+// import useSocket from "../../hooks/useSocekt";
 
 const WritePostModal = ({ clicked, showWriteModal }) => {
   const [postCaption, setPostCaption] = useState("");
@@ -22,10 +24,16 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
   const [postFrontImage, setFrontPostImage] = useState("");
   const [postLoading, setPostLoading] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  // const socket = useSocket("ws://localhost:8900");
 
+  const postedBy = localStorage.getItem("userDetails")
+    ? JSON.parse(localStorage.getItem("userDetails"))
+    : { firstname: "Anonymous", surname: "Anonymous" };
+
+  const { userDetails } = useSelector((state) => state.loginUser);
+  const { firstname } = userDetails;
+  console.log(firstname);
   const dispatch = useDispatch();
-  // const postSubmission = useSelector((state) => state.PostSubmission);
-  // const { loading, error } = postSubmission;
 
   const increaseTextArea = () => {
     const tx = document.getElementsByTagName("textarea");
@@ -68,12 +76,11 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
 
   const data = postImage ? new FormData() : "";
   if (postImage) {
+    console.log(postImage.name);
     console.log("The postImage inside the if statement is", postImage);
     data.append("file", postImage);
     data.append("upload_preset", "facebookclone");
     data.append("cloud_name", "facebookclone");
-
-    console.log("the data inside the if statement is", data);
   }
 
   const postButtonStyle = {
@@ -86,6 +93,26 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
     dispatch(postSubmissionAction(postCaption, data, showWriteModal));
     setPostLoading(true);
     setDisableButton(true);
+
+    if (postImage) {
+      socket.emit("POST_SENT", {
+        postCaption,
+        postImage: postFrontImage,
+        postedIn: Date.now(),
+        postedBy,
+        comments: [],
+        likes: [],
+      });
+    } else {
+      socket.emit("POST_SENT", {
+        postCaption,
+        postImage:"",
+        postedIn: Date.now(),
+        postedBy,
+        comments: [],
+        likes: [],
+      });
+    }
   };
 
   return (
@@ -116,7 +143,7 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
           <textarea
             onChange={handleChange("writepost")}
             value={postCaption}
-            placeholder="What's on your mind, Sandeep?"
+            placeholder={`What's on your mind, ${firstname}?`}
           ></textarea>
           <img src={postFrontImage} alt="" />
         </div>

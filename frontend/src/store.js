@@ -17,6 +17,7 @@ const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
 
 const initialState = {
   loginUser: { userDetails: loginuserDetailsFromStorage },
+  postSubmission: { loading: false },
 };
 const middleware = [thunk];
 

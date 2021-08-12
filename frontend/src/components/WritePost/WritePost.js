@@ -6,6 +6,7 @@ import liveIcon from "./icons/liveIcon.png";
 import photoIcon from "./icons/photoIcon.png";
 import smileIcon from "./icons/smileIcon.png";
 import WritePostModal from "./WritePostModal";
+import { useSelector } from "react-redux";
 
 const WritePost = () => {
   const [clicked, setClicked] = useState(false);
@@ -14,6 +15,10 @@ const WritePost = () => {
   } else {
     document.body.classList.remove("modalopen");
   }
+  const { loading, userDetails, error } = useSelector(
+    (state) => state.loginUser
+  );
+  const { firstname } = userDetails;
   return (
     <section id="writepost" className="shadow radius">
       <div className="writepost--write">
@@ -24,7 +29,7 @@ const WritePost = () => {
           }}
           className="writepost--write--input"
         >
-          <h3>What's on your mind, Sandeep? </h3>
+          <h3>What's on your mind, {firstname}? </h3>
         </div>
       </div>
       <div className="writepost__icons">
