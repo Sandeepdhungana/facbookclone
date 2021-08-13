@@ -5,7 +5,9 @@ import {
   POST_GET_REQUEST,
   POST_GET_SUCCESS,
   POST_GET_FAIL,
+  POST_SUBMISSON_DATA_RECEIVED,
 } from "../constants/postConstant";
+import { SOCKET_DATA_RECEIVED } from "../constants/socketConstants";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -42,7 +44,7 @@ const postGetReducer = (state = { posts: [] }, action) => {
         loading: false,
         posts: action.payload,
       };
-    case "SOCKET_DATA_RECEIVED":
+    case POST_SUBMISSON_DATA_RECEIVED:
       return {
         ...state,
         posts: [action.payload, ...state.posts],

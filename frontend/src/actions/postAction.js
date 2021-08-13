@@ -7,7 +7,10 @@ import {
   POST_GET_REQUEST,
   POST_GET_SUCCESS,
   POST_GET_FAIL,
+  POST_SUBMISSON_DATA_RECEIVED,
 } from "../constants/postConstant";
+import { SOCKET_DATA_RECEIVED } from "../constants/socketConstants";
+import socket from "../socket";
 
 // we can invoke sync and async function with dispatch if we have installed redux-thunk. In this case async
 const postSubmissionAction =
@@ -48,14 +51,10 @@ const postSubmissionAction =
 
       if (data) {
         dispatch({
-          type: "SOCKET_DATA_RECEIVED",
-          payload: data,
-        });
-        dispatch({
           type: POST_SUBMISSION_SUCCESS,
           payload: data,
         });
-
+        socket.emit("POST_SUBMISSON_DATA_RECEIVED", data);
         showWriteModal();
       }
     } catch (err) {

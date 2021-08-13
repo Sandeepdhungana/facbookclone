@@ -8,7 +8,8 @@ import WritePost from "../../components/WritePost/WritePost";
 import { useDispatch, useSelector } from "react-redux";
 import { postGetAction } from "../../actions/postAction";
 import PageLoader from "../../components/Loader/PageLoader";
-// import socket from "../../socket";
+import socket from "../../socket";
+import { POST_SUBMISSON_DATA_RECEIVED } from "../../constants/postConstant";
 
 const HomeScreen = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -23,16 +24,17 @@ const HomeScreen = ({ history, location }) => {
   // const
 
   useEffect(() => {
-    // socket.on(
-    //   "POST_RECEIVED",
-    //   function (posts) {
-    //     dispatch({
-    //       type: "SOCKET_DATA_RECEIVED",
-    //       payload: posts,
-    //     });
-    //   },
-    // );
+    socket.once("POST_SUBMISSION_DATA", function (data) {
+      console.log(data);
+      dispatch({
+        type: POST_SUBMISSON_DATA_RECEIVED,
+        payload: data,
+      });
+    });
 
+    return () => socket.disconnect();
+  }, [dispatch]);
+  useEffect(() => {
     if (!userfromstorage) {
       history.push("/login");
     } else {

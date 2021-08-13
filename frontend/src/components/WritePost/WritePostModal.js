@@ -134,7 +134,9 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
         <div className="writepostmodal__name padding-lr-2">
           <img src={profilePic} alt="" />
           <div className="writepostmodal__name--name">
-            <h2>Sandeep Dhungana</h2>
+            <h2>
+              {userFromStorage?.firstname} {userFromStorage?.surname}
+            </h2>
             <div className="writepostmodal__name--privacy">
               <PeopleRoundedIcon />
               <p>Friends</p>

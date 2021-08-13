@@ -6,6 +6,7 @@ import profilePic from "../../assets/img/profilepic.jpg";
 import cov19 from "../../assets/img/cov19.png";
 import friends from "../../assets/img/friends.png";
 import group from "../../assets/img/group.png";
+import page from "../../assets/img/page.png";
 import marketplace from "../../assets/img/marketplace.png";
 import watch from "../../assets/img/watch.png";
 import events from "../../assets/img/events.png";
@@ -41,6 +42,7 @@ const SideBarLeft = () => {
     events,
     memories,
     saved,
+    page,
   ];
   const name = [
     "Sandeep Dhungana",
@@ -52,6 +54,7 @@ const SideBarLeft = () => {
     "Events",
     "Memories",
     "Saved",
+    "Pages",
   ];
   const linkto = [
     "profile",
