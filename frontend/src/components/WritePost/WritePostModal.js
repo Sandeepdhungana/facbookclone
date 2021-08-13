@@ -15,7 +15,6 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { useDispatch } from "react-redux";
 import { postSubmissionAction } from "../../actions/postAction";
 import ButtonLoader from "../Loader/ButtonLoader";
-import socket from "../../socket";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 // import useSocket from "../../hooks/useSocekt";
 
@@ -88,34 +87,6 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
     dispatch(postSubmissionAction(postCaption, data, showWriteModal));
     setPostLoading(true);
     setDisableButton(true);
-
-    // if (socketPostImage) {
-    //   console.log("inside socket image");
-    //   // console.log(socketPostImage);
-    //   // const body = socketPostImage;
-    //   // console.log(body);
-    //   setFrontPostImage();
-    //   setPostImage();
-    //   setSocektPostImage();
-    //   const post = {
-    //     postCaption,
-    //     postImage: socketPostImage,
-    //     postedIn: Date.now(),
-    //     postedBy: userFromStorage,
-    //     comments: [],
-    //     likes: [],
-    //   };
-    //   socket.emit("POST_SENT", post);
-    // } else {
-    //   socket.emit("POST_SENT", {
-    //     postCaption,
-    //     postImage: "",
-    //     postedIn: Date.now(),
-    //     postedBy: userFromStorage,
-    //     comments: [],
-    //     likes: [],
-    //   });
-    // }
   };
 
   return (

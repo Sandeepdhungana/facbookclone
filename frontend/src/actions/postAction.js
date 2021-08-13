@@ -7,9 +7,7 @@ import {
   POST_GET_REQUEST,
   POST_GET_SUCCESS,
   POST_GET_FAIL,
-  POST_SUBMISSON_DATA_RECEIVED,
 } from "../constants/postConstant";
-import { SOCKET_DATA_RECEIVED } from "../constants/socketConstants";
 import socket from "../socket";
 
 // we can invoke sync and async function with dispatch if we have installed redux-thunk. In this case async
@@ -21,14 +19,18 @@ const postSubmissionAction =
         type: POST_SUBMISSION_REQUEST,
       });
 
-      if (postImage) {
-        const {
-          data: { url },
-        } = await axios.post(
-          "https://api.cloudinary.com/v1_1/facebookclone/image/upload",
-          postImage
-        );
-        postImage = url;
+      try {
+        if (postImage) {
+          const {
+            data: { url },
+          } = await axios.post(
+            "https://api.cloudinary.com/v1_1/facebookclone/image/upload",
+            postImage
+          );
+          postImage = url;
+        }
+      } catch (error) {
+        console.log(error);
       }
 
       const localstorageitem = localStorage.getItem("userDetails")
@@ -55,6 +57,7 @@ const postSubmissionAction =
           payload: data,
         });
         socket.emit("POST_SUBMISSON_DATA_RECEIVED", data);
+
         showWriteModal();
       }
     } catch (err) {

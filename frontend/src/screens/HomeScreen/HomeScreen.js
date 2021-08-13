@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect} from "react";
 import SideBarRight from "../../components/SideBarRight/SideBarRight";
 import SideBarLeft from "../../components/SideBarLeft/SideBarLeft";
 import Cards from "../../components/Cards/Cards";
@@ -24,17 +24,12 @@ const HomeScreen = ({ history, location }) => {
   // const
 
   useEffect(() => {
-    socket.once("POST_SUBMISSION_DATA", function (data) {
-      console.log(data);
+    socket.on("POST_SUBMISSION_DATA", function (data) {
       dispatch({
         type: POST_SUBMISSON_DATA_RECEIVED,
         payload: data,
       });
     });
-
-    return () => socket.disconnect();
-  }, [dispatch]);
-  useEffect(() => {
     if (!userfromstorage) {
       history.push("/login");
     } else {

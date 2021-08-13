@@ -7,7 +7,6 @@ import {
   POST_GET_FAIL,
   POST_SUBMISSON_DATA_RECEIVED,
 } from "../constants/postConstant";
-import { SOCKET_DATA_RECEIVED } from "../constants/socketConstants";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {

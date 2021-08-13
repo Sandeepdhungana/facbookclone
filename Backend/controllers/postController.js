@@ -15,13 +15,13 @@ const getPostFromFrontend = asynchandler(async (req, res) => {
     postCaption,
     postedBy: req.user,
   });
-  const user = await User.findById(req.user);
-  if (user) {
-    user.posts.push(post._id);
-    user.save();
-  } else {
-    throw createError(400, "User Not found");
-  }
+  // const user = await User.findById(req.user);
+  // if (user) {
+  //   user.posts.push(post._id);
+  //   user.save();
+  // } else {
+  //   throw createError(400, "User Not found");
+  // }
   if (post) {
     res.status(201).json(post);
   } else {
