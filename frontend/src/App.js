@@ -7,8 +7,6 @@ import {
   Switch,
 } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import { LoginRoute } from "./components/PrivateRoute/LoginRoute";
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 

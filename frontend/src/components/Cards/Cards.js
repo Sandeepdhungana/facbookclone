@@ -32,7 +32,7 @@ const Cards = ({
       setLengthOfCaption(75);
     }
   };
-  console.log(postImage);
+  // console.log(postImage);
 
   useEffect(() => {
     setCurrentTime(time);

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 
 import "./NavBar.css";
 
@@ -14,12 +13,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import { NavLink } from "react-router-dom";
 import NavBarIcons from "./NavBarIcons/NavBarIcons";
 import NavBarLeftIcons from "./NavBarLeftIcons/NavBarLeftIcons";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
-  const userFromStorage = localStorage.getItem("userDetails")
-    ? JSON.parse(localStorage.getItem("userDetails"))
-    : null;
+  const userFromStorage = useUserFromStorage()
   
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];

@@ -5,7 +5,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import SideBarOnline from "./SideBarOnline";
-import SideBar from "../SideBar/SideBar";
 import profilePic from "../../assets/img/profilepic.jpg";
 
 const SideBarRight = () => {

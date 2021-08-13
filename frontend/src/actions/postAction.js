@@ -13,7 +13,6 @@ import {
 const postSubmissionAction =
   (postCaption, postImage, showWriteModal) => async (dispatch, getState) => {
     // first upload to cloudinary server
-    showWriteModal();
     try {
       dispatch({
         type: POST_SUBMISSION_REQUEST,
@@ -49,9 +48,15 @@ const postSubmissionAction =
 
       if (data) {
         dispatch({
+          type: "SOCKET_DATA_RECEIVED",
+          payload: data,
+        });
+        dispatch({
           type: POST_SUBMISSION_SUCCESS,
           payload: data,
         });
+
+        showWriteModal();
       }
     } catch (err) {
       dispatch({

@@ -8,40 +8,36 @@ import WritePost from "../../components/WritePost/WritePost";
 import { useDispatch, useSelector } from "react-redux";
 import { postGetAction } from "../../actions/postAction";
 import PageLoader from "../../components/Loader/PageLoader";
-import socket from "../../socket";
+// import socket from "../../socket";
 
 const HomeScreen = ({ history, location }) => {
   const dispatch = useDispatch();
   const postGet = useSelector((state) => state.postGet);
 
-  const { loading, posts, error } = postGet;
-  const scrollRef = useRef();
+  const { loading, posts } = postGet;
   // console.log(posts);
 
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
   const userfromstorage = localStorage.getItem("userDetails");
+  // const
 
   useEffect(() => {
-    socket.on(
-      "POST_RECEIVED",
-      function (posts) {
-        dispatch({
-          type: "SOCKET_DATA_RECEIVED",
-          payload: posts,
-        });
-        
-        // console.log("Inside useEffect", posts);
-      },
-      []
-    );
+    // socket.on(
+    //   "POST_RECEIVED",
+    //   function (posts) {
+    //     dispatch({
+    //       type: "SOCKET_DATA_RECEIVED",
+    //       payload: posts,
+    //     });
+    //   },
+    // );
+
     if (!userfromstorage) {
       history.push("/login");
     } else {
       dispatch(postGetAction());
     }
-
-    scrollRef?.current.scrollIntoView({ behavior: "smooth" });
   }, [dispatch, userfromstorage, history]);
   const name = [
     "Sandeep Dhungana",
@@ -57,7 +53,7 @@ const HomeScreen = ({ history, location }) => {
       ) : (
         <main className="grids">
           <SideBarLeft />
-          <div ref={scrollRef} className="card__container">
+          <div className="card__container">
             <div className="card__container--story">
               {name.map((name, i) => {
                 return <StoryCard name={name} key={i} />;

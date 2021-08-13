@@ -1,4 +1,4 @@
-import React, { isValidElement } from "react";
+import React from "react";
 import "./SideBarLeft.css";
 import { Link } from "react-router-dom";
 
@@ -72,12 +72,7 @@ const SideBarLeft = () => {
       <div className="sidebar__links">
         {iconsName.map((icon, i) => {
           return (
-            <SideBar
-              key={i}
-              icons={icon[0]}
-              name={icon[1]}
-              linkto={icon[2]}
-            />
+            <SideBar key={i} icons={icon[0]} name={icon[1]} linkto={icon[2]} />
           );
         })}
       </div>

@@ -24,7 +24,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const history = useHistory();
   const registeruser = useSelector((state) => state.registerUser);
-  const { loading, userDetails, error } = registeruser;
+  const { userDetails } = registeruser;
 
   const dispatch = useDispatch();
 

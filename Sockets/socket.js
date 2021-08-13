@@ -6,12 +6,12 @@ const io = require("socket.io")(8900, {
 
 io.on("connection", function (socket) {
   console.log("User Connected");
-  socket.on("POST_SENT", (post) => {
-    console.log("The post is", post);
-    io.emit("POST_RECEIVED", post);
-  });
+  // socket.on("POST_SENT", (post) => {
+  //   console.log("The post is", post.postImage);
+  //   io.emit("POST_RECEIVED", post);
+  // });
 
   socket.on("disconnect", () => {
-    console.log("User Is disconnected");
+    console.log("User is disconnected");
   });
 });

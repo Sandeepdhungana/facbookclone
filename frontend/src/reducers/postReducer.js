@@ -1,4 +1,3 @@
-import { io } from "socket.io-client";
 import {
   POST_SUBMISSION_FAIL,
   POST_SUBMISSION_REQUEST,
@@ -7,7 +6,6 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
 } from "../constants/postConstant";
-import socket from "../socket";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {
