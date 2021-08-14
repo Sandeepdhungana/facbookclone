@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import SideBarRight from "../../components/SideBarRight/SideBarRight";
 import SideBarLeft from "../../components/SideBarLeft/SideBarLeft";
 import Cards from "../../components/Cards/Cards";
@@ -35,6 +35,10 @@ const HomeScreen = ({ history, location }) => {
     } else {
       dispatch(postGetAction());
     }
+
+    return () => {
+      socket.off("POST_SUBMISSION_DATA");
+    };
   }, [dispatch, userfromstorage, history]);
   const name = [
     "Sandeep Dhungana",
