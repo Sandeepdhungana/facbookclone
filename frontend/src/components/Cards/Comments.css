@@ -1,0 +1,41 @@
+.comments {
+  /* background: red; */
+  padding: 0 2rem 2rem 2rem;
+  display: flex;
+  animation: cardanimation 1s linear;
+}
+
+.comments__profilepic img {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.comments__comments {
+  background: #f0f2f5;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  width: fit-content;
+}
+.commentedby {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentedby h2 {
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.comments__comments--text h3 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+/* .commentedBy > .MuiSvgIcon-root {
+  background: red;
+  height: 2rem;
+  font-size:1.9rem;
+  width: 2rem;
+  border-radius: 50%;
+} */

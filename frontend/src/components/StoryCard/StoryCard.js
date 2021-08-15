@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./StoryCard.css";
 import profilePic from "../../assets/img/profilepic.jpg";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const StoryCard = ({ name }) => {
+  const userFromStorage = useUserFromStorage();
   let firstName = useState("");
   let lastName = useState("");
   firstName = name.split(" ")[0];
@@ -13,7 +15,7 @@ const StoryCard = ({ name }) => {
         <img src={profilePic} alt="" />
       </div>
       <div className="storycard--profilepic">
-        <img src={profilePic} alt="" />
+        <img src={userFromStorage?.profilePic} alt="" />
       </div>
       <div className="storycard--name">
         <h2>{firstName}</h2>

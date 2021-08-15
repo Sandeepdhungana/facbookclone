@@ -22,8 +22,6 @@ const registerUser = asynchandler(async (req, res) => {
     surname,
     email,
     password,
-    profilePic: "sandeep",
-    coverPic: "coverPic",
     dateofbirth: {
       day,
       month,

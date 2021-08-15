@@ -2,7 +2,6 @@ import React from "react";
 import "./SideBarLeft.css";
 import { Link } from "react-router-dom";
 
-import profilePic from "../../assets/img/profilepic.jpg";
 import cov19 from "../../assets/img/cov19.png";
 import friends from "../../assets/img/friends.png";
 import group from "../../assets/img/group.png";
@@ -15,7 +14,7 @@ import saved from "../../assets/img/saved.png";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import SideBar from "../SideBar/SideBar";
 
-const SideBarLeft = () => {
+const SideBarLeft = ({ profilePic }) => {
   // function isClassComponent(component) {
   //   return (
   //     typeof component === "function" && !!component.prototype.isReactComponent

@@ -4,7 +4,6 @@ import "./NavBar.css";
 
 // local assets images
 import logo from "../../assets/img/logo.png";
-import profilePic from "../../assets/img/profilepic.jpg";
 
 // material-ui icons
 import SearchIcon from "@material-ui/icons/Search";
@@ -17,8 +16,8 @@ import useUserFromStorage from "../../hooks/useUserFromStorage";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
-  const userFromStorage = useUserFromStorage()
-  
+  const userFromStorage = useUserFromStorage();
+
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
   const homeIcon = (
@@ -137,7 +136,7 @@ const NavBar = () => {
               objectFit: "cover",
               borderRadius: "50%",
             }}
-            src={profilePic}
+            src={userFromStorage?.profilePic}
             alt=""
           />
           <span>

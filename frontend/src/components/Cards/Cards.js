@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import profilePic from "../../assets/img/profilepic.jpg";
 import "./Cards.css";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -8,6 +7,9 @@ import CardImage from "./CardImage";
 import CardDown from "./CardDown";
 import "./CardComment.css";
 import CardComment from "./CardComment";
+import "./Comments.css";
+import Comments from "./Comments";
+
 TimeAgo.addDefaultLocale(en);
 
 const Cards = ({
@@ -17,14 +19,14 @@ const Cards = ({
     likes,
     postCaption,
     postImage,
-    postedBy: { firstname, surname },
+    postedBy: { firstname, surname, profilePic },
     postedIn,
   },
 }) => {
   const [showComment, setShowComment] = useState(false);
 
   const handleShowComment = () => {
-    setShowComment(!showComment);
+    setShowComment(true);
   };
 
   return (
@@ -43,7 +45,8 @@ const Cards = ({
         postId={postId}
         handleShowComment={handleShowComment}
       />
-      {showComment && <CardComment />}
+      {showComment && <CardComment postId={postId} />}
+      {showComment && <Comments profile={profilePic} />}
     </section>
   );
 };

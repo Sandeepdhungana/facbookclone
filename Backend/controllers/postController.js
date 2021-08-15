@@ -79,22 +79,51 @@ const postLikeUnlike = asynchandler(async (req, res) => {
   }
 });
 
-// const postDislike = asynchandler(async (req, res) => {
-//   const postId = req.params.postid;
-//   const post = await Post.findByIdAndUpdate(postId, {
-//     $pull: { like: req.user },
-//   });
-// });
+const postAddComment = asynchandler(async (req, res) => {
+  const { postId, comment } = req.body;
+  console.log(postId, comment);
+  const value = "a";
 
-// const postAddComment = asynchandler(async (req, res) => {
-//   const postId = req.params.postid;
-//   const comment = req.body.comment
-//   const post = await Post.findByIdAndUpdate(postId,{$push:{comments: comment}})
-// })
+  const cmnt = {
+    comment,
+    commentedBy: req.user,
+  };
+  try {
+    // const post = await Post.findByIdAndUpdate(postId, { new: true }).populate(
+    //   "comment.commentedBy"
+    // );
+
+    const post = await Post.findByIdAndUpdate(
+      postId,
+      { new: true },
+      {
+        $push: { comments: cmnt },
+      }
+    ).populate("comments.commentedBy");
+    console.log(post);
+    post.comments.push({
+      comment,
+      commentedBy: req.user,
+    });
+    post.save();
+    const { comments } = post;
+    res.json(comments);
+  } catch (err) {
+    console.log(err);
+  }
+  // const { comments } = post;
+  // console.log(comments);
+});
+
 // const postRemoveComment = asynchandler(async (req, res) => {
 //   const postId = req.params.postid;
 //   const comment = req.body.comment
 //   const post = await Post.findByIdAndUpdate(postId,{$push:{comments: comment}})
 // })
 
-export { sendPostToFrontend, getPostFromFrontend, postLikeUnlike };
+export {
+  sendPostToFrontend,
+  getPostFromFrontend,
+  postLikeUnlike,
+  postAddComment,
+};

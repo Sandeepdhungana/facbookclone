@@ -9,7 +9,6 @@ const CardDown = ({ likes, comments, postId, handleShowComment }) => {
   const [likeCount, setLikeCount] = useState(parseInt(likes?.length));
   const dispatch = useDispatch();
 
-  console.log(postId, likes?.length);
   const handleLike = () => {
     setLike(!like);
     dispatch(postLikeUnlikeAction(postId, like));

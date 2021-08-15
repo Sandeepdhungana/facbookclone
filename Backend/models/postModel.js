@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
 const commentSchema = new mongoose.Schema({
-  type: String,
+  // type: String,
+  comment: String,
   commentedBy: {
     type: ObjectId,
     ref: "User",
@@ -16,7 +17,17 @@ const postSchema = new mongoose.Schema({
   postImage: {
     type: String,
   },
-  comments: [commentSchema],
+  comments: [
+    {
+      comment: {
+        type: String,
+      },
+      commentedBy: {
+        type: ObjectId,
+        ref: "User",
+      },
+    },
+  ],
   postedBy: {
     type: ObjectId,
     ref: "User",

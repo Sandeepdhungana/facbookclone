@@ -21,7 +21,7 @@ const WritePost = () => {
   return (
     <section id="writepost" className="shadow radius">
       <div className="writepost--write">
-        <img src={profilePic} alt="write post" />
+        <img src={userFromStorage?.profilePic} alt="write post" />
         <div
           onClick={() => {
             setClicked(true);

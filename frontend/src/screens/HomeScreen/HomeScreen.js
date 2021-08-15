@@ -19,6 +19,7 @@ const HomeScreen = ({ history, location }) => {
   const postGet = useSelector((state) => state.postGet);
 
   const { loading, posts } = postGet;
+  console.log(posts, "Inside hoescreem");
 
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
@@ -61,7 +62,7 @@ const HomeScreen = ({ history, location }) => {
         <PageLoader />
       ) : (
         <main className="grids">
-          <SideBarLeft />
+          <SideBarLeft profilePic={userFromStorage?.profilePic} />
           <div className="card__container">
             <div className="card__container--story">
               {name.map((name, i) => {

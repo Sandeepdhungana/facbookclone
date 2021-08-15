@@ -9,6 +9,9 @@ import {
   POST_LIKEUNLIKE_REQUEST,
   POST_LIKEUNLIKE_SUCCESS,
   POST_LIKEUNLIKE_FAIL,
+  POST_COMMENT_REQUEST,
+  POST_COMMENT_SUCCESS,
+  POST_COMMENT_FAIL,
 } from "../constants/postConstant";
 
 const postSubmissionReducer = (state = {}, action) => {
@@ -83,8 +86,34 @@ const postLikeUnlikeReducer = (state = {}, action) => {
       return state;
   }
 };
+const postAddCommentReducer = (state = [], action) => {
+  switch (action.type) {
+    case POST_COMMENT_REQUEST:
+      return {
+        loading: true,
+      };
+    case POST_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comment: action.payload,
+      };
 
-export { postSubmissionReducer, postGetReducer, postLikeUnlikeReducer };
+    case POST_COMMENT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export {
+  postSubmissionReducer,
+  postGetReducer,
+  postLikeUnlikeReducer,
+  postAddCommentReducer,
+};
 
 // const {
 //   liked,
