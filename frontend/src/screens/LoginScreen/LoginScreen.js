@@ -7,6 +7,7 @@ import Input from "../../components/Input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userAction";
 import PageLoader from "../../components/Loader/PageLoader";
+import { Helmet } from "react-helmet";
 
 const LoginScreen = ({ history, location }) => {
   const [clickedCreateButton, setClikcedCreateButton] = useState(false);
@@ -39,9 +40,13 @@ const LoginScreen = ({ history, location }) => {
       console.log("it is not running");
       history.push("/home");
     }
-  }, [history,userDetails]);
+  }, [history, userDetails]);
   return (
-    <section id="loginscreen">
+    <>
+     <Helmet>
+        <title>Facebook - log in or sign up</title>
+      </Helmet>
+      <section id="loginscreen">
       {loading ? (
         <PageLoader />
       ) : (
@@ -100,6 +105,7 @@ const LoginScreen = ({ history, location }) => {
         </>
       )}
     </section>
+    </>
   );
 };
 

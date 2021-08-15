@@ -1,6 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { postGetReducer, postSubmissionReducer } from "./reducers/postReducer";
+import {
+  postGetReducer,
+  postLikeUnlikeReducer,
+  postSubmissionReducer,
+} from "./reducers/postReducer";
 import thunk from "redux-thunk";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducer";
 
@@ -9,6 +13,7 @@ const reducer = combineReducers({
   registerUser: registerUserReducer,
   loginUser: loginUserReducer,
   postGet: postGetReducer,
+  postLikeUnlike: postLikeUnlikeReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
@@ -18,6 +23,7 @@ const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
 const initialState = {
   loginUser: { userDetails: loginuserDetailsFromStorage },
   postSubmission: { loading: false },
+  // postLikeUnlike: [],
 };
 const middleware = [thunk];
 

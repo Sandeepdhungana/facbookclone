@@ -15,6 +15,7 @@ const getPostFromFrontend = asynchandler(async (req, res) => {
     postCaption,
     postedBy: req.user,
   });
+  // Uncomment this part
   // const user = await User.findById(req.user);
   // if (user) {
   //   user.posts.push(post._id);
@@ -41,12 +42,42 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
   }
 });
 
-// const postAddLike = asynchandler(async (req, res) => {
-//   const postId = req.params.postid;
-//   const post = await Post.findByIdAndUpdate(postId, {
-//     $addToSet: { like: req.user },
-//   });
-// });
+const postLikeUnlike = asynchandler(async (req, res) => {
+  const { postId, liked } = req.body;
+  console.log(liked);
+
+  try {
+    if (!liked) {
+      const post = await Post.findByIdAndUpdate(
+        postId,
+        {
+          $addToSet: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      const { likes, _id } = post;
+      res.status(201).json({
+        likes,
+        _id,
+      });
+    } else {
+      const post = await Post.findByIdAndUpdate(
+        postId,
+        {
+          $pull: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      const { likes, _id } = post;
+      res.status(201).json({
+        likes,
+        _id,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 // const postDislike = asynchandler(async (req, res) => {
 //   const postId = req.params.postid;
@@ -66,4 +97,4 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
 //   const post = await Post.findByIdAndUpdate(postId,{$push:{comments: comment}})
 // })
 
-export { sendPostToFrontend, getPostFromFrontend };
+export { sendPostToFrontend, getPostFromFrontend, postLikeUnlike };

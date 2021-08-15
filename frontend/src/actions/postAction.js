@@ -7,6 +7,9 @@ import {
   POST_GET_REQUEST,
   POST_GET_SUCCESS,
   POST_GET_FAIL,
+  POST_LIKEUNLIKE_SUCCESS,
+  POST_LIKEUNLIKE_FAIL,
+  POST_LIKEUNLIKE_REQUEST,
 } from "../constants/postConstant";
 import socket from "../socket";
 
@@ -105,4 +108,51 @@ const postGetAction = (newPost) => async (dispatch, getState) => {
     });
   }
 };
-export { postSubmissionAction, postGetAction };
+
+const postLikeUnlikeAction = (postId, liked) => async (dispatch) => {
+  try {
+    dispatch({
+      type: POST_LIKEUNLIKE_REQUEST,
+    });
+
+    const localstorageitem = localStorage.getItem("userDetails")
+      ? JSON.parse(localStorage.getItem("userDetails"))
+      : null;
+
+    const { token } = localstorageitem;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const likeStatus = {
+      postId,
+      liked,
+    };
+    const { data } = await axios.post(
+      "http://localhost:5000/api/post/likeunlike",
+      likeStatus,
+      config
+    );
+
+    dispatch({
+      type: POST_LIKEUNLIKE_SUCCESS,
+      payload: {
+        postIdd: postId,
+        data,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: POST_LIKEUNLIKE_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+export { postSubmissionAction, postGetAction, postLikeUnlikeAction };

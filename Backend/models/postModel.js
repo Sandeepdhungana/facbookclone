@@ -1,18 +1,6 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
-const likeSchema = new mongoose.Schema({
-  likedBy: {
-    type: ObjectId,
-    ref: "User",
-  },
-  reaction: {
-    type: String,
-    default: "Like",
-  },
-});
-// const Like = mongoose.model("lost", likeSchema);
-
 const commentSchema = new mongoose.Schema({
   type: String,
   commentedBy: {
@@ -20,7 +8,6 @@ const commentSchema = new mongoose.Schema({
     ref: "User",
   },
 });
-// const Comment = mongoose.model("post", postSchema);
 
 const postSchema = new mongoose.Schema({
   postCaption: {
@@ -38,7 +25,12 @@ const postSchema = new mongoose.Schema({
     type: Number,
     default: Date.now(),
   },
-  likes: [likeSchema],
+  likes: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const Post = mongoose.model("post", postSchema);

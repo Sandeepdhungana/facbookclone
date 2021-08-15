@@ -1,5 +1,4 @@
 import React from "react";
-// import HomeScreen from "./screens/HomeScreen";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,6 +10,7 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 const App = () => {
+ 
   return (
     <Router>
       <Switch>

@@ -10,13 +10,15 @@ import { postGetAction } from "../../actions/postAction";
 import PageLoader from "../../components/Loader/PageLoader";
 import socket from "../../socket";
 import { POST_SUBMISSON_DATA_RECEIVED } from "../../constants/postConstant";
+import { Helmet } from "react-helmet";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const HomeScreen = ({ history, location }) => {
+  const userFromStorage = useUserFromStorage();
   const dispatch = useDispatch();
   const postGet = useSelector((state) => state.postGet);
 
   const { loading, posts } = postGet;
-  // console.log(posts);
 
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 
@@ -49,6 +51,12 @@ const HomeScreen = ({ history, location }) => {
   ];
   return (
     <>
+      <Helmet>
+        <title>
+          {userFromStorage &&
+            `${userFromStorage?.firstname} ${userFromStorage?.surname}`}
+        </title>
+      </Helmet>
       {loading ? (
         <PageLoader />
       ) : (

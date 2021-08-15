@@ -6,6 +6,9 @@ import {
   POST_GET_SUCCESS,
   POST_GET_FAIL,
   POST_SUBMISSON_DATA_RECEIVED,
+  POST_LIKEUNLIKE_REQUEST,
+  POST_LIKEUNLIKE_SUCCESS,
+  POST_LIKEUNLIKE_FAIL,
 } from "../constants/postConstant";
 
 const postSubmissionReducer = (state = {}, action) => {
@@ -45,7 +48,7 @@ const postGetReducer = (state = { posts: [] }, action) => {
       };
     case POST_SUBMISSON_DATA_RECEIVED:
       return {
-        ...state,
+        ...state.postGet,
         posts: [action.payload, ...state.posts],
       };
     case POST_GET_FAIL:
@@ -59,4 +62,44 @@ const postGetReducer = (state = { posts: [] }, action) => {
   }
 };
 
-export { postSubmissionReducer, postGetReducer };
+const postLikeUnlikeReducer = (state = {}, action) => {
+  switch (action.type) {
+    case POST_LIKEUNLIKE_REQUEST:
+      return {
+        loading: true,
+      };
+    case POST_LIKEUNLIKE_SUCCESS:
+      return {
+        ...state,
+        likesData: action.payload,
+      };
+
+    case POST_LIKEUNLIKE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export { postSubmissionReducer, postGetReducer, postLikeUnlikeReducer };
+
+// const {
+//   liked,
+//   data: { likes, _id },
+// } = action.payload;
+// const userFromStorage = localStorage.getItem("userDetails")
+//   ? JSON.parse(localStorage.getItem("userDetails"))
+//   : "";
+// if (!liked) {
+//   state.posts.forEach(
+//     (post) => post._id === _id && post.likes.push(userFromStorage?._id)
+//   );
+// } else {
+//   state.posts.forEach(
+//     (post) => post._id === _id && post.likes.pop(userFromStorage?._id)
+//   );
+// }
+// return state;
