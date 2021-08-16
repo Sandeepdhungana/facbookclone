@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { postAddCommentAction } from "../../actions/postAction";
 import profilePic from "../../assets/img/profilepic.jpg";
 
-const CardComment = ({ postId }) => {
+const CardComment = ({ postId, handleCommentLength, commentLength, text }) => {
   const [comment, setComment] = useState("");
   const commentRef = useRef();
   const dispatch = useDispatch();
 
-  const submitPostComment = () => {
+  const submitPostComment = (e) => {
+    e.preventDefault();
     if (comment) {
       dispatch(postAddCommentAction(postId, comment));
     }
@@ -21,20 +22,22 @@ const CardComment = ({ postId }) => {
       <div className="cardcomment__img">
         <img src={profilePic} alt="" />
       </div>
-      <div className="cardcomment__comment">
-        <input
-          onChange={(e) => setComment(e.target.value)}
-          ref={commentRef}
-          value={comment}
-          type="text"
-          placeholder="Add a comment"
-          focus="true"
-        />
-        {/* <textarea placeholder="add a comment"></textarea> */}
-      </div>
-      <h2 onClick={submitPostComment} style={commentColor}>
-        Comment
-      </h2>
+      <form onSubmit={submitPostComment}>
+        <div className="cardcomment__comment">
+          <input
+            onChange={(e) => setComment(e.target.value)}
+            ref={commentRef}
+            value={comment}
+            type="text"
+            placeholder="Add a comment"
+            focus="true"
+          />
+          {/* <textarea placeholder="add a comment"></textarea> */}
+        </div>
+        <button className="comment" style={commentColor}>
+          Comment
+        </button>
+      </form>
     </div>
   );
 };

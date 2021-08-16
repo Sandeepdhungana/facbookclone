@@ -59,6 +59,7 @@
   border-radius: 5px;
   margin-bottom: 2rem;
   cursor: pointer;
+  width: 100%;
 }
 .loginscreen__left--login-btn:hover {
   background-color: #166fe5;

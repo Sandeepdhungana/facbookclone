@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  postAddCommentReducer,
   postGetReducer,
   postLikeUnlikeReducer,
   postSubmissionReducer,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   loginUser: loginUserReducer,
   postGet: postGetReducer,
   postLikeUnlike: postLikeUnlikeReducer,
+  postAddComment: postAddCommentReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")

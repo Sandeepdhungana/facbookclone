@@ -26,7 +26,11 @@ const postSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User",
       },
+      commentedAt: {
+        type: Date,
+      },
     },
+    { timestamp: true },
   ],
   postedBy: {
     type: ObjectId,

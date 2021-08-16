@@ -31,6 +31,7 @@ const LoginScreen = ({ history, location }) => {
   console.log("I am from loading screen", userDetails);
 
   const handleLogin = (e) => {
+    e.preventDefault();
     dispatch(loginUser(emailandpassword));
     history.push("/home");
   };
@@ -43,68 +44,69 @@ const LoginScreen = ({ history, location }) => {
   }, [history, userDetails]);
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Facebook - log in or sign up</title>
       </Helmet>
       <section id="loginscreen">
-      {loading ? (
-        <PageLoader />
-      ) : (
-        <>
-          <div className="loginscreen--content">
-            <div className="loginscreen__right">
-              <div className="loginscreen__right--facebook">
-                <img src={facebook} alt="" />
-                <h1>
-                  Facebook helps you connect and share
-                  <br /> with the people in your life.
-                </h1>
+        {loading ? (
+          <PageLoader />
+        ) : (
+          <>
+            <div className="loginscreen--content">
+              <div className="loginscreen__right">
+                <div className="loginscreen__right--facebook">
+                  <img src={facebook} alt="" />
+                  <h1>
+                    Facebook helps you connect and share
+                    <br /> with the people in your life.
+                  </h1>
+                </div>
+              </div>
+              <div className="loginscreen__left shadow">
+                <div className="loginscreen__left--login">
+                  <form onSubmit={handleLogin}>
+                    <Input
+                      name="email"
+                      type="text"
+                      placeholder="Email address or phone number"
+                      width="100%"
+                      handleNameAndPassword={handleNameAndPassword}
+                    />
+                    <Input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      width="100%"
+                      handleNameAndPassword={handleNameAndPassword}
+                    />
+                    <button
+                      className="loginscreen__left--login-btn"
+                      type="submit"
+                    >
+                      Log In
+                    </button>
+                  </form>
+                  <Link to="/forgotpassword">Forgotten password?</Link>
+                  <button
+                    onClick={() => {
+                      setClikcedCreateButton(true);
+                    }}
+                    className="loginscreen__left--createaccount-btn"
+                  >
+                    Create New Account
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="loginscreen__left shadow">
-              <div className="loginscreen__left--login">
-                <Input
-                  name="email"
-                  type="text"
-                  placeholder="Email address or phone number"
-                  width="100%"
-                  handleNameAndPassword={handleNameAndPassword}
-                />
-                <Input
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  width="100%"
-                  handleNameAndPassword={handleNameAndPassword}
-                />
-                <button
-                  onClick={handleLogin}
-                  className="loginscreen__left--login-btn"
-                  type="submit"
-                >
-                  Log In
-                </button>
-                <Link to="/forgotpassword">Forgotten password?</Link>
-                <button
-                  onClick={() => {
-                    setClikcedCreateButton(true);
-                  }}
-                  className="loginscreen__left--createaccount-btn"
-                >
-                  Create New Account
-                </button>
-              </div>
-            </div>
-          </div>
-          {clickedCreateButton && (
-            <SignupScreen
-              showCreateModal={() => setClikcedCreateButton(false)}
-              clickedCreateButton={clickedCreateButton}
-            />
-          )}
-        </>
-      )}
-    </section>
+            {clickedCreateButton && (
+              <SignupScreen
+                showCreateModal={() => setClikcedCreateButton(false)}
+                clickedCreateButton={clickedCreateButton}
+              />
+            )}
+          </>
+        )}
+      </section>
     </>
   );
 };

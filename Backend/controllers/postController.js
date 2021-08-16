@@ -33,8 +33,16 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
   const post = await Post.find({})
     .sort("-postedIn")
     .populate("postedBy")
+    .populate("comments.commentedBy")
     .select("-password");
 
+  // .populate({
+  //   path: "comments.commentedBy",
+  //   options: {
+  //     sort: "-_id",
+  //   },
+  // })
+  console.log(post.comments);
   if (post) {
     res.status(201).json(post);
   } else {
@@ -82,26 +90,14 @@ const postLikeUnlike = asynchandler(async (req, res) => {
 const postAddComment = asynchandler(async (req, res) => {
   const { postId, comment } = req.body;
   console.log(postId, comment);
-  const value = "a";
 
-  const cmnt = {
-    comment,
-    commentedBy: req.user,
-  };
   try {
-    // const post = await Post.findByIdAndUpdate(postId, { new: true }).populate(
-    //   "comment.commentedBy"
-    // );
+    const post = await Post.findByIdAndUpdate(postId, { new: true })
+      .sort({ "comments.commentedAt": -1 })
+      .populate("comments.commentedBy");
 
-    const post = await Post.findByIdAndUpdate(
-      postId,
-      { new: true },
-      {
-        $push: { comments: cmnt },
-      }
-    ).populate("comments.commentedBy");
     console.log(post);
-    post.comments.push({
+    post.comments.unshift({
       comment,
       commentedBy: req.user,
     });

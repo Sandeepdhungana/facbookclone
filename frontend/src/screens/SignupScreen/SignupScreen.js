@@ -86,6 +86,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
   // console.log([nameandpassword, dateofbirth, gender]);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(
       registerUser(nameandpassword, dateofbirth, gender, showCreateModal)
     );
@@ -99,7 +100,8 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
 
   return (
     <div className="overlay">
-      <div
+      <form
+        onSubmit={handleSubmit}
         className={
           !clickedCreateButton
             ? "signupscreen radius shadow hideModal"
@@ -238,11 +240,9 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
           </p>
         </div>
         <div className="signupscreen__btn">
-          <button onClick={handleSubmit}>
-            {buttonLoading ? <ButtonLoader /> : "Sign Up"}
-          </button>
+          <button>{buttonLoading ? <ButtonLoader /> : "Sign Up"}</button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

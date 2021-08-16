@@ -10,6 +10,11 @@ io.on("connection", function (socket) {
     io.emit("POST_SUBMISSION_DATA", data);
   });
 
+  socket.on("COMMENT_RECEIVED", (comments) => {
+    io.emit("COMMENT_SENT", comments);
+    // console.log(comments);
+  });
+
   socket.on("disconnect", () => {
     console.log("User is disconnected");
   });

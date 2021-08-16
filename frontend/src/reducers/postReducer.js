@@ -13,6 +13,7 @@ import {
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAIL,
 } from "../constants/postConstant";
+import { SOCKET_COMMENT_RECEIVED } from "../constants/socketConstants";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -48,6 +49,18 @@ const postGetReducer = (state = { posts: [] }, action) => {
       return {
         loading: false,
         posts: action.payload,
+      };
+
+    case SOCKET_COMMENT_RECEIVED:
+      const { postId, comments } = action.payload;
+
+      const index = state.posts.findIndex((post) => post._id === postId);
+      const newPosts = [...state.posts];
+      newPosts[index].comments = comments;
+      console.log("new post is", newPosts);
+      return {
+        posts: newPosts,
+        ...state,
       };
     case POST_SUBMISSON_DATA_RECEIVED:
       return {
@@ -97,7 +110,6 @@ const postAddCommentReducer = (state = [], action) => {
         ...state,
         comment: action.payload,
       };
-
     case POST_COMMENT_FAIL:
       return {
         loading: false,

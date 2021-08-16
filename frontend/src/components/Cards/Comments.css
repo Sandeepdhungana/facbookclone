@@ -2,6 +2,8 @@
   /* background: red; */
   padding: 0 2rem 2rem 2rem;
   display: flex;
+  width: max-content;
+  height: auto;
   animation: cardanimation 1s linear;
 }
 
@@ -13,9 +15,11 @@
 }
 .comments__comments {
   background: #f0f2f5;
+  line-height: 1.5rem;
+  width: 20rem;
+  word-wrap: break-word;
   padding: 1rem;
   border-radius: 1.5rem;
-  width: fit-content;
 }
 .commentedby {
   display: flex;
@@ -31,6 +35,7 @@
 .comments__comments--text h3 {
   font-weight: 400;
   font-size: 1.4rem;
+  line-height: 1.9rem;
 }
 /* .commentedBy > .MuiSvgIcon-root {
   background: red;

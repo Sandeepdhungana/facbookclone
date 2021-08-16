@@ -19,7 +19,6 @@ const HomeScreen = ({ history, location }) => {
   const postGet = useSelector((state) => state.postGet);
 
   const { loading, posts } = postGet;
-  console.log(posts, "Inside hoescreem");
 
   // const redirect = !loginuserinfo.userDetails ? "/login" : "/home";
 

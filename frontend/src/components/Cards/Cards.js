@@ -24,11 +24,21 @@ const Cards = ({
   },
 }) => {
   const [showComment, setShowComment] = useState(false);
+  // const [commentLength, setCommentLength] = useState(2);
+  // const [text, setText] = useState("more");
 
   const handleShowComment = () => {
-    setShowComment(true);
+    setShowComment(!showComment);
   };
-
+  // const handleCommentLength = () => {
+  //   if (commentLength === comments.length) {
+  //     setCommentLength(2);
+  //     setText("more");
+  //   } else {
+  //     setCommentLength(comments.length);
+  //     setText("less");
+  //   }
+  // };
   return (
     <section id="postcards" className="shadow radius">
       <CardTop
@@ -46,7 +56,20 @@ const Cards = ({
         handleShowComment={handleShowComment}
       />
       {showComment && <CardComment postId={postId} />}
-      {showComment && <Comments profile={profilePic} />}
+      {/* {showComment && comments.length !== 0 && commentLength >= 2 ? (
+        <h3 className="viewmore" onClick={handleCommentLength}>
+          View {text} Comments
+        </h3>
+      ) : (
+        ""
+      )} */}
+      {showComment && (
+        <>
+          {comments.map((comments, i) => (
+            <Comments postId={postId} key={i} comments={comments} />
+          ))}
+        </>
+      )}
     </section>
   );
 };
