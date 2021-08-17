@@ -41,23 +41,19 @@ const deletePost = asynchandler(async (req, res) => {
 });
 
 const sendPostToFrontend = asynchandler(async (req, res) => {
-  const post = await Post.find({})
-    .sort("-postedIn")
-    .populate("postedBy")
-    .populate("comments.commentedBy")
-    .select("-password");
+  try {
+    const post = await Post.find({})
+      .sort("-postedIn")
+      .populate("postedBy")
+      .select("-password");
 
-  // .populate({
-  //   path: "comments.commentedBy",
-  //   options: {
-  //     sort: "-_id",
-  //   },
-  // })
-  console.log(post.comments);
-  if (post) {
-    res.status(201).json(post);
-  } else {
-    throw createError(400, "Invalid Post Data");
+    if (post) {
+      res.status(201).json(post);
+    } else {
+      throw createError(400, "Invalid Post Data");
+    }
+  } catch (e) {
+    console.log(e);
   }
 });
 

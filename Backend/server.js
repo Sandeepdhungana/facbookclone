@@ -8,6 +8,7 @@ import cors from "cors";
 // importing route
 import userRoute from "./routes/userRoute.js";
 import postRoute from "./routes/postRoute.js";
+import commentRoute from "./routes/commentRoute.js";
 
 // importing middlewares
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
@@ -21,7 +22,6 @@ const app = express();
 //   origin: "http://localhost:3000",
 // });
 
-
 app.use(cors());
 app.use(express.json());
 
@@ -30,12 +30,11 @@ connectDB();
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
+app.use("/api/comment", commentRoute);
 
 app.get("/", (req, res) => {
   res.send("server is up and running");
 });
-
-
 
 app.use(notFound);
 app.use(errorHandler);

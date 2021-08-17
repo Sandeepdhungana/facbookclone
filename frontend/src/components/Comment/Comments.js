@@ -3,7 +3,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import socket from "../../socket";
 import { SOCKET_COMMENT_RECEIVED } from "../../constants/socketConstants";
 import { useDispatch } from "react-redux";
-
+import "./Comments.css";
 const Comments = ({
   comments: {
     comment,

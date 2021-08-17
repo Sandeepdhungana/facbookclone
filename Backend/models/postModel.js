@@ -1,14 +1,6 @@
 import mongoose from "mongoose";
+import { commentSchema } from "./commentModel.js";
 const { ObjectId } = mongoose.Schema.Types;
-
-const commentSchema = new mongoose.Schema({
-  // type: String,
-  comment: String,
-  commentedBy: {
-    type: ObjectId,
-    ref: "User",
-  },
-});
 
 const postSchema = new mongoose.Schema({
   postCaption: {
@@ -17,21 +9,7 @@ const postSchema = new mongoose.Schema({
   postImage: {
     type: String,
   },
-  comments: [
-    {
-      comment: {
-        type: String,
-      },
-      commentedBy: {
-        type: ObjectId,
-        ref: "User",
-      },
-      commentedAt: {
-        type: Date,
-      },
-    },
-    { timestamp: true },
-  ],
+  comments: [commentSchema],
   postedBy: {
     type: ObjectId,
     ref: "User",

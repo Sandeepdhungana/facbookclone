@@ -10,9 +10,6 @@ import {
   POST_LIKEUNLIKE_SUCCESS,
   POST_LIKEUNLIKE_FAIL,
   POST_LIKEUNLIKE_REQUEST,
-  POST_COMMENT_REQUEST,
-  POST_COMMENT_SUCCESS,
-  POST_COMMENT_FAIL,
 } from "../constants/postConstant";
 import socket from "../socket";
 
@@ -78,38 +75,7 @@ const postSubmissionAction =
   };
 
 const postGetAction = (newPost) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: POST_GET_REQUEST,
-    });
 
-    const localstorageitem = localStorage.getItem("userDetails")
-      ? JSON.parse(localStorage.getItem("userDetails"))
-      : null;
-
-    const { token } = localstorageitem;
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const { data } = await axios.get("http://localhost:5000/api/post", config);
-
-    dispatch({
-      type: POST_GET_SUCCESS,
-      payload: data,
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_GET_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message,
-    });
-  }
 };
 
 const postLikeUnlikeAction = (postId, liked) => async (dispatch) => {
@@ -158,54 +124,4 @@ const postLikeUnlikeAction = (postId, liked) => async (dispatch) => {
     });
   }
 };
-const postAddCommentAction = (postId, comment) => async (dispatch) => {
-  try {
-    dispatch({
-      type: POST_COMMENT_REQUEST,
-    });
-
-    const localstorageitem = localStorage.getItem("userDetails")
-      ? JSON.parse(localStorage.getItem("userDetails"))
-      : null;
-
-    const { token } = localstorageitem;
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const comments = {
-      postId,
-      comment,
-    };
-    const { data } = await axios.post(
-      "http://localhost:5000/api/post/comment",
-      comments,
-      config
-    );
-
-    dispatch({
-      type: POST_COMMENT_SUCCESS,
-      payload: data,
-    });
-    console.log(data);
-    socket.emit("COMMENT_RECEIVED", data);
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: POST_COMMENT_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message,
-    });
-  }
-};
-export {
-  postSubmissionAction,
-  postGetAction,
-  postLikeUnlikeAction,
-  postAddCommentAction,
-};
+export { postSubmissionAction, postGetAction, postLikeUnlikeAction };

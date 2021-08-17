@@ -2,18 +2,6 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 import bcrypt from "bcryptjs";
 
-// const dateofbirthSchema = mongoose.Schema({
-//   day: {
-//     type: String,
-//   },
-//   month: {
-//     type: String,
-//   },
-//   year: {
-//     type: String,
-//   },
-// });
-
 const userSchema = mongoose.Schema({
   firstname: {
     type: String,

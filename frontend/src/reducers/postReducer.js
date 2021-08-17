@@ -99,33 +99,8 @@ const postLikeUnlikeReducer = (state = {}, action) => {
       return state;
   }
 };
-const postAddCommentReducer = (state = [], action) => {
-  switch (action.type) {
-    case POST_COMMENT_REQUEST:
-      return {
-        loading: true,
-      };
-    case POST_COMMENT_SUCCESS:
-      return {
-        ...state,
-        comment: action.payload,
-      };
-    case POST_COMMENT_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
 
-export {
-  postSubmissionReducer,
-  postGetReducer,
-  postLikeUnlikeReducer,
-  postAddCommentReducer,
-};
+export { postSubmissionReducer, postGetReducer, postLikeUnlikeReducer };
 
 // const {
 //   liked,

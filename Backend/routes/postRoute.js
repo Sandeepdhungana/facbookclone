@@ -15,5 +15,5 @@ router
   .get(authorizationMiddleware, sendPostToFrontend);
 
 router.route("/likeunlike").post(authorizationMiddleware, postLikeUnlike);
-router.route("/comment").post(authorizationMiddleware, postAddComment);
+
 export default router;

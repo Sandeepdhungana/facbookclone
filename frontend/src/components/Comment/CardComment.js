@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { postAddCommentAction } from "../../actions/postAction";
+import { addCommentAction } from "../../actions/commentAction";
 import profilePic from "../../assets/img/profilepic.jpg";
+import "./CardComment.css";
 
 const CardComment = ({ postId, handleCommentLength, commentLength, text }) => {
   const [comment, setComment] = useState("");
@@ -11,7 +12,7 @@ const CardComment = ({ postId, handleCommentLength, commentLength, text }) => {
   const submitPostComment = (e) => {
     e.preventDefault();
     if (comment) {
-      dispatch(postAddCommentAction(postId, comment));
+      dispatch(addCommentAction(postId, comment));
     }
     setComment("");
   };
