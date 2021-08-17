@@ -8,6 +8,7 @@ const CardDown = ({ likes, comments, postId, handleShowComment }) => {
   const [like, setLike] = useState(likes?.includes(userFromStorage?._id));
   const [likeCount, setLikeCount] = useState(parseInt(likes?.length));
   const dispatch = useDispatch();
+  console.log(likes)
 
   const handleLike = () => {
     setLike(!like);
@@ -55,7 +56,7 @@ const CardDown = ({ likes, comments, postId, handleShowComment }) => {
           </span>
           <div className="postcards__down--info">
             <span>{comments.length} comments</span>
-            <span>18 share</span>
+            <span>20 share</span>
           </div>
         </div>
         <div className="postcards__down--icons">

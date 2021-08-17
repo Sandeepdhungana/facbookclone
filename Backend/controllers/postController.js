@@ -29,6 +29,17 @@ const getPostFromFrontend = asynchandler(async (req, res) => {
     throw createError(400, "Invalid User Data");
   }
 });
+
+const deletePost = asynchandler(async (req, res) => {
+  const { postId, userId } = req.body;
+  if (userId === req.user._id) {
+    const post = findByIdAndRemove(postId);
+    res.status(200).json(post);
+  } else {
+    createError(400, "Unable to Delete Post");
+  }
+});
+
 const sendPostToFrontend = asynchandler(async (req, res) => {
   const post = await Post.find({})
     .sort("-postedIn")

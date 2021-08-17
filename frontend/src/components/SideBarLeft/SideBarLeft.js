@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import cov19 from "../../assets/img/cov19.png";
 import friends from "../../assets/img/friends.png";
 import group from "../../assets/img/group.png";
+import jobs from "../../assets/img/jobs.png";
 import page from "../../assets/img/page.png";
 import marketplace from "../../assets/img/marketplace.png";
 import watch from "../../assets/img/watch.png";
@@ -42,6 +43,7 @@ const SideBarLeft = ({ profilePic }) => {
     memories,
     saved,
     page,
+    jobs,
   ];
   const name = [
     "Sandeep Dhungana",
@@ -54,6 +56,7 @@ const SideBarLeft = ({ profilePic }) => {
     "Memories",
     "Saved",
     "Pages",
+    "Jobs",
   ];
   const linkto = [
     "profile",
