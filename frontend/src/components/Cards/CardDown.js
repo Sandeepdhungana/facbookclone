@@ -5,14 +5,7 @@ import { postLikeUnlikeAction } from "../../actions/postAction";
 import usePostExists from "../../hooks/usePostExists";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 
-const CardDown = ({
-  likes,
-  comments,
-  postId,
-  postComment,
-  handleShowComment,
-  showComment,
-}) => {
+const CardDown = ({ likes, comments, postId, postComment, showComment }) => {
   const userFromStorage = useUserFromStorage();
   const [like, setLike] = useState(likes?.includes(userFromStorage?._id));
   const [likeCount, setLikeCount] = useState(parseInt(likes?.length));
@@ -31,7 +24,6 @@ const CardDown = ({
 
   const getComment = () => {
     dispatch(getCommentAction(postId));
-    // handleShowComment();
   };
 
   const likeColor = like ? { color: "#056BE1" } : { color: "" };

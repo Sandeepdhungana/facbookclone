@@ -31,13 +31,9 @@ const Cards = ({
   const getComments = useSelector((state) => state.getComments);
   const { loading, comments, error } = getComments;
   const postExists = usePostExists(comments, postId);
-  console.log(comments, postId);
-  console.log(postExists);
 
   const handleShowComment = () => {
-    if (postExists) {
-      setShowComment(true);
-    }
+    setShowComment(true);
   };
 
   useEffect(() => {
@@ -72,13 +68,12 @@ const Cards = ({
         comments={comments}
         postComment={postComment}
         postId={postId}
-        handleShowComment={handleShowComment}
         showComment={showComment}
       />
       <CardComment postId={postId} />
 
       {loading ? (
-        <>{!postExists && <CommentLoader bgColor={"#1877F2"} />}</>
+        <></>
       ) : (
         <>
           {/* {!loading && !showComment ? <></> : <CardComment postId={postId} />} */}
