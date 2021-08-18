@@ -17,6 +17,7 @@ const HomeScreen = ({ history, location }) => {
   const userFromStorage = useUserFromStorage();
   const dispatch = useDispatch();
   const postGet = useSelector((state) => state.postGet);
+  // console.log(postGet);
 
   const { loading, posts } = postGet;
 

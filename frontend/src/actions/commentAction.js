@@ -37,10 +37,12 @@ const addCommentAction = (postId, comment) => async (dispatch) => {
       comments,
       config
     );
+    
     dispatch({
       type: ADD_COMMENT_SUCCESS,
       payload: data,
     });
+    console.log(data);
     socket.emit("COMMENT_RECEIVED", data);
   } catch (err) {
     console.log(err);
@@ -73,8 +75,7 @@ const getCommentAction = (postId) => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      "http://localhost:5000/api/comment",
-      { postId },
+      `http://localhost:5000/api/comment/${postId}`,
       config
     );
 

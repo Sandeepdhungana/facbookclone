@@ -50,18 +50,6 @@ const postGetReducer = (state = { posts: [] }, action) => {
         loading: false,
         posts: action.payload,
       };
-
-    case SOCKET_COMMENT_RECEIVED:
-      const { postId, comments } = action.payload;
-
-      const index = state.posts.findIndex((post) => post._id === postId);
-      const newPosts = [...state.posts];
-      newPosts[index].comments = comments;
-      console.log("new post is", newPosts);
-      return {
-        posts: newPosts,
-        ...state,
-      };
     case POST_SUBMISSON_DATA_RECEIVED:
       return {
         ...state.postGet,

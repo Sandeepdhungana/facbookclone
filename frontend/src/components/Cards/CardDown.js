@@ -4,12 +4,18 @@ import { getCommentAction } from "../../actions/commentAction";
 import { postLikeUnlikeAction } from "../../actions/postAction";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 
-const CardDown = ({ likes, comments, postId }) => {
+const CardDown = ({
+  likes,
+  comments,
+  postId,
+  postComment,
+  handleShowComment,
+  showComment,
+}) => {
   const userFromStorage = useUserFromStorage();
   const [like, setLike] = useState(likes?.includes(userFromStorage?._id));
   const [likeCount, setLikeCount] = useState(parseInt(likes?.length));
   const dispatch = useDispatch();
-  console.log("Inside cardown is", comments?.length);
 
   const handleLike = () => {
     setLike(!like);
@@ -23,6 +29,7 @@ const CardDown = ({ likes, comments, postId }) => {
 
   const getComment = () => {
     dispatch(getCommentAction(postId));
+    handleShowComment();
   };
   const likeColor = like ? { color: "#056BE1" } : { color: "" };
 
@@ -56,7 +63,12 @@ const CardDown = ({ likes, comments, postId }) => {
               : likeCount}
           </span>
           <div className="postcards__down--info">
-            <span>{comments?.length} comments</span>
+            <span>
+              {comments?.length > postComment.length
+                ? comments?.length
+                : postComment?.length}{" "}
+              comments
+            </span>
             <span>20 share</span>
           </div>
         </div>
@@ -70,7 +82,7 @@ const CardDown = ({ likes, comments, postId }) => {
             <span>Like</span>
           </div>
           <div
-            onClick={getComment}
+            onClick={!showComment && getComment}
             className="postcards__down--icons--comment radius"
           >
             <i className="fas fa-comment"></i>

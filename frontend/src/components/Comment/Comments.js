@@ -11,24 +11,24 @@ const Comments = ({
   },
   postId,
 }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    console.log("Inside use effect in comments");
-    socket.on("COMMENT_SENT", (comments) => {
-      console.log(comments);
-      dispatch({
-        type: SOCKET_COMMENT_RECEIVED,
-        payload: {
-          comments,
-          postId,
-        },
-      });
-    });
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("Inside use effect in comments");
+  //   socket.on("COMMENT_SENT", (comments) => {
+  //     console.log(comments);
+  //     dispatch({
+  //       type: SOCKET_COMMENT_RECEIVED,
+  //       payload: {
+  //         comments,
+  //         postId,
+  //       },
+  //     });
+  //   });
 
-    return () => {
-      socket.off("COMMENT_SENT");
-    };
-  }, [dispatch, postId]);
+  //   return () => {
+  //     socket.off("COMMENT_SENT");
+  //   };
+  // }, [dispatch, postId]);
   return (
     <div className="comments">
       <div className="comments__profilepic">

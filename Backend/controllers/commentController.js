@@ -6,7 +6,6 @@ import Post from "../models/postModel.js";
 
 const addComment = asynchandler(async (req, res) => {
   const { postId, commentsFromFrontend } = req.body;
-  console.log(postId, commentsFromFrontend);
   try {
     const post = await Post.findOne({ _id: postId });
 
@@ -17,11 +16,13 @@ const addComment = asynchandler(async (req, res) => {
         post: post._id,
       });
       const savedComment = await comment.save();
-      // console.log("the saved commment is is", savedComment._id);
-
-      const comt = await post.comments.push(savedComment);
+      await post.comments.push(savedComment._id);
       post.save();
-      res.status(200).json(savedComment);
+      const newComment = await Comment.find({ _id: savedComment._id }).populate(
+        "commentedBy"
+      );
+      console.log(newComment);
+      res.status(200).json(newComment);
     } else {
       console.log("Cannot find post");
       createError(400, "No such kind of post exists");
@@ -33,8 +34,7 @@ const addComment = asynchandler(async (req, res) => {
 
 const sendComment = asynchandler(async (req, res) => {
   try {
-    console.log(req.body);
-    const { postId } = req.body;
+    const { postId } = req.params;
     // console.log(postId);
     const post = await Post.findOne({ _id: postId });
     // console.log(post);
@@ -43,7 +43,6 @@ const sendComment = asynchandler(async (req, res) => {
       path: "commentedBy",
       select: "-password -friends -friendRequests -posts -email -dateofbirth",
     });
-    // console.log(comments);
     res.json(comments);
   } catch (err) {
     console.log(err);

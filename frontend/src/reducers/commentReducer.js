@@ -6,6 +6,7 @@ import {
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL,
 } from "../constants/commentConstant";
+import { SOCKET_COMMENT_RECEIVED } from "../constants/socketConstants";
 
 const addCommentReducer = (state = [], action) => {
   switch (action.type) {
@@ -37,7 +38,13 @@ const getCommentReducer = (state = [], action) => {
     case GET_COMMENT_SUCCESS:
       return {
         ...state,
-        comment: action.payload,
+        loading: false,
+        comments: action.payload,
+      };
+    case SOCKET_COMMENT_RECEIVED:
+      return {
+        ...state,
+        comments: [...state.comments, ...action.payload],
       };
     case GET_COMMENT_FAIL:
       return {

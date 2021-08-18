@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import Loader from "react-js-loader";
-import './Loader.css'
+import "./Loader.css";
 
 const PageLoader = () => {
-    return (
-        <div className="pageloader">
-            <Loader type="spinner-default" bgColor={"#166ADA"} size={120} />
-        </div>
-    )
-}
+  return (
+    <div className="pageloader">
+      <Loader type="spinner-default" bgColor={"#166ADA"} size={120} />
+    </div>
+  );
+};
 
-export default PageLoader
+export default PageLoader;

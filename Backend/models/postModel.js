@@ -9,7 +9,12 @@ const postSchema = new mongoose.Schema({
   postImage: {
     type: String,
   },
-  comments: [commentSchema],
+  comments: [
+    {
+      type: ObjectId,
+      ref: "Comment",
+    },
+  ],
   postedBy: {
     type: ObjectId,
     ref: "User",
