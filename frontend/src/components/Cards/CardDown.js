@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCommentAction } from "../../actions/commentAction";
 import { postLikeUnlikeAction } from "../../actions/postAction";
+import usePostExists from "../../hooks/usePostExists";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const CardDown = ({
@@ -16,6 +17,7 @@ const CardDown = ({
   const [like, setLike] = useState(likes?.includes(userFromStorage?._id));
   const [likeCount, setLikeCount] = useState(parseInt(likes?.length));
   const dispatch = useDispatch();
+  const postExists = usePostExists(comments, postId);
 
   const handleLike = () => {
     setLike(!like);
@@ -29,8 +31,9 @@ const CardDown = ({
 
   const getComment = () => {
     dispatch(getCommentAction(postId));
-    handleShowComment();
+    // handleShowComment();
   };
+
   const likeColor = like ? { color: "#056BE1" } : { color: "" };
 
   return (
@@ -64,7 +67,7 @@ const CardDown = ({
           </span>
           <div className="postcards__down--info">
             <span>
-              {comments?.length > postComment.length
+              {postExists && comments?.length > postComment.length
                 ? comments?.length
                 : postComment?.length}{" "}
               comments
@@ -82,7 +85,7 @@ const CardDown = ({
             <span>Like</span>
           </div>
           <div
-            onClick={!showComment && getComment}
+            onClick={!showComment ? getComment : undefined}
             className="postcards__down--icons--comment radius"
           >
             <i className="fas fa-comment"></i>

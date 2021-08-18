@@ -8,10 +8,10 @@ import CardDown from "./CardDown";
 import CardComment from "../Comment/CardComment";
 import Comments from "../Comment/Comments";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonLoader from "../Loader/ButtonLoader";
 import { SOCKET_COMMENT_RECEIVED } from "../../constants/socketConstants";
 import socket from "../../socket";
 import CommentLoader from "../Loader/CommentLoader";
+import usePostExists from "../../hooks/usePostExists";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -28,28 +28,35 @@ const Cards = ({
 }) => {
   const [showComment, setShowComment] = useState(false);
   const dispatch = useDispatch();
-
   const getComments = useSelector((state) => state.getComments);
   const { loading, comments, error } = getComments;
+  const postExists = usePostExists(comments, postId);
+  console.log(comments, postId);
+  console.log(postExists);
+
   const handleShowComment = () => {
-    setShowComment(!showComment);
+    if (postExists) {
+      setShowComment(true);
+    }
   };
-  console.log("Inside the card:", comments);
 
   useEffect(() => {
     socket.on("COMMENT_SENT", (data) => {
       // console.log("the comment recieved fromsocket", data);
-      dispatch({
-        type: SOCKET_COMMENT_RECEIVED,
-        payload: data,
-      });
+
+      if (data[0].post === postId) {
+        console.log("The data from socket is", data);
+        dispatch({
+          type: SOCKET_COMMENT_RECEIVED,
+          payload: data,
+        });
+      }
     });
 
     return () => {
       socket.off("COMMENT_SENT");
     };
-  }, [dispatch, comments?.length]);
-  console.log("the comment is", comments);
+  }, [dispatch, comments?.length, postId]);
   return (
     <section id="postcards" className="shadow radius">
       <CardTop
@@ -68,17 +75,19 @@ const Cards = ({
         handleShowComment={handleShowComment}
         showComment={showComment}
       />
+      <CardComment postId={postId} />
 
       {loading ? (
-        <>
-          <CommentLoader bgColor={"#1877F2"} />
-        </>
+        <>{!postExists && <CommentLoader bgColor={"#1877F2"} />}</>
       ) : (
         <>
-          {!loading && !showComment ? <></> : <CardComment postId={postId} />}
-          {comments.map((comments, i) => (
-            <Comments postId={postId} key={i} comments={comments} />
-          ))}
+          {/* {!loading && !showComment ? <></> : <CardComment postId={postId} />} */}
+          {comments?.map(
+            (comment, i) =>
+              comment.post === postId && (
+                <Comments postId={postId} key={i} comments={comment} />
+              )
+          )}
         </>
       )}
     </section>

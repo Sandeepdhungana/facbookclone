@@ -44,7 +44,7 @@ const getCommentReducer = (state = [], action) => {
     case SOCKET_COMMENT_RECEIVED:
       return {
         ...state,
-        comments: [...state.comments, ...action.payload],
+        comments: [...action.payload, ...state.comments],
       };
     case GET_COMMENT_FAIL:
       return {
