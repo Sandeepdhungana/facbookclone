@@ -1,0 +1,161 @@
+.profiletop {
+  width: 100%;
+  height: 100%;
+  /* background: red; */
+  background: linear-gradient(
+    180deg,
+    rgba(197, 207, 220, 1) 0%,
+    rgba(255, 255, 255, 1) 90%
+  );
+
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.profiletop__coverpic-wrapper {
+  width: 100%;
+  height: 35rem;
+  display: flex;
+  justify-content: center;
+}
+.profiletop__coverpic {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+}
+
+/* .profiletop__coverpic img {
+  width: 100%;
+  height:40rem;
+  object-fit: cover;
+  border-radius: 0 0 10px 10px;
+} */
+
+.profiletop__profilepic-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+}
+.profiletop__profilepic {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.profiletop__profilepic img {
+  height: 17rem;
+  width: 17rem;
+
+  border-radius: 50%;
+  border: 0.5rem solid #fff;
+}
+
+.profiletop__name-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  padding-top: 2rem;
+}
+.profiletop__name {
+  /* background:green; */
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 2rem;
+}
+.profiletop__name::after {
+  position: absolute;
+  content: "";
+  padding: 0.2px;
+  background: #ced0d4;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.profiletop__name h1 {
+  font-size: calc(1.5rem + 1vw);
+}
+
+.profiletop__menu-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+}
+.profiletop__menu {
+  width: 55%;
+  display: flex;
+}
+.profiletop__menu-list {
+  display: flex;
+  flex: 1;
+}
+.profiletop__menu-list li {
+  position: relative;
+  padding: 2rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 5px;
+  color: #65676b;
+  cursor: pointer;
+}
+.profiletop__menu-list li:first-child {
+  color: #1977f3;
+}
+.profiletop__menu li:hover {
+  background-color: #f2f2f2;
+}
+
+.profiletop__menu li:first-child:after {
+  content: "";
+  background-color: #1977f3;
+  position: absolute;
+  padding: 0.2rem;
+  /* height: 2rem; */
+  width: 100%;
+  bottom: -0.5rem;
+  left: 0;
+}
+
+.profiletop__button {
+  display: flex;
+}
+
+/* Media Query */
+@media screen and (max-width: 1350px) {
+  .profiletop__menu {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profiletop__coverpic {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .profiletop__menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profiletop__button {
+    margin-top: 2rem;
+    justify-self: center;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .profiletop__menu li:nth-child(5),
+  .profiletop__menu li:nth-child(6) {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import "./NavBar.css";
 
@@ -13,10 +13,12 @@ import { NavLink } from "react-router-dom";
 import NavBarIcons from "./NavBarIcons/NavBarIcons";
 import NavBarLeftIcons from "./NavBarLeftIcons/NavBarLeftIcons";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
+import LogOut from "../LogOut/LogOut";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
   const userFromStorage = useUserFromStorage();
+  const [dropDownClicked, setDropDownClicked] = useState(false);
 
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
@@ -84,9 +86,15 @@ const NavBar = () => {
     </svg>
   );
 
+  const handleDropDownClicked = () => {
+    console.log(!dropDownClicked);
+    setDropDownClicked(!dropDownClicked);
+  };
+
   const dropDownIcon = (
-    <NavLink to="/more">
+    <div className="dropdown">
       <i
+        onClick={handleDropDownClicked}
         data-visualcompletion="css-img"
         style={{
           backgroundImage:
@@ -99,10 +107,18 @@ const NavBar = () => {
           display: "inline-block",
         }}
       ></i>
-    </NavLink>
+    </div>
   );
 
   const leftNavIcon = [gridIcon, messengerIcon, bellIcon, dropDownIcon];
+  // {/* <div className="logoutwrapper">
+  //           <LogOut />
+  //         </div> */}
+
+  // hide logout modal when clicekd outside the body
+  const handleWindowClick = () => {
+    setDropDownClicked(!dropDownClicked);
+  };
 
   return (
     <section id="navbar">
@@ -149,6 +165,13 @@ const NavBar = () => {
           })}
         </div>
       </div>
+      {dropDownClicked && (
+        <LogOut
+          userFromStorage={userFromStorage}
+          handleWindowClick={handleWindowClick}
+          dropDownClicked={dropDownClicked}
+        />
+      )}
     </section>
   );
 };

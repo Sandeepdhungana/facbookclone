@@ -7,7 +7,7 @@
 
 .grids {
   display: grid;
-  grid-template-columns: calc(25vw + 1rem) 1fr 1.2fr;
+  grid-template-columns: calc(25vw + 1rem) 2fr 1.2fr;
 }
 
 .card__container {

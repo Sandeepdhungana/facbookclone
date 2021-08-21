@@ -33,7 +33,9 @@ const Cards = ({
   const postExists = usePostExists(comments, postId);
 
   const handleShowComment = () => {
-    setShowComment(true);
+    if (!showComment) {
+      setShowComment(true);
+    }
   };
 
   useEffect(() => {
