@@ -50,6 +50,12 @@ const HomeScreen = ({ history, location }) => {
     "Kushal Dhunana",
     "Aayusha Dhungana",
   ];
+
+  // pass it to the writepost component because it should be dynamic as same component is used in profile page also
+  // disbale click set to false means the compoment is clickabale if true component is unclickable
+  // text is coming from profile page also so make it dynamic
+  const disableClick = false;
+  const text = `What's on your mind ${userFromStorage?.firstname}`;
   return (
     <>
       <Helmet>
@@ -75,7 +81,7 @@ const HomeScreen = ({ history, location }) => {
             </Link> */}
             </div>
             <div className="card__container--writepost">
-              <WritePost />
+              <WritePost disableClick={disableClick} text={text} />
             </div>
             <div className="card__container--postcard">
               {posts.map((post, index) => {

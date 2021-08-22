@@ -3,6 +3,7 @@ import coverpic from "../../assets/img/coverpic.jpg";
 import profilepic from "../../assets/img/profilepic.jpg";
 import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
+import { useEffect } from "react";
 
 const ProfileTop = () => {
   const coverStyle = {
@@ -14,8 +15,8 @@ const ProfileTop = () => {
     borderRadius: "0 0 10px 10px",
   };
 
-  const messageIcon = <i class="fab fa-facebook-messenger"></i>;
-  const dotsIcon = <i class="fas fa-ellipsis-h"></i>;
+  const messageIcon = <i className="fab fa-facebook-messenger"></i>;
+  const dotsIcon = <i className="fas fa-ellipsis-h"></i>;
   const buttons = [
     {
       name: "Friends",
@@ -39,6 +40,7 @@ const ProfileTop = () => {
       color: "black",
     },
   ];
+
   return (
     <div className="profiletop shadow">
       <div className="profiletop__coverpic-wrapper">

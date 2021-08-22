@@ -93,6 +93,7 @@
 .profiletop__menu {
   width: 55%;
   display: flex;
+  justify-content: space-between;
 }
 .profiletop__menu-list {
   display: flex;
@@ -139,6 +140,10 @@
 @media screen and (max-width: 800px) {
   .profiletop__coverpic {
     width: 100%;
+  }
+
+  .profiletop__menu-list li:nth-child(5) {
+    display: none;
   }
 }
 

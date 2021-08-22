@@ -8,9 +8,10 @@ import smileIcon from "./icons/smileIcon.png";
 import WritePostModal from "./WritePostModal";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 
-const WritePost = () => {
+const WritePost = ({ disableClick, text }) => {
   const [clicked, setClicked] = useState(false);
-  if (clicked) {
+  // it is for making the body unmovable when the modal is active
+  if (!disableClick && clicked) {
     document.body.classList.add("modalopen");
   } else {
     document.body.classList.remove("modalopen");
@@ -28,7 +29,7 @@ const WritePost = () => {
           }}
           className="writepost--write--input"
         >
-          <h3>What's on your mind, {userFromStorage?.firstname}? </h3>
+          <h3>{text}</h3>
         </div>
       </div>
       <div className="writepost__icons">
@@ -50,7 +51,7 @@ const WritePost = () => {
           <h3>Feeling/Activity</h3>
         </div>
       </div>
-      {clicked && (
+      {!disableClick && clicked && (
         <WritePostModal
           clicked={clicked}
           showWriteModal={() => setClicked(false)}
