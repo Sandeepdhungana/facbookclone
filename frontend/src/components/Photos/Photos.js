@@ -1,7 +1,12 @@
 import "./Photos.css";
-import profilePic from "../../assets/img/profilepic.jpg";
+import { useSelector } from "react-redux";
 
 const Photos = () => {
+  const profileGet = useSelector((state) => state.profileGet);
+  const { profile } = profileGet;
+
+  const postImages = profile?.postImages;
+  console.log(postImages);
   return (
     <div className="photos">
       <div className="photos__heading">
@@ -9,15 +14,33 @@ const Photos = () => {
         <h2>See All Photos</h2>
       </div>
       <div className="photos__heading--photos">
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
-        <img src={profilePic} alt="" />
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
+        {postImages.map((images, i) => {
+          return images ? <img src={images} alt="" /> : null;
+        })}
       </div>
     </div>
   );

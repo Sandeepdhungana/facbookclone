@@ -1,11 +1,19 @@
 import "./ProfileTop.css";
 import coverpic from "../../assets/img/coverpic.jpg";
-import profilepic from "../../assets/img/profilepic.jpg";
+// import profilepic from "../../assets/img/profilepic.jpg";
 import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const ProfileTop = () => {
+  const profileGet = useSelector((state) => state.profileGet);
+  const { profile } = profileGet;
+
+  const user = profile?.user;
+  const { firstname, surname, profilePic } = user;
+
+
+  
   const coverStyle = {
     backgroundImage: `url(${coverpic})`,
     backgroundPosition: "center",
@@ -48,7 +56,7 @@ const ProfileTop = () => {
           {/* <img src={coverpic} alt="" /> */}
           <div className="profiletop__profilepic-wrapper">
             <div className="profiletop__profilepic">
-              <img src={profilepic} alt="" />
+              <img src={profilePic} alt="" />
             </div>
           </div>
         </div>
@@ -56,7 +64,9 @@ const ProfileTop = () => {
 
       <div className="profiletop__name-wrapper">
         <div className="profiletop__name">
-          <h1>Milan Karki</h1>
+          <h1>
+            {firstname} {surname}
+          </h1>
         </div>
       </div>
 
@@ -84,32 +94,3 @@ const ProfileTop = () => {
 
 export default ProfileTop;
 
-// import "./ProfileTop.css";
-// import coverpic from "../../assets/img/coverpic.jpg";
-// import profilepic from "../../assets/img/profilepic.jpg";
-
-// const ProfileTop = () => {
-//   return (
-//     <div className="profiletop">
-//       <div className="profiletop__coverpic">
-//         <img src={coverpic} alt="" />
-//         <div className="profiletop__profilepic">
-//           <img className="profilepic" src={profilepic} alt="" />
-//           <h1>Sandeep Dhungana</h1>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProfileTop;
-
-{
-  /* <div className="profiletop__coverpic">
-<img src={coverpic} alt="" />
-</div>
-<div className="profiletop__profliepic">
-<img className="profilepic" src={profilepic} alt="" />
-
-</div> */
-}

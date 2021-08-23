@@ -9,11 +9,8 @@ import {
   POST_LIKEUNLIKE_REQUEST,
   POST_LIKEUNLIKE_SUCCESS,
   POST_LIKEUNLIKE_FAIL,
-  POST_COMMENT_REQUEST,
-  POST_COMMENT_SUCCESS,
-  POST_COMMENT_FAIL,
 } from "../constants/postConstant";
-import { SOCKET_COMMENT_RECEIVED } from "../constants/socketConstants";
+// import { SOCKET_COMMENT_RECEIVED } from "../constants/socketConstants";
 
 const postSubmissionReducer = (state = {}, action) => {
   switch (action.type) {

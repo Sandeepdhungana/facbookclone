@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCommentAction } from "../../actions/commentAction";
 import { postLikeUnlikeAction } from "../../actions/postAction";

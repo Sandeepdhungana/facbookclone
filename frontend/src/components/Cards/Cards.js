@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import "./Cards.css";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -10,8 +10,6 @@ import Comments from "../Comment/Comments";
 import { useDispatch, useSelector } from "react-redux";
 import { SOCKET_COMMENT_RECEIVED } from "../../constants/socketConstants";
 import socket from "../../socket";
-import CommentLoader from "../Loader/CommentLoader";
-import usePostExists from "../../hooks/usePostExists";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -26,17 +24,9 @@ const Cards = ({
     postedIn,
   },
 }) => {
-  const [showComment, setShowComment] = useState(false);
   const dispatch = useDispatch();
   const getComments = useSelector((state) => state.getComments);
-  const { loading, comments, error } = getComments;
-  const postExists = usePostExists(comments, postId);
-
-  const handleShowComment = () => {
-    if (!showComment) {
-      setShowComment(true);
-    }
-  };
+  const { loading, comments } = getComments;
 
   useEffect(() => {
     socket.on("COMMENT_SENT", (data) => {
@@ -70,7 +60,6 @@ const Cards = ({
         comments={comments}
         postComment={postComment}
         postId={postId}
-        showComment={showComment}
       />
       <CardComment postId={postId} />
 

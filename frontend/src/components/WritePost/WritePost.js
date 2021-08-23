@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import profilePic from "../../assets/img/profilepic.jpg";
 import "./WritePost.css";
 
 import liveIcon from "./icons/liveIcon.png";

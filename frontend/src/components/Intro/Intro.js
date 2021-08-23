@@ -4,9 +4,17 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import RssFeedIcon from "@material-ui/icons/RssFeed";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
-import profilePic from '../../assets/img/profilepic.jpg'
+import { useSelector } from "react-redux";
 
 const Intro = () => {
+  const profileGet = useSelector((state) => state.profileGet);
+  const { profile } = profileGet;
+
+  const postImages = profile?.postImages;
+
+  const allImages = postImages.filter((image) => image.length !== 0);
+  const imageIndex = Math.floor(Math.random() * allImages.length);
+  const image = postImages[imageIndex];
   return (
     <div className="intro">
       <div className="intro__heading">
@@ -38,7 +46,7 @@ const Intro = () => {
         </h3>
       </div>
       <div className="image">
-        <img src={profilePic} alt="" />
+        <img src={image} alt="" />
       </div>
     </div>
   );

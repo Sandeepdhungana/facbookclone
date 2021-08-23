@@ -39,6 +39,7 @@ i {
 
 .intro__details strong {
   color: black;
+  font-weight: 500;
 }
 .intro__details strong:hover {
   text-decoration: underline;

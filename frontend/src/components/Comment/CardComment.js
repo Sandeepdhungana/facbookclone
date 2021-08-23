@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCommentAction } from "../../actions/commentAction";
 import profilePic from "../../assets/img/profilepic.jpg";

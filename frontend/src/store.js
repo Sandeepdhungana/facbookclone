@@ -11,6 +11,7 @@ import {
   addCommentReducer,
   getCommentReducer,
 } from "./reducers/commentReducer";
+import { profileGetReducer } from "./reducers/profileReducer";
 
 const reducer = combineReducers({
   postSubmission: postSubmissionReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   postLikeUnlike: postLikeUnlikeReducer,
   addComments: addCommentReducer,
   getComments: getCommentReducer,
+  profileGet: profileGetReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
@@ -33,6 +35,14 @@ const initialState = {
     loading: false,
     comments: [],
     error: "",
+  },
+  profileGet: {
+    loading: true,
+    profile: {
+      user: {},
+      post: [],
+      postImage: [],
+    },
   },
   // postLikeUnlike: [],
 };

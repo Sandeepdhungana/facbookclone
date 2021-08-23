@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import LogOut from "./components/LogOut/LogOut";
 import NavBar from "./components/NavBar/NavBar";
-import TestScreen from "./components/TestScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
@@ -27,7 +26,6 @@ const App = () => {
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/logout" component={LogOut} />
           <Route exact path="/profile/:id" component={ProfileScreen} />
-          <Route exact path="/profile/" component={TestScreen} />
         </>
       </Switch>
     </Router>
