@@ -18,7 +18,8 @@ const LoginScreen = ({ history, location }) => {
 
   const dispatch = useDispatch();
   const loginuserinfo = useSelector((state) => state.loginUser);
-  const { loading, userDetails } = loginuserinfo;
+  const { loading, userDetails, error } = loginuserinfo;
+  console.log(error);
 
   const handleNameAndPassword = (e) => {
     const value = e.target.value;
@@ -27,8 +28,6 @@ const LoginScreen = ({ history, location }) => {
       [e.target.name]: value,
     });
   };
-  console.log("I am from loading screen", loading);
-  console.log("I am from loading screen", userDetails);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -79,6 +78,7 @@ const LoginScreen = ({ history, location }) => {
                       width="100%"
                       handleNameAndPassword={handleNameAndPassword}
                     />
+                    {error && <p className="error">{error}</p>}
                     <button
                       className="loginscreen__left--login-btn"
                       type="submit"

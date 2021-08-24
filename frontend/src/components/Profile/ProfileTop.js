@@ -4,16 +4,21 @@ import coverpic from "../../assets/img/coverpic.jpg";
 import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
 import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 
 const ProfileTop = () => {
   const profileGet = useSelector((state) => state.profileGet);
   const { profile } = profileGet;
+  const [showMenu, setShowMenu] = useState(true);
 
   const user = profile?.user;
   const { firstname, surname, profilePic } = user;
 
+  const profileTopName = useRef();
+  const profileMenu = useRef();
+  const profileTopMenu = useRef();
+  const profileName = useRef();
 
-  
   const coverStyle = {
     backgroundImage: `url(${coverpic})`,
     backgroundPosition: "center",
@@ -49,6 +54,28 @@ const ProfileTop = () => {
     },
   ];
 
+  // let profileTopName = document.querySelector(".profiletop__menu-wrapper");
+  useEffect(() => {
+    const options = {
+      rootMargin: "-50px 0px 0px 0px",
+    };
+    const observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          profileMenu.current.classList.add("pmr");
+          profileMenu.current.classList.add("shadow");
+          setShowMenu(false);
+        } else {
+          profileMenu.current.classList.remove("pmr");
+          profileMenu.current.classList.remove("shadow");
+          setShowMenu(true);
+        }
+      });
+    }, options);
+
+    observer.observe(profileTopName.current);
+  }, []);
+
   return (
     <div className="profiletop shadow">
       <div className="profiletop__coverpic-wrapper">
@@ -62,7 +89,7 @@ const ProfileTop = () => {
         </div>
       </div>
 
-      <div className="profiletop__name-wrapper">
+      <div ref={profileTopName} className="profiletop__name-wrapper">
         <div className="profiletop__name">
           <h1>
             {firstname} {surname}
@@ -70,17 +97,26 @@ const ProfileTop = () => {
         </div>
       </div>
 
-      <div className="profiletop__menu-wrapper">
+      <div ref={profileMenu} className="profiletop__menu-wrapper">
         <div className="profiletop__menu">
-          <div className="profiletop__menu-list">
-            <li>Posts</li>
-            <li>About</li>
-            <li>Friends</li>
-            <li>Photos</li>
-            <li>Videos</li>
-            {/* <li>Check-ins</li> */}
-            <li>More</li>
-          </div>
+          {showMenu && (
+            <div ref={profileTopMenu} className="profiletop__menu-list">
+              <li>Posts</li>
+              <li>About</li>
+              <li>Friends</li>
+              <li>Photos</li>
+              <li>Videos</li>
+              <li>More</li>
+            </div>
+          )}
+          {!showMenu && (
+            <div ref={profileName} className="profiletop__menu--names">
+              <img src={profilePic} alt="profilepic" />
+              <h2>
+                {firstname} {surname}
+              </h2>
+            </div>
+          )}
           <div className="profiletop__button">
             {buttons.map((button, i) => {
               return <Button key={i} button={button} />;
@@ -93,4 +129,3 @@ const ProfileTop = () => {
 };
 
 export default ProfileTop;
-

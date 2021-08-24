@@ -27,28 +27,28 @@
 .photos__heading--photos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* grid-template-rows: repeat(3, 1fr); */
+  grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
 }
 
 .photos__heading--photos img {
-  width: 100%;
-  height: 100%;
+  width: 11rem;
+  height: 11rem;
   object-fit: cover;
 }
 .photos__heading--photos img {
   cursor: pointer;
 }
 
-.photos__heading--photos img:first-child {
+.photos__heading--photos .photos__heading--photos-wrapper:nth-child(1) img {
   border-radius: 10px 0 0 0;
 }
-.photos__heading--photos img:nth-child(3) {
+.photos__heading--photos .photos__heading--photos-wrapper:nth-child(3) img {
   border-radius: 0 10px 0 0;
 }
-.photos__heading--photos img:nth-child(7) {
+.photos__heading--photos .photos__heading--photos-wrapper:nth-child(7) img {
   border-radius: 0 0 0 10px;
 }
-.photos__heading--photos img:nth-child(9) {
+.photos__heading--photos .photos__heading--photos-wrapper:nth-child(9) img {
   border-radius: 0 0 10px 0;
 }

@@ -10,7 +10,6 @@ import { postGetAction } from "../../actions/postAction";
 import PageLoader from "../../components/Loader/PageLoader";
 import socket from "../../socket";
 import { POST_SUBMISSON_DATA_RECEIVED } from "../../constants/postConstant";
-import { Helmet } from "react-helmet";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const HomeScreen = ({ history, location }) => {
@@ -26,6 +25,7 @@ const HomeScreen = ({ history, location }) => {
   const userfromstorage = localStorage.getItem("userDetails");
   // const
 
+ 
   useEffect(() => {
     socket.on("POST_SUBMISSION_DATA", function (data) {
       dispatch({
@@ -58,12 +58,6 @@ const HomeScreen = ({ history, location }) => {
   const text = `What's on your mind ${userFromStorage?.firstname}`;
   return (
     <>
-      <Helmet>
-        <title>
-          {userFromStorage &&
-            `${userFromStorage?.firstname} ${userFromStorage?.surname}`}
-        </title>
-      </Helmet>
       {loading ? (
         <PageLoader />
       ) : (

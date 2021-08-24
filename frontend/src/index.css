@@ -52,6 +52,12 @@ a:visited {
 .overlay::-webkit-scrollbar {
   width: 0px;
 }
+.error {
+  color: #bb321f;
+  font-size: 1.4rem;
+  text-align: center;
+  padding-bottom: 1rem;
+}
 /* .overlay::-webkit-scrollbar-thumb {
   background: #bcc0c4;
   border-radius: 100px;

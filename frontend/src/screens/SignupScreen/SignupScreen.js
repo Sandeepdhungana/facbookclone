@@ -7,14 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../actions/userAction";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
 import { useHistory } from "react-router-dom";
+import validator from "validator";
 
 const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const [nameandpassword, setNameAndPassowrd] = useState({
     firstname: "",
     surname: "",
     email: "",
     password: "",
   });
+
   const [dateofbirth, setDateOfBirth] = useState({
     day: "",
     month: "",
@@ -84,14 +89,46 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
     });
   };
   // console.log([nameandpassword, dateofbirth, gender]);
+  let isValidEmail = validator.isEmail(nameandpassword.email);
+  let isValidPassword = validator.isStrongPassword(nameandpassword.password, {
+    minLength: 8,
+    minLowercase: 1,
+    minUppercase: 1,
+    minNumbers: 1,
+    minSymbols: 1,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      registerUser(nameandpassword, dateofbirth, gender, showCreateModal)
-    );
-    setButtonLoading(true);
+    if (!isValidPassword && !isValidEmail) {
+      setPasswordError(
+        "Password must be at least 8 characters and include numbers, letters and symbols"
+      );
+      setEmailError("Enter a valid email to register");
+    } else if (!isValidPassword) {
+      setPasswordError(
+        "Password must be at least 8 characters and include numbers, letters and symbols"
+      );
+    } else if (!isValidEmail) {
+      setEmailError("Enter a valid email to register");
+    } else if (!isValidEmail && isValidPassword) {
+      setEmailError("Enter a valid email to register");
+      setPasswordError("");
+    } else if (!isValidPassword && isValidEmail) {
+      setPasswordError(
+        "Password must be at least 8 characters and include numbers, letters and symbols"
+      );
+      setEmailError("");
+    }
+
+    if (isValidEmail && isValidPassword) {
+      dispatch(
+        registerUser(nameandpassword, dateofbirth, gender, showCreateModal)
+      );
+      setButtonLoading(true);
+    }
   };
+
   useEffect(() => {
     if (userDetails) {
       history.push("/home");
@@ -145,6 +182,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
               type="text"
               placeholder="Mobile number or email address"
             />
+            {emailError && <p className="error">{emailError}</p>}
           </div>
           <div className="signupscreen__form--password">
             <input
@@ -155,6 +193,7 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
               type="password"
               placeholder="New password"
             />
+            {passwordError && <p className="error">{passwordError}</p>}
           </div>
           <div className="signupscreen__form--datedropdown">
             <div className="labels">

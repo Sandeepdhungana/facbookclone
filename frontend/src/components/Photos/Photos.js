@@ -6,7 +6,6 @@ const Photos = () => {
   const { profile } = profileGet;
 
   const postImages = profile?.postImages;
-  console.log(postImages);
   return (
     <div className="photos">
       <div className="photos__heading">
@@ -15,31 +14,67 @@ const Photos = () => {
       </div>
       <div className="photos__heading--photos">
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
         {postImages.map((images, i) => {
-          return images ? <img src={images} alt="" /> : null;
+          return images ? (
+            <div key={i} className="photos__heading--photos-wrapper">
+              <img src={images} alt="" />
+            </div>
+          ) : null;
         })}
       </div>
     </div>

@@ -42,8 +42,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-.loginscreen__left--login {
   padding: 1.5rem;
 }
 
