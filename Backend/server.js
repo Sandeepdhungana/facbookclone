@@ -10,6 +10,7 @@ import userRoute from "./routes/userRoute.js";
 import postRoute from "./routes/postRoute.js";
 import commentRoute from "./routes/commentRoute.js";
 import profileRoute from "./routes/profileRoute.js";
+import findFriendRoute from "./routes/findFriendRoute.js";
 
 // importing middlewares
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
@@ -33,6 +34,7 @@ app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/comment", commentRoute);
 app.use("/api/profile", profileRoute);
+app.use("/api/findfriend", findFriendRoute);
 
 app.get("/", (req, res) => {
   res.send("server is up and running");

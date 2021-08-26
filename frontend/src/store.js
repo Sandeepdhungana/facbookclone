@@ -12,6 +12,7 @@ import {
   getCommentReducer,
 } from "./reducers/commentReducer";
 import { profileGetReducer } from "./reducers/profileReducer";
+import { findFriendReducer } from "./reducers/findFriendReducer";
 
 const reducer = combineReducers({
   postSubmission: postSubmissionReducer,
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   addComments: addCommentReducer,
   getComments: getCommentReducer,
   profileGet: profileGetReducer,
+  findFriend: findFriendReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
@@ -43,6 +45,9 @@ const initialState = {
       post: [],
       postImage: [],
     },
+  },
+  findFriend: {
+    loading: true,
   },
   // postLikeUnlike: [],
 };

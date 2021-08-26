@@ -62,12 +62,12 @@ const ProfileTop = () => {
     const observer = new IntersectionObserver(function (entries, observer) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          profileMenu.current.classList.add("pmr");
-          profileMenu.current.classList.add("shadow");
+          profileMenu.current?.classList.add("pmr");
+          profileMenu.current?.classList.add("shadow");
           setShowMenu(false);
         } else {
-          profileMenu.current.classList.remove("pmr");
-          profileMenu.current.classList.remove("shadow");
+          profileMenu.current?.classList.remove("pmr");
+          profileMenu.current?.classList.remove("shadow");
           setShowMenu(true);
         }
       });

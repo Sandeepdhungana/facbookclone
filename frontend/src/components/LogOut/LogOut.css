@@ -65,7 +65,7 @@
   display: flex;
   border-radius: 10px;
   align-items: center;
-  padding: 1rem 0.5rem 1rem;
+  padding: 0.8rem 0.5rem 0.8rem;
   cursor: pointer;
 }
 .logout__middle:hover {
@@ -95,7 +95,7 @@
 /* Media Query */
 @media screen and (max-width: 400px) {
   .logout {
-    right:0;
+    right: 0;
     width: 94%;
   }
 }

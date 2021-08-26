@@ -1,19 +1,15 @@
 import "./Friends.css";
 
 import FriendList from "./FriendList";
+import { useSelector } from "react-redux";
 
 const Friends = () => {
-  const friends = [
-    "Sandeep Dhungana",
-    "Arpan Acharya",
-    "Deepak Basnet",
-    "Riddhi Dhungana",
-    "Ranjeev Bohara",
-    "Pujan Aryal",
-    "Rajit Rimal",
-    "Ashok Rimal",
-    "Yash Sah",
-  ];
+  const profileGet = useSelector((state) => state.profileGet);
+  const { profile } = profileGet;
+
+  const user = profile?.user;
+  const friends = user?.friends;
+
   return (
     <div className="friends">
       <div className="friends__heading">
@@ -24,8 +20,8 @@ const Friends = () => {
         <h2>See All friends</h2>
       </div>
       <div className="friends__friends">
-        {friends.map((name, i) => (
-          <FriendList key={i} name={name} />
+        {friends.map((friend, i) => (
+          <FriendList key={i} friend={friend} />
         ))}
       </div>
     </div>

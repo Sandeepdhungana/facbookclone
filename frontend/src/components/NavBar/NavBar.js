@@ -125,7 +125,7 @@ const NavBar = () => {
       {/* NavBar Logo and Search */}
       <div className="navbar__logo">
         <div className="navbar__logo--logo">
-          <NavLink to="/profile/1">
+          <NavLink to="/">
             <img src={logo} alt="facebook-clone-by-sandeep" />
           </NavLink>
         </div>

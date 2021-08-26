@@ -1,0 +1,31 @@
+.findfriendmain {
+  width: 100%;
+  flex: 1;
+  padding: 4rem;
+}
+.findfriendmain--top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 2.5rem;
+  margin-bottom: 1rem;
+}
+.findfriendmain--cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.findfriendmain--request {
+    margin-bottom: 2rem;
+}
+.findfriendmain--top h2 {
+  color: #337adf;
+  padding: 0.8rem;
+  font-size: 2rem;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 400;
+}
+.findfriendmain--top h2:hover {
+  background: #e4e6eb;
+}

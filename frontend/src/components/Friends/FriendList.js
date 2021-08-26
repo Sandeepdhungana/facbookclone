@@ -1,11 +1,15 @@
-import profilePic from "../../assets/img/profilepic.jpg";
+import { Link } from "react-router-dom";
 
-const FriendList = ({ name }) => {
+const FriendList = ({ friend: { _id, firstname, surname, profilePic } }) => {
   return (
-    <div className="friends__friends--list">
-      <img src={profilePic} alt="" />
-      <h2>{name}</h2>
-    </div>
+    <Link to={`/profile/${_id}`}>
+      <div className="friends__friends--list">
+        <img src={profilePic} alt="" />
+        <h2>
+          {firstname} {surname}
+        </h2>
+      </div>
+    </Link>
   );
 };
 

@@ -1,0 +1,51 @@
+.findfriendcard {
+  background: white;
+  width: 20rem;
+  margin-right: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 10px;
+}
+
+.findfriendcard--top {
+  width: 100%;
+  object-fit: contain;
+}
+.findfriendcard--top img {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+}
+.findfrinedcard--middle {
+  padding: 1rem 1rem 0;
+}
+.findfrinedcard--middle h2 {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.findfrinedcard--middle p {
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #65666a;
+  margin-bottom: 0.5rem;
+}
+
+.findfriendcard--bottom {
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.findfriendcard--bottom button {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.findfriendcard--bottom button:nth-child(1) {
+  margin-bottom: 0.5rem;
+}
