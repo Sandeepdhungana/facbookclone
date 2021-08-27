@@ -1,6 +1,7 @@
 import express from "express";
 import asynchandler from "express-async-handler";
 import User from "../models/userModel.js";
+import generateRandomUser from "../utils/generateRandomUser.js";
 import { getFriendRequest } from "../utils/getFriendRequests.js";
 import { getFriendKnow } from "../utils/getPeopleKnow.js";
 
@@ -10,8 +11,13 @@ const findFriend = asynchandler(async (req, res) => {
       "friendRequests"
     );
 
+    // for (let i = 0; i < 100; i++) {
+    //   generateRandomUser(i);
+    // }
+
     const myFriendRequest = await getFriendRequest(req.user._id);
     let peopleUserMayKnow = await getFriendKnow(req.user._id);
+    // console.log(peopleUserMayKnow);
 
     res.status(200).json({
       myFriendRequest,
@@ -140,9 +146,5 @@ export {
   confirmFriendRequest,
   cancelFriendRequest,
   removeFriend,
-  deleteFriendRequest
+  deleteFriendRequest,
 };
-
-// for (let i = 0; i < 20; i++) {
-//     generateRandomUser();
-//   }

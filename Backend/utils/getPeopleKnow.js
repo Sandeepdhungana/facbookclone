@@ -5,6 +5,13 @@ import User from "../models/userModel.js";
 
 const getFriendKnow = asynchandler(async (_id) => {
   try {
+    function randomizeUser(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
     const user = await User.findOne({ _id: _id })
       .populate("friends")
       .populate("friendRequests");
@@ -20,16 +27,27 @@ const getFriendKnow = asynchandler(async (_id) => {
     const union = [
       ...new Set([...myFriends, ...myFriendRequest, ...myFriendRequestSent]),
     ];
-    const peopleUserMayKnow = union
-      .filter((friends) => !allUsers.includes(friends._id))
-      .map((people) => {
-        return {
-          firstname: people.firstname,
-          surname: people.surname,
-          profilePic: people.profilePic,
-          _id: people._id,
-        };
-      });
+    let peopleUserMayKnow = randomizeUser(
+      allUsers
+        .filter(
+          (friends) =>
+            !(
+              new String(friends._id).valueOf() === new String(_id).valueOf()
+            ) && !union.includes(friends._id)
+        )
+        .map((people) => {
+          if (people._id !== user._id) {
+            return {
+              firstname: people.firstname,
+              surname: people.surname,
+              profilePic: people.profilePic,
+              _id: people._id,
+            };
+          }
+        })
+    );
+
+    // console.log(peopleUserMayKnow.slice(0, 10));
 
     return peopleUserMayKnow.slice(0, 10);
   } catch (err) {
