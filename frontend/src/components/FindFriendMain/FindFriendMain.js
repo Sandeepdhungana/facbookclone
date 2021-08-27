@@ -1,33 +1,23 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { REMOVE_USER } from "../../constants/friendRequestConstant";
 import FindFriendCard from "../Cards/FindFriendCard";
 import "./FindFriendMain.css";
 
 const FindFriendMain = () => {
   const findFriend = useSelector((state) => state.findFriend);
+  const dispatch = useDispatch();
   const { friends } = findFriend;
   const { myFriendRequest, peopleUserMayKnow } = friends ? friends : {};
 
-  const buttonTopRequest = {
-    text: "Confirm",
-    color: "#fff",
-    background: "#1977F3",
-  };
-
-  const buttonDownRequest = {
-    text: "Delete",
-    color: "#000",
-    background: "#E4E6EB",
-  };
-  const buttonTopKnow = {
-    text: "Add Friend",
-    color: "#1977F3",
-    background: "#E6F2FF",
-  };
-
-  const buttonDownKnow = {
-    text: "Remove",
-    color: "#000",
-    background: "#E4E6EB",
+  const removeUser = (friendId) => {
+    dispatch({
+      type: REMOVE_USER,
+      payload: {
+        friendId,
+        peopleUserMayKnow,
+      },
+    });
   };
 
   return (
@@ -39,14 +29,7 @@ const FindFriendMain = () => {
         </div>
         <div className="findfriendmain--cards">
           {myFriendRequest.map((friend, i) => {
-            return (
-              <FindFriendCard
-                key={i}
-                friend={friend}
-                buttonTop={buttonTopRequest}
-                buttonDown={buttonDownRequest}
-              />
-            );
+            return <FindFriendCard top={true} key={i} friend={friend} />;
           })}
         </div>
       </div>
@@ -59,10 +42,10 @@ const FindFriendMain = () => {
           {peopleUserMayKnow.map((friend, i) => {
             return (
               <FindFriendCard
+                removeUser={removeUser}
+                top={false}
                 key={i}
                 friend={friend}
-                buttonTop={buttonTopKnow}
-                buttonDown={buttonDownKnow}
               />
             );
           })}

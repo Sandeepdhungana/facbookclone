@@ -35,17 +35,3 @@
   flex-direction: column;
   align-items: center;
 }
-
-.findfriendcard--bottom button {
-  width: 100%;
-  outline: none;
-  border: none;
-  padding: 1rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-.findfriendcard--bottom button:nth-child(1) {
-  margin-bottom: 0.5rem;
-}

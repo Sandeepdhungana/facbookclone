@@ -16,7 +16,7 @@
   flex-wrap: wrap;
 }
 .findfriendmain--request {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 .findfriendmain--top h2 {
   color: #337adf;
@@ -29,3 +29,5 @@
 .findfriendmain--top h2:hover {
   background: #e4e6eb;
 }
+
+/* #E4E6EB #808A8F */

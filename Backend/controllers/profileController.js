@@ -26,7 +26,7 @@ const getUserProfile = asynchandler(async (req, res) => {
     //     profilePic: friend.profilePic,
     //   };
     // });
-    console.log(user);
+    // console.log(user);
 
     res.status(200).json({
       user,

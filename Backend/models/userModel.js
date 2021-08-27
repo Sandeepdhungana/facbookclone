@@ -43,6 +43,12 @@ const userSchema = mongoose.Schema({
       ref: "User",
     },
   ],
+  friendRequestSent: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
   friendRequests: [
     {
       type: ObjectId,

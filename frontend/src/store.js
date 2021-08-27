@@ -13,6 +13,13 @@ import {
 } from "./reducers/commentReducer";
 import { profileGetReducer } from "./reducers/profileReducer";
 import { findFriendReducer } from "./reducers/findFriendReducer";
+import {
+  cancelFreiendRequestReducer,
+  confirmFriendRequestReducer,
+  deleteFreiendRequestReducer,
+  removeFreiendReducer,
+  sendFreiendRequestReducer,
+} from "./reducers/friendRequestReducer";
 
 const reducer = combineReducers({
   postSubmission: postSubmissionReducer,
@@ -24,6 +31,11 @@ const reducer = combineReducers({
   getComments: getCommentReducer,
   profileGet: profileGetReducer,
   findFriend: findFriendReducer,
+  sendFriendRequest: sendFreiendRequestReducer,
+  cancelFriendRequest: cancelFreiendRequestReducer,
+  confirmFriendRequest: confirmFriendRequestReducer,
+  deleteFriendRequest: deleteFreiendRequestReducer,
+  removeFriend: removeFreiendReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")

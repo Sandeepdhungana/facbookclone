@@ -12,11 +12,14 @@ const getFriendKnow = asynchandler(async (_id) => {
 
     const myFriends = user.friends;
     const myFriendRequest = user.friendRequests;
+    const myFriendRequestSent = user.friendRequestSent;
     const allUsers = await User.find({}).select(
       "-password -posts -dateofbirth -friends -friendRequests"
     );
 
-    const union = [...new Set([...myFriends, ...myFriendRequest])];
+    const union = [
+      ...new Set([...myFriends, ...myFriendRequest, ...myFriendRequestSent]),
+    ];
     const peopleUserMayKnow = union
       .filter((friends) => !allUsers.includes(friends._id))
       .map((people) => {

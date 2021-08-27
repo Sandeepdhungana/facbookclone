@@ -1,0 +1,14 @@
+button.cardbutton {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:nth-child(1).cardbutton {
+  margin-bottom: 0.5rem;
+}
