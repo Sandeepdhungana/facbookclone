@@ -5,66 +5,72 @@ import User from "../models/userModel.js";
 
 const getFriendKnow = asynchandler(async (_id) => {
   try {
-    // function randomizeUser(array) {
-    //   for (let i = array.length - 1; i > 0; i--) {
-    //     const j = Math.floor(Math.random() * (i + 1));
-    //     [array[i], array[j]] = [array[j], array[i]];
-    //   }
-    //   return array;
-    // }
-    const randomizeUser = (array) => {
+    function randomizeUser(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
       return array;
-    };
+    }
+    // const randomizeUser = (array) => {
+    //   return array;
+    // };
     const user = await User.findOne({ _id: _id });
 
-    const myFriends = user.friends;
-    const myFriendRequest = user.friendRequests;
-    const myFriendRequestSent = user.friendRequestSent;
+    // function to return users who are not friend, friendRequestSent, friendRequest, isnotMe
+    const isFriend = (userId) => {
+      return user.friends.includes(userId);
+    };
+    const isFriendRequestSent = (userId) => {
+      return user.friendRequestSent.includes(userId);
+    };
+    const isFriendRequest = (userId) => {
+      return user.friendRequests.includes(userId);
+    };
+    const isMe = (userId) => {
+      return new String(user._id).valueOf() === new String(userId).valueOf();
+    };
+
     const allUsers = await User.find({}).select(
       "-password -posts -dateofbirth -friendRequests"
     );
 
-    // console.log(allUsers);
-
-    const union = [
-      ...new Set([...myFriends, ...myFriendRequest, ...myFriendRequestSent]),
-    ];
-    // console.log(union);
-    // console.log(myFriends);
-    // console.log("____________________________________________");
-    // console.log(myFriendRequest);
-    // console.log("____________________________________________");
-    // console.log(myFriendRequestSent);
-
-    let peopleUserMayKnow = randomizeUser(
-      allUsers
-        .filter(
-          (friends) =>
-            !(
-              new String(friends._id).valueOf() === new String(_id).valueOf()
-            ) && !union.includes(friends._id)
-        )
-        .map((people) => {
-          return {
-            firstname: people.firstname,
-            surname: people.surname,
-            profilePic: people.profilePic,
-            _id: people._id,
-            friends: people.friends,
-          };
-        })
+    const withoutFriend = allUsers.filter((user) => !isFriend(user._id));
+    const withoutFriendReqeustSent = withoutFriend.filter(
+      (user) => !isFriendRequestSent(user._id)
     );
-
-    let testUser = randomizeUser(
-      allUsers.forEach((user) => {
-        // console.log(
-        //   new String(user._id).valueOf() === new String(_id).valueOf()
-        // );
-        // console.log(union);
-        // console.log(user._id);
-        // console.log(!union.includes(user._id));
-      })
+    const withoutFriendRequest = withoutFriendReqeustSent.filter(
+      (user) => !isFriendRequest(user)
     );
+    const peopleUserMayKnow = randomizeUser(
+      withoutFriendRequest.filter((user) => !isMe(user._id))
+    ).map((people) => {
+      return {
+        firstname: people.firstname,
+        surname: people.surname,
+        profilePic: people.profilePic,
+        _id: people._id,
+        friends: people.friends,
+      };
+    });
+
+    // randomizeUser(
+    //   allUsers.forEach((user) => {
+    //     console.log(`${user.firstname} is a friend ${isFriend(user._id)}`);
+    //     console.log(
+    //       `${user.firstname} is in FriendRequestSent ${isFriendRequestSent(
+    //         user._id
+    //       )}`
+    //     );
+    //     console.log(
+    //       `${user.firstname} is in FriendRequest ${isFriendRequest(user._id)}`
+    //     );
+    //     console.log(`${user.firstname} is me ${isMe(user._id)}`);
+    //     console.log(
+    //       "___________________________________________________________________"
+    //     );
+    //   })
+    // );
 
     return peopleUserMayKnow.slice(0, 10);
   } catch (err) {

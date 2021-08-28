@@ -1,6 +1,7 @@
 import express from "express";
 import asynchandler from "express-async-handler";
 import User from "../models/userModel.js";
+import generateRandomUser from "../utils/generateRandomUser.js";
 import { getFriendRequest } from "../utils/getFriendRequests.js";
 import { getMutualFriend } from "../utils/getMutualFriend.js";
 import { getFriendKnow } from "../utils/getPeopleKnow.js";
@@ -11,7 +12,7 @@ const findFriend = asynchandler(async (req, res) => {
       "friendRequests"
     );
 
-    // for (let i = 0; i < 100; i++) {
+    // for (let i = 0; i < 30; i++) {
     //   generateRandomUser(i);
     // }
 
@@ -19,6 +20,7 @@ const findFriend = asynchandler(async (req, res) => {
     const peopleUserMayKnow = await getFriendKnow(req.user._id);
     const mutualFriend = await getMutualFriend(peopleUserMayKnow, req.user._id);
     // console.log(peopleUserMayKnow);
+    // console.log(mutualFriend);
 
     res.status(200).json({
       myFriendRequest,
