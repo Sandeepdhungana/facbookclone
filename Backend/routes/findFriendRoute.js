@@ -22,8 +22,6 @@ router
 router
   .route("/deleterequest")
   .post(authorizationMiddleware, deleteFriendRequest);
-router
-  .route("/removefriend")
-  .post(authorizationMiddleware, removeFriend);
+router.route("/removefriend").post(authorizationMiddleware, removeFriend);
 
 export default router;

@@ -21,7 +21,6 @@ const findFriendReducer = (state = {}, action) => {
       const newFriends = peopleUserMayKnow.filter(
         (people) => people._id !== friendId
       );
-      console.log(state);
       return {
         ...state,
         friends: {

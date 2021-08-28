@@ -2,18 +2,24 @@ import "./FindFriendCard.css";
 import { Link } from "react-router-dom";
 import CardButton from "../Button/CardButton";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { REMOVE_USER } from "../../constants/friendRequestConstant";
+import { useDispatch } from "react-redux";
+import {
+  cancelFriendRequestAction,
+  confirmFrienRequestAction,
+  deleteFriendRequestAction,
+  sendFriendRequestAction,
+} from "../../actions/friendRequestAction";
 
 const FindFriendCard = ({ friend, top, removeUser = undefined }) => {
   const [confirmed, setConfirmed] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [sendRequest, setSendRequest] = useState(false);
   const [canceled, setCanceled] = useState(false);
-  const [text, setText] = useState("12 Mutual Friend");
+  const [text, setText] = useState("");
 
   const dispatch = useDispatch();
 
+  console.log();
   const buttonTopRequest = {
     color: "#fff",
     background: "#1977F3",
@@ -40,18 +46,23 @@ const FindFriendCard = ({ friend, top, removeUser = undefined }) => {
   };
 
   const confirmRequest = () => {
+    dispatch(confirmFrienRequestAction(friend._id));
     setConfirmed(true);
   };
   const deleteRequest = () => {
     setDeleted(true);
+    deleteFriendRequestAction(friend._id);
   };
   const sendFriendRequest = () => {
     setText("Request sent");
+    dispatch(sendFriendRequestAction(friend._id));
     setSendRequest(true);
   };
   const cancelRequest = () => {
     setCanceled(false);
+
     setText("Request cancelled");
+    dispatch(cancelFriendRequestAction(friend._id));
     setSendRequest(false);
   };
 
@@ -70,7 +81,10 @@ const FindFriendCard = ({ friend, top, removeUser = undefined }) => {
             {friend.firstname} {friend.surname}
           </h2>
 
-          <p>{text}</p>
+          {friend.mutualFriend?.length !== 0 && (
+            <p>{`${friend.mutualFriend?.length} mutual friends`}</p>
+          )}
+          {text && <p>{text}</p>}
         </div>
       </Link>
       <div className="findfriendcard--bottom">

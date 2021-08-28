@@ -1,8 +1,8 @@
 import express from "express";
 import asynchandler from "express-async-handler";
 import User from "../models/userModel.js";
-import generateRandomUser from "../utils/generateRandomUser.js";
 import { getFriendRequest } from "../utils/getFriendRequests.js";
+import { getMutualFriend } from "../utils/getMutualFriend.js";
 import { getFriendKnow } from "../utils/getPeopleKnow.js";
 
 const findFriend = asynchandler(async (req, res) => {
@@ -16,12 +16,13 @@ const findFriend = asynchandler(async (req, res) => {
     // }
 
     const myFriendRequest = await getFriendRequest(req.user._id);
-    let peopleUserMayKnow = await getFriendKnow(req.user._id);
+    const peopleUserMayKnow = await getFriendKnow(req.user._id);
+    const mutualFriend = await getMutualFriend(peopleUserMayKnow, req.user._id);
     // console.log(peopleUserMayKnow);
 
     res.status(200).json({
       myFriendRequest,
-      peopleUserMayKnow,
+      peopleUserMayKnow: mutualFriend,
     });
   } catch (err) {
     console.log(err);
@@ -29,112 +30,106 @@ const findFriend = asynchandler(async (req, res) => {
 });
 
 const sendFriendRequest = asynchandler(async (req, res) => {
-  const { friendId } = req.body.friendId;
-  const myId = req.user.id;
+  const { friendId } = req.body;
+  const myId = req.user._id;
   try {
-    const me = await User.findOne(
-      { _id: myId },
-      { new: true },
-      { $push: { friendRequestSent: { friendId } } }
+    await User.findByIdAndUpdate(
+      myId,
+      { $addToSet: { friendRequestSent: friendId } },
+      { new: true }
     );
-    const friend = await User.findOne(
-      { _id: friendId },
-      { new: true },
-      { $push: { friendRequests: { myId } } }
+    await User.findByIdAndUpdate(
+      friendId,
+      { $addToSet: { friendRequests: myId } },
+      { new: true }
     );
-
-    res.status(200).json({
-      sentRequest: true,
-    });
   } catch (err) {
     console.log(err);
   }
 });
 const cancelFriendRequest = asynchandler(async (req, res) => {
-  const { friendId } = req.body.friendId;
+  const { friendId } = req.body;
   const myId = req.user.id;
+  console.log("fried request cancelled");
   try {
-    const me = await User.findOne(
-      { _id: myId },
-      { new: true },
-      { $pull: { friendRequestSent: { friendId } } }
+    await User.findByIdAndUpdate(
+      myId,
+      { $pull: { friendRequestSent: friendId } },
+      { new: true }
     );
-    const friend = await User.findOne(
-      { _id: friendId },
-      { new: true },
-      { $pull: { friendRequests: { myId } } }
+    await User.findByIdAndUpdate(
+      friendId,
+      { $pull: { friendRequests: myId } },
+      { new: true }
     );
-
-    res.status(200).json({
-      removedRequest: true,
-    });
   } catch (err) {
     console.log(err);
   }
 });
 const deleteFriendRequest = asynchandler(async (req, res) => {
-  const { friendId } = req.body.friendId;
+  const { friendId } = req.body;
   const myId = req.user.id;
   try {
-    const me = await User.findOne(
-      { _id: myId },
-      { new: true },
-      { $pull: { friendRequests: { friendId } } }
+    await User.findByIdAndUpdate(
+      myId,
+      { $pull: { friendRequests: friendId } },
+      { new: true }
     );
-    const friend = await User.findOne(
-      { _id: friendId },
-      { new: true },
-      { $pull: { friendRequestSent: { myId } } }
+    await User.findByIdAndUpdate(
+      friendId,
+      { $pull: { friendRequestSent: myId } },
+      { new: true }
     );
-
-    res.status(200).json({
-      deletedRequest: true,
-    });
   } catch (err) {
     console.log(err);
   }
 });
 
 const confirmFriendRequest = asynchandler(async (req, res) => {
-  const { friendId } = req.body.friendId;
+  const { friendId } = req.body;
   const myId = req.user.id;
   try {
-    const me = await User.findOne(
-      { _id: myId },
-      { new: true },
-      { $push: { friends: { friendId } } }
+    await User.findByIdAndUpdate(
+      myId,
+      { $addToSet: { friends: friendId } },
+      { new: true }
     );
-    const friend = await User.findOne(
-      { _id: friendId },
-      { new: true },
-      { $push: { friends: { myId } } }
+    await User.findByIdAndUpdate(
+      friendId,
+      { $addToSet: { friends: myId } },
+      { new: true }
     );
 
-    res.status(200).json({
-      confrimed: true,
-    });
+    // Delete user from list
+
+    await User.findByIdAndUpdate(
+      myId,
+      { $pull: { friendRequests: friendId } },
+      { new: true }
+    );
+    await User.findByIdAndUpdate(
+      friendId,
+      { $pull: { friendRequestSent: myId } },
+      { new: true }
+    );
   } catch (err) {
     console.log(err);
   }
 });
 const removeFriend = asynchandler(async (req, res) => {
-  const { friendId } = req.body.friendId;
+  const { friendId } = req.body;
   const myId = req.user.id;
   try {
-    const me = await User.findOne(
-      { _id: myId },
-      { new: true },
-      { $pull: { friends: { friendId } } }
+    await User.findByIdAndUpdate(
+      myId,
+      { $pull: { friends: friendId } },
+      { new: true }
     );
-    const friend = await User.findOne(
-      { _id: friendId },
-      { new: true },
-      { $pull: { friends: { myId } } }
+    await User.findByIdAndUpdate(
+      friendId,
+      { $pull: { friends: myId } },
+      { new: true }
     );
-
-    res.status(200).json({
-      removed: true,
-    });
   } catch (err) {
     console.log(err);
   }

@@ -15,7 +15,7 @@ import {
   SEND_FRIEND_REQUEST_FAIL,
   SEND_FRIEND_REQUEST_REQUEST,
   SEND_FRIEND_REQUEST_SUCCESS,
-} from "../constants/friendRequesConstant";
+} from "../constants/friendRequestConstant";
 
 // removefriend
 // cancelrequest
@@ -42,7 +42,7 @@ const sendFriendRequestAction = (friendId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/findfriends/sendrequest",
+      "http://localhost:5000/api/findfriend/sendrequest",
       { friendId },
       config
     );
@@ -82,7 +82,7 @@ const cancelFriendRequestAction = (friendId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/findfriends/cancelrequest",
+      "http://localhost:5000/api/findfriend/cancelrequest",
       { friendId },
       config
     );
@@ -122,7 +122,7 @@ const deleteFriendRequestAction = (friendId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/findfriends/cancelrequest",
+      "http://localhost:5000/api/findfriend/cancelrequest",
       { friendId },
       config
     );
@@ -162,7 +162,7 @@ const confirmFrienRequestAction = (friendId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/findfriends/confirmrequest",
+      "http://localhost:5000/api/findfriend/confirmrequest",
       { friendId },
       config
     );
@@ -202,7 +202,7 @@ const removeFriendAction = (friendId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/findfriends/removefriend",
+      "http://localhost:5000/api/findfriend/removefriend",
       { friendId },
       config
     );
@@ -229,5 +229,5 @@ export {
   cancelFriendRequestAction,
   confirmFrienRequestAction,
   removeFriendAction,
-  deleteFriendRequestAction
+  deleteFriendRequestAction,
 };
