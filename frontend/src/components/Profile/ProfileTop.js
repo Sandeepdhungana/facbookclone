@@ -5,13 +5,22 @@ import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const ProfileTop = () => {
   const profileGet = useSelector((state) => state.profileGet);
   const { profile } = profileGet;
-  const [showMenu, setShowMenu] = useState(true);
 
+  const [showMenu, setShowMenu] = useState(true);
+  const [showChangeModal, setShowChangeModal] = useState(false);
+  const userFromStorage = useUserFromStorage();
   const user = profile?.user;
+
+  const [isMyProfile, setIsMyProfile] = useState(
+    user._id === userFromStorage?._id
+  );
+
+  // console.log(isMyProfile);
   const { firstname, surname, profilePic } = user;
 
   const profileTopName = useRef();
@@ -37,6 +46,7 @@ const ProfileTop = () => {
       background: "#F0F2F5",
       image: true,
       color: "black",
+      show: !isMyProfile,
     },
     {
       name: "Message",
@@ -44,6 +54,7 @@ const ProfileTop = () => {
       background: "#1977F3",
       image: false,
       color: "white",
+      show: !isMyProfile,
     },
     {
       name: "",
@@ -51,6 +62,7 @@ const ProfileTop = () => {
       background: "#F0F2F5",
       image: false,
       color: "black",
+      show: true,
     },
   ];
 
@@ -83,7 +95,17 @@ const ProfileTop = () => {
           {/* <img src={coverpic} alt="" /> */}
           <div className="profiletop__profilepic-wrapper">
             <div className="profiletop__profilepic">
-              <img src={profilePic} alt="" />
+              <img
+                onClick={() => setShowChangeModal(!showChangeModal)}
+                src={profilePic}
+                alt=""
+              />
+              {showChangeModal && (
+                <div className="profiletop__change-photo shadow">
+                  <h2>Change profile picture</h2>
+                  <h2>Change cover picture</h2>
+                </div>
+              )}
             </div>
           </div>
         </div>
