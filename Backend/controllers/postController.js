@@ -3,6 +3,7 @@ import asynchandler from "express-async-handler";
 import createError from "http-errors";
 import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
+import generateRandomPost from "../utils/generateRandomPost.js";
 
 const getPostFromFrontend = asynchandler(async (req, res) => {
   const { postImage, postCaption } = req.body;
@@ -47,6 +48,10 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
       .populate("postedBy")
       .select("-password");
 
+    // for (let i = 0; i < 20; i++) {
+    //   console.log("post created");
+    //   generateRandomPost(i, req.user);
+    // }
     if (post) {
       res.status(201).json(post);
     } else {

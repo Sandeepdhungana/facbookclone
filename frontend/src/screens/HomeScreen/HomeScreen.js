@@ -25,7 +25,6 @@ const HomeScreen = ({ history, location }) => {
   const userfromstorage = localStorage.getItem("userDetails");
   // const
 
- 
   useEffect(() => {
     socket.on("POST_SUBMISSION_DATA", function (data) {
       dispatch({

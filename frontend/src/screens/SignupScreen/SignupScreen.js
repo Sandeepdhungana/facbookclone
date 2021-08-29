@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import HelpIcon from "@material-ui/icons/Help";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../actions/userAction";
+import { registerUserAction } from "../../actions/userAction";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
 import { useHistory } from "react-router-dom";
 import validator from "validator";
@@ -123,7 +123,12 @@ const SignupScreen = ({ showCreateModal, clickedCreateButton }) => {
 
     if (isValidEmail && isValidPassword) {
       dispatch(
-        registerUser(nameandpassword, dateofbirth, gender, showCreateModal)
+        registerUserAction(
+          nameandpassword,
+          dateofbirth,
+          gender,
+          showCreateModal
+        )
       );
       setButtonLoading(true);
     }

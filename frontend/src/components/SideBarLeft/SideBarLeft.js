@@ -14,8 +14,10 @@ import memories from "../../assets/img/memories.png";
 import saved from "../../assets/img/saved.png";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import SideBar from "../SideBar/SideBar";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 const SideBarLeft = ({ profilePic }) => {
+  const userFromStorage = useUserFromStorage();
   // function isClassComponent(component) {
   //   return (
   //     typeof component === "function" && !!component.prototype.isReactComponent
@@ -59,7 +61,7 @@ const SideBarLeft = ({ profilePic }) => {
     "Jobs",
   ];
   const linkto = [
-    "profile",
+    `profile/${userFromStorage?._id}`,
     "cov19",
     "friends",
     "groups",

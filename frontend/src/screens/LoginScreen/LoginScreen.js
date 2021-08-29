@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import SignupScreen from "../SignupScreen/SignupScreen";
 import Input from "../../components/Input/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../actions/userAction";
+import { loginUserAction } from "../../actions/userAction";
 import PageLoader from "../../components/Loader/PageLoader";
 import { Helmet } from "react-helmet";
 
@@ -31,7 +31,7 @@ const LoginScreen = ({ history, location }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginUser(emailandpassword));
+    dispatch(loginUserAction(emailandpassword));
     history.push("/home");
   };
 

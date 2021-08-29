@@ -5,10 +5,13 @@ import {
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
+  UPDATE_USER_FAIL,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
 } from "../constants/userConstant";
 import axios from "axios";
-
-const registerUser =
+// /api/user/updateprofile
+const registerUserAction =
   (nameandpassword, dateofbirth, gender, showCreateModal) =>
   async (dispatch) => {
     try {
@@ -44,7 +47,7 @@ const registerUser =
     }
   };
 
-const loginUser = (emailandpassword) => async (dispatch, getstate) => {
+const loginUserAction = (emailandpassword) => async (dispatch, getstate) => {
   try {
     dispatch({
       type: LOGIN_USER_REQUEST,
@@ -75,5 +78,38 @@ const loginUser = (emailandpassword) => async (dispatch, getstate) => {
     });
   }
 };
+const updateUserAction =
+  (firstname, surname, email, password, profilePic, coverPic) =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: UPDATE_USER_REQUEST,
+      });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:5000/api/user/updateprofile",
+        { firstname, surname, email, password, profilePic, coverPic },
+        config
+      );
+      dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: data,
+      });
 
-export { registerUser, loginUser };
+      localStorage.setItem("userDetails", JSON.stringify(data));
+    } catch (err) {
+      dispatch({
+        type: UPDATE_USER_FAIL,
+        payload:
+          err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message,
+      });
+    }
+  };
+
+export { registerUserAction, loginUserAction, updateUserAction };
