@@ -1,4 +1,3 @@
-import express from "express";
 import asynchandler from "express-async-handler";
 import createError from "http-errors";
 import generateToken from "../utils/generateToken.js";
@@ -73,5 +72,44 @@ const loginUser = asynchandler(async (req, res) => {
     throw createError(401, "Invalid Email or Password");
   }
 });
+const updateProfile = asynchandler(async (req, res) => {
+  const { firstname, surname, email, password, profilePic, coverPic } =
+    req.body;
 
-export { registerUser, loginUser };
+  try {
+    const user = await User.findById({ _id: req.user._id });
+    if (user) {
+      if (password) {
+        user.password = password;
+      }
+      user.firstname = firstname || user.firstname;
+      user.surname = surname || user.surname;
+      user.email = email || user.email;
+      user.profilePic = profilePic || user.profilePic;
+      user.coverPic = coverPic || user.coverPic;
+
+      const updatedUser = await user.save();
+      res.json({
+        _id: updatedUser._id,
+        firstname: updatedUser.firstname,
+        surname: updatedUser.surname,
+        email: updatedUser.email,
+        dateofbirth: updatedUser.dateofbrith,
+        profilePic: updatedUser.profilePic,
+        coverPic: updatedUser.coverPic,
+        friends: updatedUser.friends,
+        friendRequests: updatedUser.friendRequests,
+        posts: updatedUser.posts,
+        token: generateToken(updatedUser._id),
+      });
+    } else {
+      res.status(401).json({
+        message: "User not found, Login!",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+export { registerUser, loginUser, updateProfile };

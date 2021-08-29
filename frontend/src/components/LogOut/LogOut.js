@@ -7,6 +7,7 @@ import halfmoon from "../../assets/img/halfmoon.png";
 import arrow from "../../assets/img/arrow.png";
 import logout from "../../assets/img/logout.png";
 import LogOutComp from "./LogOutComp";
+import { Link } from "react-router-dom";
 
 const LogOut = ({ userFromStorage, handleWindowClick, dropDownClicked }) => {
   const logOutRef = useRef();
@@ -58,15 +59,17 @@ const LogOut = ({ userFromStorage, handleWindowClick, dropDownClicked }) => {
 
   return (
     <div ref={logOutRef} className="logout shadow">
-      <div className="logout__top">
-        <img src={userFromStorage?.profilePic} alt="" />
-        <div className="logout__top--name">
-          <h2>
-            {userFromStorage?.firstname} {userFromStorage?.surname}
-          </h2>
-          <p>See your profile</p>
+      <Link to={`/profile`}>
+        <div className="logout__top">
+          <img src={userFromStorage?.profilePic} alt="" />
+          <div className="logout__top--name">
+            <h2>
+              {userFromStorage?.firstname} {userFromStorage?.surname}
+            </h2>
+            <p>See your profile</p>
+          </div>
         </div>
-      </div>
+      </Link>
       {/* Logout Middle */}
       {icons.map((icon, i) => {
         return (

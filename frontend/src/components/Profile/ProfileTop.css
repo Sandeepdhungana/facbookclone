@@ -62,8 +62,34 @@
   padding-bottom: 0.5rem;
   padding-top: 2rem;
 }
+.profiletop__change-photo {
+  position: absolute;
+  bottom: -5.5rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  /* transform: translateY(4rem); */
+  z-index: 1;
+  border-radius: 10px;
+  width: 40vh;
+
+  animation: menuanimate 0.5s linear;
+}
+.profiletop__change-photo h2 {
+  padding: 1.5rem;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.profiletop__change-photo h2:first-child {
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #ccc;
+}
+.profiletop__change-photo h2:hover {
+  background: #f2f2f2;
+}
 .profiletop__name {
-  /* background:green; */
   width: 55%;
   display: flex;
   justify-content: center;
@@ -104,17 +130,6 @@
   animation: menuanimate 0.5s ease-in-out;
 }
 
-@keyframes menuanimate {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .profiletop__menu {
   width: 55%;
   display: flex;
@@ -163,6 +178,19 @@
 
 .profiletop__button {
   display: flex;
+}
+
+/* Animations */
+@keyframes menuanimate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Media Query */
