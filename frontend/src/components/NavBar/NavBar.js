@@ -14,11 +14,14 @@ import NavBarIcons from "./NavBarIcons/NavBarIcons";
 import NavBarLeftIcons from "./NavBarLeftIcons/NavBarLeftIcons";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 import LogOut from "../LogOut/LogOut";
+import { useCloseModal } from "../../hooks/useCloseModal";
 // import NavBarIcons from "../NavBarIcons/NavBarIcons";
 
 const NavBar = () => {
   const userFromStorage = useUserFromStorage();
-  const [dropDownClicked, setDropDownClicked] = useState(false);
+  // const [dropDownClicked, setDropDownClicked] = useState(false);
+  const [dropDownClicked, handleElementClicked, handleWindowClick] =
+    useCloseModal();
 
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
@@ -86,15 +89,14 @@ const NavBar = () => {
     </svg>
   );
 
-  const handleDropDownClicked = () => {
-    console.log(!dropDownClicked);
-    setDropDownClicked(!dropDownClicked);
-  };
+  // const handleElementClicked = () => {
+  //   setDropDownClicked(!dropDownClicked);
+  // };
 
   const dropDownIcon = (
     <div className="dropdown">
       <i
-        onClick={handleDropDownClicked}
+        onClick={handleElementClicked}
         data-visualcompletion="css-img"
         style={{
           backgroundImage:
@@ -116,9 +118,9 @@ const NavBar = () => {
   //         </div> */}
 
   // hide logout modal when clicekd outside the body
-  const handleWindowClick = () => {
-    setDropDownClicked(!dropDownClicked);
-  };
+  // const handleWindowClick = () => {
+  //   setDropDownClicked(!dropDownClicked);
+  // };
 
   return (
     <section id="navbar">

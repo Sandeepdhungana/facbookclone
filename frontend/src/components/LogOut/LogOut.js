@@ -17,8 +17,6 @@ const LogOut = ({ userFromStorage, handleWindowClick, dropDownClicked }) => {
 
   useEffect(() => {
     window.onclick = function (event) {
-      console.log(dropDownClicked);
-      console.log(!(event.target === logOutRef.current || dropDownClicked));
       if (
         dropDownClicked &&
         logOutRef.current &&
