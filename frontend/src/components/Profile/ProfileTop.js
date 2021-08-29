@@ -5,7 +5,7 @@ import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import useUserFromStorage from "../../hooks/useUserFromStorage";
+import { useIsMyProfile } from "../../hooks/useIsMyProfile";
 
 const ProfileTop = () => {
   const profileGet = useSelector((state) => state.profileGet);
@@ -13,12 +13,10 @@ const ProfileTop = () => {
 
   const [showMenu, setShowMenu] = useState(true);
   const [showChangeModal, setShowChangeModal] = useState(false);
-  const userFromStorage = useUserFromStorage();
+  // const userFromStorage = useUserFromStorage();
   const user = profile?.user;
-
-  const [isMyProfile, setIsMyProfile] = useState(
-    user._id === userFromStorage?._id
-  );
+  const isMyProfile = useIsMyProfile(user);
+  console.log(!isMyProfile);
 
   // console.log(isMyProfile);
   const { firstname, surname, profilePic } = user;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useCloseModal = (element) => {
   const [dropDownClicked, setDropDownClicked] = useState(false);
@@ -11,19 +11,17 @@ const useCloseModal = (element) => {
     setDropDownClicked(!dropDownClicked);
   };
 
-//   const fn = useEffect(() => {
-//     window.onclick = function (e) {
-//       if (
-//         dropDownClicked &&
-//         element.current &&
-//         !element.current.contains(e.target)
-//       ) {
-//         handleWindowClick();
-//       }
-//     };
-//   }, [element, dropDownClicked]);
+  window.onclick = function (e) {
+    if (
+      dropDownClicked &&
+      element?.current &&
+      !element?.current.contains(e.target)
+    ) {
+      handleWindowClick();
+    }
+  };
 
-  return [dropDownClicked, handleElementClicked, handleWindowClick];
+  return { dropDownClicked, handleElementClicked, handleWindowClick };
 };
 
 export { useCloseModal };

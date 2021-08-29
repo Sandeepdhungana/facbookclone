@@ -20,7 +20,7 @@ import { useCloseModal } from "../../hooks/useCloseModal";
 const NavBar = () => {
   const userFromStorage = useUserFromStorage();
   // const [dropDownClicked, setDropDownClicked] = useState(false);
-  const [dropDownClicked, handleElementClicked, handleWindowClick] =
+  const { dropDownClicked, handleElementClicked, handleWindowClick } =
     useCloseModal();
 
   // Pages and Icon Lists
