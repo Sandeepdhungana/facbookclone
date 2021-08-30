@@ -5,11 +5,8 @@ import friendsIcon from "../../assets/img/friendsicon.png";
 import Button from "../Button/Button";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-<<<<<<< HEAD
 import { useIsMyProfile } from "../../hooks/useIsMyProfile";
-=======
-import useUserFromStorage from "../../hooks/useUserFromStorage";
->>>>>>> main
+import { useCloseModal } from "../../hooks/useCloseModal";
 
 const ProfileTop = () => {
   const profileGet = useSelector((state) => state.profileGet);
@@ -17,19 +14,16 @@ const ProfileTop = () => {
 
   const [showMenu, setShowMenu] = useState(true);
   const [showChangeModal, setShowChangeModal] = useState(false);
-<<<<<<< HEAD
+  const changeModalRef = useRef();
   // const userFromStorage = useUserFromStorage();
+  const {
+    dropDownClicked,
+    handleElementClicked,
+    handleWindowClick,
+    closeModal,
+  } = useCloseModal();
   const user = profile?.user;
   const isMyProfile = useIsMyProfile(user);
-  console.log(!isMyProfile);
-=======
-  const userFromStorage = useUserFromStorage();
-  const user = profile?.user;
-
-  const [isMyProfile, setIsMyProfile] = useState(
-    user._id === userFromStorage?._id
-  );
->>>>>>> main
 
   // console.log(isMyProfile);
   const { firstname, surname, profilePic } = user;
@@ -99,6 +93,12 @@ const ProfileTop = () => {
     observer.observe(profileTopName.current);
   }, []);
 
+  useEffect(() => {
+    window.onclick = (e) => {
+      closeModal(changeModalRef, e);
+    };
+  }, [closeModal]);
+
   return (
     <div className="profiletop shadow">
       <div className="profiletop__coverpic-wrapper">
@@ -106,13 +106,12 @@ const ProfileTop = () => {
           {/* <img src={coverpic} alt="" /> */}
           <div className="profiletop__profilepic-wrapper">
             <div className="profiletop__profilepic">
-              <img
-                onClick={() => setShowChangeModal(!showChangeModal)}
-                src={profilePic}
-                alt=""
-              />
-              {showChangeModal && (
-                <div className="profiletop__change-photo shadow">
+              <img onClick={handleElementClicked} src={profilePic} alt="" />
+              {dropDownClicked && (
+                <div
+                  ref={changeModalRef}
+                  className="profiletop__change-photo shadow"
+                >
                   <h2>Change profile picture</h2>
                   <h2>Change cover picture</h2>
                 </div>

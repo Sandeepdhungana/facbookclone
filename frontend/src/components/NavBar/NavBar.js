@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./NavBar.css";
 
@@ -20,8 +20,12 @@ import { useCloseModal } from "../../hooks/useCloseModal";
 const NavBar = () => {
   const userFromStorage = useUserFromStorage();
   // const [dropDownClicked, setDropDownClicked] = useState(false);
-  const { dropDownClicked, handleElementClicked, handleWindowClick } =
-    useCloseModal();
+  const {
+    dropDownClicked,
+    handleElementClicked,
+    handleWindowClick,
+    closeModal,
+  } = useCloseModal();
 
   // Pages and Icon Lists
   const pages = ["home", "watch", "marketplace", "group", "game"];
@@ -172,6 +176,7 @@ const NavBar = () => {
           userFromStorage={userFromStorage}
           handleWindowClick={handleWindowClick}
           dropDownClicked={dropDownClicked}
+          closeModal={closeModal}
         />
       )}
     </section>

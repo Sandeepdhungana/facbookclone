@@ -9,7 +9,12 @@ import logout from "../../assets/img/logout.png";
 import LogOutComp from "./LogOutComp";
 import { Link } from "react-router-dom";
 
-const LogOut = ({ userFromStorage, handleWindowClick, dropDownClicked }) => {
+const LogOut = ({
+  userFromStorage,
+  // handleWindowClick,
+  // dropDownClicked,
+  closeModal,
+}) => {
   const logOutRef = useRef();
   const logoutHandle = () => {
     localStorage.removeItem("userDetails");
@@ -17,16 +22,22 @@ const LogOut = ({ userFromStorage, handleWindowClick, dropDownClicked }) => {
   };
 
   useEffect(() => {
-    window.onclick = function (event) {
-      if (
-        dropDownClicked &&
-        logOutRef.current &&
-        !logOutRef.current.contains(event.target)
-      ) {
-        handleWindowClick();
-      }
+    window.onclick = (e) => {
+      closeModal(logOutRef, e);
     };
-  }, [handleWindowClick, logOutRef, dropDownClicked]);
+  }, [closeModal]);
+
+  // useEffect(() => {
+  //   window.onclick = function (event) {
+  //     if (
+  //       dropDownClicked &&
+  //       logOutRef.current &&
+  //       !logOutRef.current.contains(event.target)
+  //     ) {
+  //       handleWindowClick();
+  //     }
+  //   };
+  // }, [handleWindowClick, logOutRef, dropDownClicked]);
   const icons = [
     {
       image: exclamation,

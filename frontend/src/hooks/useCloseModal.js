@@ -11,7 +11,7 @@ const useCloseModal = (element) => {
     setDropDownClicked(!dropDownClicked);
   };
 
-  window.onclick = function (e) {
+  const closeModal = (element, e) => {
     if (
       dropDownClicked &&
       element?.current &&
@@ -21,7 +21,12 @@ const useCloseModal = (element) => {
     }
   };
 
-  return { dropDownClicked, handleElementClicked, handleWindowClick };
+  return {
+    dropDownClicked,
+    handleElementClicked,
+    handleWindowClick,
+    closeModal,
+  };
 };
 
 export { useCloseModal };

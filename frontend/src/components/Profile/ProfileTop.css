@@ -71,11 +71,7 @@
   /* transform: translateY(4rem); */
   z-index: 1;
   border-radius: 10px;
-<<<<<<< HEAD
-  width: 2 0vw;
-=======
-  width: 40vh;
->>>>>>> main
+  width: 20vw;
 
   animation: menuanimate 0.5s linear;
 }
