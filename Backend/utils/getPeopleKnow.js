@@ -73,8 +73,8 @@ const getFriendKnow = asynchandler(async (_id) => {
     //   })
     // );
 
-    // return peopleUserMayKnow.slice(0, 10);
-    return peopleUserMayKnow;
+    return peopleUserMayKnow.slice(0, 10);
+    // return peopleUserMayKnow;
   } catch (err) {
     console.log(err);
   }

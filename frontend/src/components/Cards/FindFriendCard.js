@@ -81,7 +81,7 @@ const FindFriendCard = ({ friend, top, removeUser = undefined }) => {
             {friend.firstname} {friend.surname}
           </h2>
 
-          {friend.mutualFriend?.length !== 0 && (
+          {!top && friend.mutualFriend?.length !== 0 && (
             <p>{`${friend.mutualFriend?.length} mutual friends`}</p>
           )}
           {text && <p>{text}</p>}

@@ -13,6 +13,8 @@
 .findfriendcard--top img {
   border-radius: 10px 10px 0 0;
   width: 100%;
+  height: 18rem;
+  object-fit: cover;
 }
 .findfrinedcard--middle {
   padding: 1rem 1rem 0;

@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import LogOut from "./components/LogOut/LogOut";
 import NavBar from "./components/NavBar/NavBar";
-import { useOnlineFriends } from "./hooks/useOnlineFriends";
 import useUserFromStorage from "./hooks/useUserFromStorage";
 import FindFriendScreen from "./screens/FindFriendScreen/FindFriendScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
@@ -15,32 +14,38 @@ import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import socket from "./socket";
 import { useDispatch, useSelector } from "react-redux";
-import { findFriendAction } from "./actions/findFriendAction";
+import { useOnlineFriends } from "./hooks/useOnlineFriends";
+import { myFriendGetAction } from "./actions/findFriendAction";
+import { ONLINE_USER_ADDED } from "./constants/userConstant";
 
 const App = () => {
   const userFromStorage = useUserFromStorage();
-  const [onlineUsers, setOnlineUsers] = useState([]);
-  const findFriend = useSelector((state) => state.findFriend);
-  const { friends } = findFriend;
-  const { peopleUserMayKnow } = friends ? friends : {};
+  const myFriend = useSelector((state) => state.myFriend);
+  const onlineUser = useSelector((state) => state.onlineUser);
+  console.log(onlineUser);
+  const { onlineUsers } = onlineUser;
+  const { myfriends } = myFriend;
   const dispatch = useDispatch();
-
-  const onlineFriends = useOnlineFriends(onlineUsers, peopleUserMayKnow);
 
   useEffect(() => {
     socket.emit("ADD_USER", userFromStorage?._id);
     socket.on("ONLINE_USERS", (users) => {
-      setOnlineUsers(users);
+      dispatch({
+        type: ONLINE_USER_ADDED,
+        payload: users,
+      });
     });
 
     return () => {
       socket.off("USER_ADDED");
       socket.off("ONLINE_USERS");
     };
-  }, [userFromStorage?._id]);
+  }, [dispatch, userFromStorage?._id]);
+  const onlineFriends = useOnlineFriends(onlineUsers, myfriends);
+  // console.log("online friends are:", onlineFriends);
 
   useEffect(() => {
-    dispatch(findFriendAction());
+    dispatch(myFriendGetAction());
   }, [dispatch]);
   return (
     <Router>

@@ -6,12 +6,14 @@ import {
   cancelFriendRequest,
   sendFriendRequest,
   deleteFriendRequest,
+  myFriend
 } from "../controllers/findFriendController.js";
 import authorizationMiddleware from "../middlewares/authMidlleware.js";
 
 const router = express.Router();
 
 router.route("/").get(authorizationMiddleware, findFriend);
+router.route("/myfriend").get(authorizationMiddleware, myFriend);
 router.route("/sendrequest").post(authorizationMiddleware, sendFriendRequest);
 router
   .route("/confirmrequest")

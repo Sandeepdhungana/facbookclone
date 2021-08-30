@@ -8,6 +8,7 @@ import arrow from "../../assets/img/arrow.png";
 import logout from "../../assets/img/logout.png";
 import LogOutComp from "./LogOutComp";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const LogOut = ({
   userFromStorage,
@@ -15,10 +16,11 @@ const LogOut = ({
   // dropDownClicked,
   closeModal,
 }) => {
+  const history = useHistory();
   const logOutRef = useRef();
   const logoutHandle = () => {
     localStorage.removeItem("userDetails");
-    window.location.reload();
+    history.push("/login");
   };
 
   useEffect(() => {

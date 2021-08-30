@@ -55,7 +55,7 @@ const updateProfileAction =
     profilePic = "",
     password = "",
     newPassword = "",
-    coverPic = "",
+    coverPic = ""
   ) =>
   async (dispatch, getState) => {
     // first upload to cloudinary server

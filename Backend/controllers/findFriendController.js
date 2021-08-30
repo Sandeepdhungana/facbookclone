@@ -30,6 +30,23 @@ const findFriend = asynchandler(async (req, res) => {
     console.log(err);
   }
 });
+const myFriend = asynchandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).populate("friends");
+    const friends = user.friends;
+    const myFriends = friends.map((friend) => {
+      return {
+        firstname: friend.firstname,
+        surname: friend.surname,
+        profilePic: friend.profilePic,
+        _id: friend._id,
+      };
+    });
+    res.status(200).json(myFriends);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 const sendFriendRequest = asynchandler(async (req, res) => {
   const { friendId } = req.body;
@@ -144,4 +161,5 @@ export {
   cancelFriendRequest,
   removeFriend,
   deleteFriendRequest,
+  myFriend,
 };

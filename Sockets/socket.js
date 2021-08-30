@@ -15,6 +15,7 @@ const removeUser = (socketId) => {
 };
 
 io.on("connection", function (socket) {
+  console.log("User is connected");
   socket.on("POST_SUBMISSON_DATA_RECEIVED", function (data) {
     io.emit("POST_SUBMISSION_DATA", data);
   });
@@ -26,7 +27,6 @@ io.on("connection", function (socket) {
 
   socket.on("ADD_USER", (userId) => {
     addUser(userId, socket.id);
-
     io.emit("ONLINE_USERS", users);
   });
 
