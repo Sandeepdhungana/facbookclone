@@ -11,11 +11,14 @@ import PageLoader from "../../components/Loader/PageLoader";
 import socket from "../../socket";
 import { POST_SUBMISSON_DATA_RECEIVED } from "../../constants/postConstant";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
+import { useHistory } from "react-router-dom";
 
-const HomeScreen = ({ history, location }) => {
+const HomeScreen = ({ onlineFriends }) => {
   const userFromStorage = useUserFromStorage();
   const dispatch = useDispatch();
   const postGet = useSelector((state) => state.postGet);
+
+  const history = useHistory();
   // console.log(postGet);
 
   const { loading, posts } = postGet;
@@ -42,6 +45,7 @@ const HomeScreen = ({ history, location }) => {
       socket.off("POST_SUBMISSION_DATA");
     };
   }, [dispatch, userfromstorage, history]);
+
   const name = [
     "Sandeep Dhungana",
     "Sushila Subedi",
@@ -82,7 +86,7 @@ const HomeScreen = ({ history, location }) => {
               })}
             </div>
           </div>
-          <SideBarRight />
+          <SideBarRight onlineFriends={onlineFriends} />
         </main>
       )}
     </>

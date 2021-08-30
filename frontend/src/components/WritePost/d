@@ -7,10 +7,15 @@ import smileIcon from "./icons/smileIcon.png";
 import WritePostModal from "./WritePostModal";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
 import { postSubmissionAction } from "../../actions/postAction";
-import { useClicked } from "../../hooks/useClicked";
 
-const WritePost = ({ text }) => {
-  const { disableClick, clicked, clickedModal } = useClicked();
+const WritePost = ({ disableClick, text }) => {
+  const [clicked, setClicked] = useState(false);
+  // it is for making the body unmovable when the modal is active
+  if (!disableClick && clicked) {
+    document.body.classList.add("modalopen");
+  } else {
+    document.body.classList.remove("modalopen");
+  }
 
   const userFromStorage = useUserFromStorage();
 
@@ -20,7 +25,7 @@ const WritePost = ({ text }) => {
         <img src={userFromStorage?.profilePic} alt="write post" />
         <div
           onClick={() => {
-            clickedModal(true);
+            setClicked(true);
           }}
           className="writepost--write--input"
         >
@@ -34,7 +39,7 @@ const WritePost = ({ text }) => {
         </div>
         <div
           onClick={() => {
-            clickedModal(true);
+            setClicked(true);
           }}
           className="writepost__icons--photo"
         >
@@ -50,12 +55,11 @@ const WritePost = ({ text }) => {
         <WritePostModal
           clicked={clicked}
           submitAction={postSubmissionAction}
-          showWriteModal={() => clickedModal(false)}
+          showWriteModal={() => setClicked(false)}
           showTextArea={true}
           headingText={"Create post"}
           uploadText={"Add to your post"}
           buttonText={"Post"}
-          type="post"
         />
       )}
     </section>

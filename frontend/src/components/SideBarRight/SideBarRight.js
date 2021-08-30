@@ -5,24 +5,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import SideBarOnline from "./SideBarOnline";
-import profilePic from "../../assets/img/profilepic.jpg";
+import { Link } from "react-router-dom";
 
-const SideBarRight = () => {
-  const name = [
-    "Ahmad Alkhuder",
-    "Sandeep Dhungana",
-    "Sushila Subedi",
-    "Niroj Aryal",
-    "Prem Katwal",
-    "Sushant Mandal",
-    "Nayan Babu Das",
-    "Ranjeev Bohara",
-    "Yash Kumar Shah",
-    "Shova Nyaupane",
-    "Kushal Dhunana",
-    "Aayusha Dhungana",
-    "Bishnu Thapa",
-  ];
+const SideBarRight = ({ onlineFriends }) => {
   return (
     <section id="sidebarright">
       <div className="sidebarright__container">
@@ -34,11 +19,17 @@ const SideBarRight = () => {
             <MoreHorizIcon />
           </div>
         </div>
-        {name.map((name, i) => {
-          return (
-            <SideBarOnline key={i} name={name} icons={profilePic} linkto={i} />
-          );
+        {onlineFriends?.map((friends, i) => {
+          return <SideBarOnline key={i} friends={friends} />;
         })}
+        {onlineFriends?.length === 0 && (
+          <div className="nofriend">
+            <h1>No Online Friends</h1>
+            <Link to="/friends">
+              <h2>Add Friends Now</h2>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

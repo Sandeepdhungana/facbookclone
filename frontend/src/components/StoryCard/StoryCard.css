@@ -27,6 +27,7 @@
 }
 .storycard--profilepic img {
   height: calc(2rem + 1vw);
+  width: calc(2rem + 1vw);
   object-fit: cover;
   border-radius: 50%;
   border: 0.3vw solid #166ada;

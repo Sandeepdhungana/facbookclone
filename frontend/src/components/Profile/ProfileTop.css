@@ -53,6 +53,7 @@
 
   border-radius: 50%;
   border: 0.5rem solid #fff;
+  object-fit: cover;
 }
 
 .profiletop__name-wrapper {

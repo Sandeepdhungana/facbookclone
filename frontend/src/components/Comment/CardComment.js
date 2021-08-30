@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCommentAction } from "../../actions/commentAction";
-import profilePic from "../../assets/img/profilepic.jpg";
 import "./CardComment.css";
 
-const CardComment = ({ postId, handleCommentLength, commentLength, text }) => {
+const CardComment = ({ postId, profilePic }) => {
   const [comment, setComment] = useState("");
   const commentRef = useRef();
   const dispatch = useDispatch();

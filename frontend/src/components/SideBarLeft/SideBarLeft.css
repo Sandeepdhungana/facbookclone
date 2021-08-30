@@ -37,6 +37,7 @@ span strong {
   height: 3.5rem;
   width: 3.5rem;
   margin-right: 1rem;
+  object-fit: cover;
 }
 .sidebar__links--link .MuiSvgIcon-root {
   height: 3.5rem;

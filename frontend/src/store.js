@@ -6,7 +6,11 @@ import {
   postSubmissionReducer,
 } from "./reducers/postReducer";
 import thunk from "redux-thunk";
-import { loginUserReducer, registerUserReducer } from "./reducers/userReducer";
+import {
+  loginUserReducer,
+  onlineUserReducer,
+  registerUserReducer,
+} from "./reducers/userReducer";
 import {
   addCommentReducer,
   getCommentReducer,
@@ -36,6 +40,7 @@ const reducer = combineReducers({
   confirmFriendRequest: confirmFriendRequestReducer,
   deleteFriendRequest: deleteFreiendRequestReducer,
   removeFriend: removeFreiendReducer,
+  onlineUser: onlineUserReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")

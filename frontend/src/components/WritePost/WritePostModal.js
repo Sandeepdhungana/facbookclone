@@ -13,19 +13,28 @@ import locationIcon from "./icons/locationIcon.png";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 import { useDispatch } from "react-redux";
-import { postSubmissionAction } from "../../actions/postAction";
+// import { postSubmissionAction } from "../../actions/postAction";
 import ButtonLoader from "../Loader/ButtonLoader";
 import useUserFromStorage from "../../hooks/useUserFromStorage";
+import { useUploadImage } from "../../hooks/useUploadImage";
 // import useSocket from "../../hooks/useSocekt";
 
-const WritePostModal = ({ clicked, showWriteModal }) => {
+const WritePostModal = ({
+  clicked,
+  submitAction,
+  showWriteModal,
+  showTextArea,
+  headingText,
+  uploadText,
+  buttonText,
+  type,
+}) => {
   const [postCaption, setPostCaption] = useState("");
-  const [postImage, setPostImage] = useState();
-  const [postFrontImage, setFrontPostImage] = useState();
-  // const [socketPostImage, setSocektPostImage] = useState();
   const [postLoading, setPostLoading] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
   const userFromStorage = useUserFromStorage();
+
+  const { data, postFrontImage, uploadImage } = useUploadImage();
 
   const dispatch = useDispatch();
 
@@ -48,34 +57,24 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
   const handleChange = (text) => (e) => {
     if (text === "writepost" && text === "uploadimage") {
       if (e.target.files.length !== 0) {
-        setFrontPostImage(URL.createObjectURL(e.target.files[0]));
-        setPostImage(e.target.files[0]);
-        // setSocektPostImage(e.target.files[0]);
-      } else {
-        setFrontPostImage("");
-        setPostImage("");
+        uploadImage(e.target.files[0]);
       }
       setPostCaption(e.target.value);
     } else if (text === "writepost") {
       setPostCaption(e.target.value);
     } else if (text === "uploadimage") {
       if (e.target.files.length !== 0) {
-        setFrontPostImage(URL.createObjectURL(e.target.files[0]));
-        setPostImage(e.target.files[0]);
-        // setSocektPostImage(e.target.files[0]);
-      } else {
-        setFrontPostImage("");
-        setPostImage("");
+        uploadImage(e.target.files[0]);
       }
     }
   };
 
-  const data = postImage ? new FormData() : "";
-  if (postImage) {
-    data.append("file", postImage);
-    data.append("upload_preset", "facebookclone");
-    data.append("cloud_name", "facebookclone");
-  }
+  // const data = postImage ? new FormData() : "";
+  // if (postImage) {
+  //   data.append("file", postImage);
+  //   data.append("upload_preset", "facebookclone");
+  //   data.append("cloud_name", "facebookclone");
+  // }
 
   const postButtonStyle = {
     background: "#1771E6",
@@ -84,7 +83,13 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
   increaseTextArea();
 
   const handlePostClick = (e) => {
-    dispatch(postSubmissionAction(postCaption, data, showWriteModal));
+    if (type === "post") {
+      dispatch(submitAction(postCaption, data, showWriteModal));
+    } else if (type === "cover") {
+      dispatch(submitAction("", "", "", "", "", data, showWriteModal));
+    } else {
+      dispatch(submitAction("", "", "", "", data, "", showWriteModal));
+    }
     setPostLoading(true);
     setDisableButton(true);
   };
@@ -99,7 +104,7 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
         }
       >
         <div className="writepostmodal__heading">
-          <h1>Create post</h1>
+          <h1>{headingText}</h1>
           <ClearRoundedIcon onClick={showWriteModal} />
         </div>
         <div className="writepostmodal__name padding-lr-2">
@@ -115,14 +120,19 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
             </div>
           </div>
         </div>
-        <div className="writepostmodal__write padding-lr-2">
-          <textarea
-            onChange={handleChange("writepost")}
-            value={postCaption}
-            placeholder={`What's on your mind, ${userFromStorage?.firstname}?`}
-          ></textarea>
-          <img src={postFrontImage} alt="" />
-        </div>
+        {showTextArea && (
+          <div className="writepostmodal__write padding-lr-2">
+            <textarea
+              onChange={handleChange("writepost")}
+              value={postCaption}
+              placeholder={`What's on your mind, ${userFromStorage?.firstname}?`}
+            ></textarea>
+
+            <img src={postFrontImage} alt="" />
+          </div>
+        )}
+
+        {!showTextArea && <img src={postFrontImage} alt="" />}
         <div className="writepostmodal__uploadimage padding-lr-2 shadow">
           <input
             onChange={handleChange("uploadimage")}
@@ -132,37 +142,37 @@ const WritePostModal = ({ clicked, showWriteModal }) => {
             multiple
           />
           <div className="writepostmodal__text">
-            <h2>Add to your post</h2>
+            <h2>{uploadText}</h2>
           </div>
           <div className="writepostmodal__icons">
-            <li>
-              <img src={photoIcon} alt="" />
-            </li>
-            <li>
-              <img src={friendRequestIcon} alt="" />
-            </li>
-            <li>
-              <img src={smileIcon} alt="" />
-            </li>
-            <li>
-              <img src={locationIcon} alt="" />
-            </li>
-            <li>
-              <img src={mikeIcon} alt="" />
-            </li>
-            <li>
-              <MoreHorizRoundedIcon />
-            </li>
-          </div>
+              <li>
+                <img src={photoIcon} alt="" />
+              </li>
+              <li>
+                <img src={friendRequestIcon} alt="" />
+              </li>
+              <li>
+                <img src={smileIcon} alt="" />
+              </li>
+              <li>
+                <img src={locationIcon} alt="" />
+              </li>
+              <li>
+                <img src={mikeIcon} alt="" />
+              </li>
+              <li>
+                <MoreHorizRoundedIcon />
+              </li>
+            </div>
         </div>
         <div className="wirtepostmodal__button padding-lr-2">
           <button
             disabled={disableButton}
-            style={postCaption || postImage ? postButtonStyle : null}
+            style={postCaption || data ? postButtonStyle : null}
             className="writepostmodal__btn radius"
             onClick={handlePostClick}
           >
-            {postLoading ? <ButtonLoader /> : "Post"}
+            {postLoading ? <ButtonLoader /> : `${buttonText}`}
           </button>
         </div>
       </div>

@@ -19,7 +19,8 @@ const getFriendKnow = asynchandler(async (_id) => {
 
     // function to return users who are not friend, friendRequestSent, friendRequest, isnotMe
     const isFriend = (userId) => {
-      return user.friends.includes(userId);777
+      return user.friends.includes(userId);
+      777;
     };
     const isFriendRequestSent = (userId) => {
       return user.friendRequestSent.includes(userId);
@@ -72,7 +73,8 @@ const getFriendKnow = asynchandler(async (_id) => {
     //   })
     // );
 
-    return peopleUserMayKnow.slice(0, 10);
+    // return peopleUserMayKnow.slice(0, 10);
+    return peopleUserMayKnow;
   } catch (err) {
     console.log(err);
   }

@@ -2,6 +2,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
+  ONLINE_USER_ADDED,
+  ONLINE_USER_REMOVED,
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
@@ -49,4 +51,19 @@ const loginUserReducer = (state = {}, action) => {
   }
 };
 
-export { registerUserReducer, loginUserReducer };
+const onlineUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ONLINE_USER_ADDED:
+      return {
+        onlineUsers: action.payload,
+      };
+    case ONLINE_USER_REMOVED:
+      return {
+        onlineUsers: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export { registerUserReducer, loginUserReducer, onlineUserReducer };

@@ -11,7 +11,6 @@ const getMutualFriend = asynchandler(async (peopleUserMayKnow, _id) => {
     const user = await User.findOne({ _id: _id }).populate("friendRequests");
     const myFriends = user.friends;
 
-
     const mu = peopleUserMayKnow.map((people) => {
       return {
         ...people,

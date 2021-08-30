@@ -7,21 +7,24 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useIsMyProfile } from "../../hooks/useIsMyProfile";
 import { useCloseModal } from "../../hooks/useCloseModal";
+import { useClicked } from "../../hooks/useClicked";
+import WritePostModal from "../WritePost/WritePostModal";
+import "../WritePost/WritePostModal.css";
+import "../WritePost/WritePost.css";
+import { updateUserAction } from "../../actions/userAction";
 
-const ProfileTop = () => {
+const ProfileTop = ({ coverPic }) => {
   const profileGet = useSelector((state) => state.profileGet);
   const { profile } = profileGet;
 
   const [showMenu, setShowMenu] = useState(true);
-  const [showChangeModal, setShowChangeModal] = useState(false);
   const changeModalRef = useRef();
   // const userFromStorage = useUserFromStorage();
-  const {
-    dropDownClicked,
-    handleElementClicked,
-    handleWindowClick,
-    closeModal,
-  } = useCloseModal();
+  const { dropDownClicked, handleElementClicked, closeModal } = useCloseModal();
+  const { disableClick, clicked, clickedModal } = useClicked(false);
+  const [text, setText] = useState();
+  console.log();
+
   const user = profile?.user;
   const isMyProfile = useIsMyProfile(user);
 
@@ -34,7 +37,7 @@ const ProfileTop = () => {
   const profileName = useRef();
 
   const coverStyle = {
-    backgroundImage: `url(${coverpic})`,
+    backgroundImage: `url(${profile.user?.coverPic})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     height: "100%",
@@ -107,14 +110,42 @@ const ProfileTop = () => {
           <div className="profiletop__profilepic-wrapper">
             <div className="profiletop__profilepic">
               <img onClick={handleElementClicked} src={profilePic} alt="" />
-              {dropDownClicked && (
-                <div
-                  ref={changeModalRef}
-                  className="profiletop__change-photo shadow"
-                >
-                  <h2>Change profile picture</h2>
-                  <h2>Change cover picture</h2>
-                </div>
+              {isMyProfile && dropDownClicked && (
+                <>
+                  <div
+                    ref={changeModalRef}
+                    className="profiletop__change-photo shadow"
+                  >
+                    <h2
+                      onClick={() => {
+                        clickedModal(true);
+                        setText("profile");
+                      }}
+                    >
+                      Change profile picture
+                    </h2>
+                    <h2
+                      onClick={() => {
+                        clickedModal(true);
+                        setText("cover");
+                      }}
+                    >
+                      Change cover picture
+                    </h2>
+                  </div>
+
+                  {/* {!disableClick && clicked && (
+                    <WritePostModal
+                      clicked={clicked}
+                      submitAction={updateUserAction}
+                      showWriteModal={() => clickedModal(false)}
+                      showTextArea={true}
+                      headingText={"Create post"}
+                      uploadText={"Add to your post"}
+                      buttonText={"Post"}
+                    />
+                  )} */}
+                </>
               )}
             </div>
           </div>
@@ -156,6 +187,18 @@ const ProfileTop = () => {
           </div>
         </div>
       </div>
+      {!disableClick && clicked && (
+        <WritePostModal
+          clicked={clicked}
+          submitAction={updateUserAction}
+          showWriteModal={() => clickedModal(false)}
+          showTextArea={false}
+          headingText={`Update ${text} Picture`}
+          uploadText={`Choose ${text} picture`}
+          buttonText={"Upload"}
+          type={text}
+        />
+      )}
     </div>
   );
 };

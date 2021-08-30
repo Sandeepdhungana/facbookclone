@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
+import { Link } from "react-router-dom";
 TimeAgo.addDefaultLocale(en);
 
-const CardTop = ({ profilePic, firstname, surname, postCaption, postedIn }) => {
+const CardTop = ({
+  _id,
+  profilePic,
+  firstname,
+  surname,
+  postCaption,
+  postedIn,
+}) => {
   const [lengthOfCaption, setLengthOfCaption] = useState(75);
   const [seemore, setSeemore] = useState(true);
 
@@ -32,9 +40,11 @@ const CardTop = ({ profilePic, firstname, surname, postCaption, postedIn }) => {
         <div className="postcards__top--name--wrapper">
           <img src={profilePic} alt="Profile Pic" />
           <div className="postcards__top--name--time">
-            <h3>
-              {firstname} {surname}
-            </h3>
+            <Link to={`/profile/${_id}`}>
+              <h3>
+                {firstname} {surname}
+              </h3>
+            </Link>
             <p>
               {currentTime}. <i className="fas fa-cog"></i>
             </p>

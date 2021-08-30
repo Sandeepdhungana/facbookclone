@@ -46,6 +46,22 @@
   background-color: #e4e6e8;
 }
 
+.nofriend {
+  padding-left: 1rem;
+}
+.nofriend h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.nofriend h2 {
+  background: #166ADA;
+  padding: 2rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
 /* media query */
 @media screen and (max-width: 899px) {
   #sidebarright {

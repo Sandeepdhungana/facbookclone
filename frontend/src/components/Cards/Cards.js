@@ -20,7 +20,7 @@ const Cards = ({
     comments: postComment,
     postCaption,
     postImage,
-    postedBy: { firstname, surname, profilePic },
+    postedBy: { _id, firstname, surname, profilePic },
     postedIn,
   },
 }) => {
@@ -48,6 +48,7 @@ const Cards = ({
   return (
     <section id="postcards" className="shadow radius">
       <CardTop
+        _id={_id}
         profilePic={profilePic}
         firstname={firstname}
         surname={surname}
@@ -61,7 +62,7 @@ const Cards = ({
         postComment={postComment}
         postId={postId}
       />
-      <CardComment postId={postId} />
+      <CardComment profilePic={profilePic} postId={postId} />
 
       {loading ? (
         <></>

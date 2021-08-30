@@ -85,6 +85,7 @@
   width: 3.5rem;
   margin-right: 1rem;
   border-radius: 50%;
+  object-fit:cover;
 }
 
 /* while modal is open donot scroll */

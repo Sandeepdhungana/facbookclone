@@ -5,7 +5,7 @@ import {
   FIND_FRIEND_SUCCESS,
 } from "../constants/findFriendConstant";
 
-const findFriendAction = (newPost) => async (dispatch, getState) => {
+const findFriendAction = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: FIND_FRIEND_REQUEST,

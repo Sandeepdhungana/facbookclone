@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import OnlineIcon from "../OnlineIcon/OnlineIcon";
 import "./SideBarOnline.css";
 
-const SideBarOnline = ({ name, linkto }) => {
+const SideBarOnline = ({
+  friends: { _id, firstname, surname, profilePic },
+}) => {
   return (
-    <Link to={`/users/${linkto}`}>
+    <Link to={`/profile/${_id}`}>
       <div className="sidebaronline">
-        <OnlineIcon profilePic="//unsplash.it/400" />
-        <h2>{name}</h2>
+        <OnlineIcon profilePic={profilePic} />
+        <h2>
+          {firstname} {surname}
+        </h2>
       </div>
     </Link>
   );
