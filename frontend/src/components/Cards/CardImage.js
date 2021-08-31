@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CardImage = ({ postImage }) => {
+const CardImage = ({ postImage, name, postId }) => {
   return (
     <>
       {postImage && (
         <div className="postcards__image">
-          <img src={postImage} alt="" />
+          <Link to={`/${name}/post/${postId}`}>
+            <img src={postImage} alt="" />
+          </Link>
         </div>
       )}
     </>

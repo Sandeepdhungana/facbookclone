@@ -10,6 +10,7 @@ import Comments from "../Comment/Comments";
 import { useDispatch, useSelector } from "react-redux";
 import { SOCKET_COMMENT_RECEIVED } from "../../constants/socketConstants";
 import socket from "../../socket";
+import useUserFromStorage from "../../hooks/useUserFromStorage";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -27,6 +28,7 @@ const Cards = ({
   const dispatch = useDispatch();
   const getComments = useSelector((state) => state.getComments);
   const { loading, comments } = getComments;
+  const name = `${firstname}${surname}`.toLowerCase();
 
   useEffect(() => {
     socket.on("COMMENT_SENT", (data) => {
@@ -45,6 +47,7 @@ const Cards = ({
       socket.off("COMMENT_SENT");
     };
   }, [dispatch, comments?.length, postId]);
+  const userFromStorage = useUserFromStorage();
   return (
     <section id="postcards" className="shadow radius">
       <CardTop
@@ -55,14 +58,14 @@ const Cards = ({
         postCaption={postCaption}
         postedIn={postedIn}
       />
-      <CardImage postImage={postImage} />
+      <CardImage name={name} postId={postId} postImage={postImage} />
       <CardDown
         likes={likes}
         comments={comments}
         postComment={postComment}
         postId={postId}
       />
-      <CardComment profilePic={profilePic} postId={postId} />
+      <CardComment profilePic={userFromStorage?.profilePic} postId={postId} />
 
       {loading ? (
         <></>

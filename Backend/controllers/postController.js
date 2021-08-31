@@ -61,6 +61,38 @@ const sendPostToFrontend = asynchandler(async (req, res) => {
     console.log(e);
   }
 });
+const sendOnePostToFrontend = asynchandler(async (req, res) => {
+  const { postId } = req.params;
+  console.log(postId);
+  try {
+    const post = await Post.findById(postId)
+      .sort("-postedIn")
+      .populate("postedBy");
+    console.log(post);
+
+    const onePost = {
+      comments: post.comments,
+      postedIn: post.postedIn,
+      likes: post.likes,
+      _id: post._id,
+      postImage: post.postImage,
+      postCaption: post.postCaption,
+      postedBy: {
+        firstname: post.postedBy.firstname,
+        profilePic: post.postedBy.profilePic,
+        surname: post.postedBy.surname,
+        _id: post.postedBy._id,
+      },
+    };
+    if (post) {
+      res.status(201).json(onePost);
+    } else {
+      throw createError(400, "Invalid Post Data");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 const postLikeUnlike = asynchandler(async (req, res) => {
   const { postId, liked } = req.body;
@@ -134,4 +166,5 @@ export {
   getPostFromFrontend,
   postLikeUnlike,
   postAddComment,
+  sendOnePostToFrontend,
 };

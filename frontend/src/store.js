@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  OnePostGetReducer,
   postGetReducer,
   postLikeUnlikeReducer,
   postSubmissionReducer,
@@ -45,6 +46,7 @@ const reducer = combineReducers({
   removeFriend: removeFreiendReducer,
   onlineUser: onlineUserReducer,
   myFriend: myFriendGetReducer,
+  onePostGet: OnePostGetReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
@@ -70,6 +72,10 @@ const initialState = {
   findFriend: {
     loading: true,
   },
+  onePostGet: {
+    postedBy:"",
+    likes:[]
+  }
   // postLikeUnlike: [],
 };
 const middleware = [thunk];

@@ -46,8 +46,6 @@ const HomeScreen = ({ onlineFriends }) => {
     };
   }, [dispatch, userfromstorage, history]);
 
-
-
   const name = [
     "Sandeep Dhungana",
     "Sushila Subedi",

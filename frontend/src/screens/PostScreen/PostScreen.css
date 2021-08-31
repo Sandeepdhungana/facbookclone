@@ -1,18 +1,17 @@
-.postscreen {
+.postscreen-lg {
   height: calc(100vh - 6.4rem);
   display: flex;
   background: white;
 }
+
 .postscreen__image {
   display: flex;
   justify-content: center;
-}
-.postscreen .postscreen__image {
   height: 100%;
   flex: 0.8;
   background: black;
 }
-.postscreen .postscreen__image img {
+.postscreen__image img {
   height: 100%;
   object-fit: cover;
 }
@@ -20,5 +19,22 @@
 .postscreen__cards {
   display: flex;
   flex-direction: column;
-  flex: 0.20;
+  flex: 0.2;
+}
+
+.postscreen__sm {
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
+  .postscreen-lg {
+    display: none;
+  }
+  .postscreen__sm {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 6.4rem);
+    justify-content: center;
+    align-items: center;
+  }
 }

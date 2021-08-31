@@ -17,12 +17,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useOnlineFriends } from "./hooks/useOnlineFriends";
 import { myFriendGetAction } from "./actions/findFriendAction";
 import { ONLINE_USER_ADDED } from "./constants/userConstant";
+import PostScreen from "./screens/PostScreen/PostScreen";
 
 const App = () => {
   const userFromStorage = useUserFromStorage();
   const myFriend = useSelector((state) => state.myFriend);
   const onlineUser = useSelector((state) => state.onlineUser);
-  console.log(onlineUser);
   const { onlineUsers } = onlineUser;
   const { myfriends } = myFriend;
   const dispatch = useDispatch();
@@ -63,6 +63,7 @@ const App = () => {
           </Route>
           <Route exact path="/logout" component={LogOut} />
           <Route exact path="/friends" component={FindFriendScreen} />
+          <Route exact path="/:name/post/:postId" component={PostScreen} />
           <Route exact path="/profile/:id" component={ProfileScreen} />
         </>
       </Switch>

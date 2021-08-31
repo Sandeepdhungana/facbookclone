@@ -9,6 +9,9 @@ import {
   POST_LIKEUNLIKE_REQUEST,
   POST_LIKEUNLIKE_SUCCESS,
   POST_LIKEUNLIKE_FAIL,
+  ONE_POST_GET_REQUEST,
+  ONE_POST_GET_SUCCESS,
+  ONE_POST_GET_FAIL,
 } from "../constants/postConstant";
 // import { SOCKET_COMMENT_RECEIVED } from "../constants/socketConstants";
 
@@ -62,6 +65,28 @@ const postGetReducer = (state = { posts: [] }, action) => {
       return state;
   }
 };
+const OnePostGetReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ONE_POST_GET_REQUEST:
+      return {
+        // loading: action.payload,
+        loading: true,
+      };
+    case ONE_POST_GET_SUCCESS:
+      return {
+        loading: false,
+        onePost: action.payload,
+      };
+    case ONE_POST_GET_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
 
 const postLikeUnlikeReducer = (state = {}, action) => {
   switch (action.type) {
@@ -85,7 +110,12 @@ const postLikeUnlikeReducer = (state = {}, action) => {
   }
 };
 
-export { postSubmissionReducer, postGetReducer, postLikeUnlikeReducer };
+export {
+  postSubmissionReducer,
+  postGetReducer,
+  postLikeUnlikeReducer,
+  OnePostGetReducer,
+};
 
 // const {
 //   liked,

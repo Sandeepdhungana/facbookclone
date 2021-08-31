@@ -42,6 +42,8 @@ const ProfileScreen = ({ match, history }) => {
       socket.off("POST_SUBMISSION_DATA");
     };
   }, [dispatch, userfromstorage, history]);
+
+  console.log(loading);
   return (
     <>
       <Helmet>
