@@ -1,0 +1,21 @@
+.messengerscreen {
+  display: flex;
+  height: 100vh;
+  background: white;
+}
+.messengerscreen::-webkit-scrollbar {
+  display: none !important;
+}
+.messengerscreen::-webkit-scrollbar-thumb {
+  background: #bcc0c4;
+  border-radius: 100px;
+}
+
+.messengerscreen__left {
+  width: 23.5vw;
+  border-right: 1px solid #ccc;
+}
+
+.messengerscreen__right {
+  width: calc(100vw - 23.5vw);
+}

@@ -18,6 +18,8 @@ import { useOnlineFriends } from "./hooks/useOnlineFriends";
 import { myFriendGetAction } from "./actions/findFriendAction";
 import { ONLINE_USER_ADDED } from "./constants/userConstant";
 import PostScreen from "./screens/PostScreen/PostScreen";
+import MessengerScreen from "./screens/MessengerScreen/MessengerScreen";
+import PageNotFoundScreen from "./screens/PageNotFoundScreen/PageNotFoundScreen";
 
 const App = () => {
   const userFromStorage = useUserFromStorage();
@@ -52,6 +54,8 @@ const App = () => {
       <Switch>
         {/* Pages not containing navbar */}
         <Route exact path="/login" component={LoginScreen} />
+        <Route exact path="/messenger/:id" component={MessengerScreen} />
+        <Route exact path="/messenger" component={MessengerScreen} />
         <>
           {/* Pages Containing Navbar */}
           <NavBar />
@@ -65,6 +69,7 @@ const App = () => {
           <Route exact path="/friends" component={FindFriendScreen} />
           <Route exact path="/:name/post/:postId" component={PostScreen} />
           <Route exact path="/profile/:id" component={ProfileScreen} />
+          {/* <Route path="*" component={PageNotFoundScreen} /> */}
         </>
       </Switch>
     </Router>
