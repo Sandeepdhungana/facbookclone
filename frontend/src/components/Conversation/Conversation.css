@@ -1,0 +1,35 @@
+.conversation {
+  display: flex;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  align-items: center;
+}
+.conversation:hover {
+  background-color: #f2f2f2;
+}
+.conversation__left {
+  margin-right: 1rem;
+}
+.conversation__left img {
+  height: 5.5rem;
+  width: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.5px solid #ccc
+}
+.conversation__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  line-height: 19px;
+}
+.conversation__right h2 {
+  font-size: clamp(1.5rem, 1vw, 2rem);
+  font-weight: 400;
+}
+.conversation__right p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #949597;
+}

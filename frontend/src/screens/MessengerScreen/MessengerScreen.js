@@ -5,9 +5,9 @@ import MessengerRightBottom from "../../components/MessengerScreenComp/Messenger
 import MessengerRightTop from "../../components/MessengerScreenComp/MessengerRightTop";
 import "./MessengerScreen.css";
 import "../../components/MessengerScreenComp/MessengerScreenComp.css";
+import MessengerRightInput from "../../components/MessengerScreenComp/MessengerRightInput";
 
 const MessengerScreen = () => {
-
   return (
     <>
       <Helmet>
@@ -22,6 +22,7 @@ const MessengerScreen = () => {
         <div className="messengerscreen__right">
           <MessengerRightTop />
           <MessengerRightBottom />
+          <MessengerRightInput />
         </div>
       </div>
     </>

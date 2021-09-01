@@ -65,6 +65,7 @@
 }
 .messenger__left--top-input input::placeholder {
   font-size: 1.5rem;
+  color: #65676b;
 }
 .messenger__left--top-input .MuiSvgIcon-root {
   font-size: 2.5rem;
@@ -78,6 +79,7 @@
   height: calc(85vh - 3.5rem);
   overflow-y: hidden;
   scroll-behavior: smooth;
+  padding: 0rem 0 0 1rem;
 }
 .messenger__left--bottom:hover {
   overflow-y: scroll;
@@ -135,10 +137,10 @@
 }
 
 .top-icons .MuiSvgIcon-root {
-  font-size: clamp(2rem, 2vw, 1.2rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   color: #0099ff;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 /* MESSENGER RIGHT BOTTOM STYLES */
@@ -146,4 +148,88 @@
   height: calc(100vh - 16vh);
   padding-left: 1rem;
   overflow-y: scroll;
+}
+
+/* MESSENGER RIGNT INPUT */
+.messengerright__input {
+  display: flex;
+  height: calc(100% - 84vh - 6rem);
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.messenger__input--left,
+.messengerright__input-icons,
+.messenger__input--right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 0.5rem;
+  color: #0099ff;
+}
+.messengerright__input-icons,
+.messenger__input--right {
+  flex: 0;
+  margin-right: 0;
+}
+.messengerright__input-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+.messengerright__input-icons:hover {
+  background: #f3f3f5;
+}
+.messengerright__input-icons .MuiSvgIcon-root,
+.messenger__input--right .MuiSvgIcon-root {
+  font-size: 2rem;
+}
+.messengerright__input-icons {
+  margin-right: 0.5rem;
+  transition: all 10s ease-in-out;
+}
+
+.messenger__input--middle {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  background: #f3f3f5;
+  padding: 0.5rem;
+  border-radius: 100px;
+  margin-right: 1rem;
+  transition: all 10s ease-in;
+}
+.messenger__input--middle form {
+  display: flex;
+  flex: 1;
+  margin-right: 1rem;
+}
+.messenger__input--middle input {
+  background: #f3f3f5;
+  display: flex;
+  font-size: 1.5rem;
+  flex: 1;
+  padding: 0.2rem;
+  border: none;
+  outline: none;
+}
+
+.messenger__input--right {
+  display: flex;
+  cursor: pointer;
+}
+.messenger__input--right-send {
+  animation: sendanimate 0.5s ease-in-out;
+}
+
+@keyframes sendanimate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,0 +1,24 @@
+.messages {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.messages__senderpic img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.messages__message {
+  padding: 1rem;
+  border-radius: 17px;
+  max-width: 44ch;
+  word-wrap: break-word;
+}
+.messages__message h3 {
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.1vw, 2rem);
+}

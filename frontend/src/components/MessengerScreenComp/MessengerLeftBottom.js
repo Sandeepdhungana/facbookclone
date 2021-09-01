@@ -1,67 +1,36 @@
-import React from 'react'
+import React from "react";
+import Conversation from "../Conversation/Conversation";
 
 const MessengerLeftBottom = () => {
-    return (
-        <div className='messenger__left--bottom'>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>Bottom</h1>
-            <h1>sa</h1>
-        </div>
-    )
-}
+  return (
+    <div className="messenger__left--bottom">
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+    </div>
+  );
+};
 
-export default MessengerLeftBottom
+export default MessengerLeftBottom;
