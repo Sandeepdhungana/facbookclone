@@ -16,7 +16,7 @@
   width: 5.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 0.5px solid #ccc
+  border: 0.5px solid #ccc;
 }
 .conversation__right {
   display: flex;
@@ -32,4 +32,10 @@
   font-weight: 400;
   font-size: 1.2rem;
   color: #949597;
+}
+
+@media screen and (max-width: 950px) {
+  .conversation__right {
+    display: none;
+  }
 }

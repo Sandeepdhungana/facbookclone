@@ -28,6 +28,9 @@ import {
   removeFreiendReducer,
   sendFreiendRequestReducer,
 } from "./reducers/friendRequestReducer";
+import {
+  conversationGetReducer,
+} from "./reducers/conversationReducer";
 
 const reducer = combineReducers({
   postSubmission: postSubmissionReducer,
@@ -47,6 +50,7 @@ const reducer = combineReducers({
   onlineUser: onlineUserReducer,
   myFriend: myFriendGetReducer,
   onePostGet: OnePostGetReducer,
+  conversationGet: conversationGetReducer,
 });
 
 const loginuserDetailsFromStorage = localStorage.getItem("userDetails")
@@ -73,9 +77,9 @@ const initialState = {
     loading: true,
   },
   onePostGet: {
-    postedBy:"",
-    likes:[]
-  }
+    postedBy: "",
+    likes: [],
+  },
   // postLikeUnlike: [],
 };
 const middleware = [thunk];
